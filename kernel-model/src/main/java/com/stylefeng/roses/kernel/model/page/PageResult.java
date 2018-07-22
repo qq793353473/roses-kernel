@@ -8,6 +8,9 @@ import java.util.List;
 
 /**
  * 封装分页结果集
+ *
+ * @author stylefeng
+ * @Date 2018/7/22 23:00
  */
 @Data
 public class PageResult<T> implements Serializable {
