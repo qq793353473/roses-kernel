@@ -31,7 +31,6 @@ public class DefaultWebConfig extends WebMvcConfigurationSupport {
         return new RequestDataMessageConvert();
     }
 
-
     //@Autowired
     //private RequestMappingHandlerAdapter handlerAdapter;
     //

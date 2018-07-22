@@ -1,12 +1,15 @@
 package com.stylefeng.roses.core.base.response;
 
 
+import lombok.Data;
+
 /**
  * 返回给前台的通用包装
  *
  * @author stylefeng
  * @Date 2018/1/4 22:37
  */
+@Data
 public class ResponseData {
 
     public static final String DEFAULT_SUCCESS_MESSAGE = "请求成功";
@@ -45,38 +48,6 @@ public class ResponseData {
         this.code = code;
         this.message = message;
         this.object = object;
-    }
-
-    public Boolean getSuccess() {
-        return success;
-    }
-
-    public void setSuccess(Boolean success) {
-        this.success = success;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
-
-    public Object getObject() {
-        return object;
-    }
-
-    public void setObject(Object object) {
-        this.object = object;
-    }
-
-    public Integer getCode() {
-        return code;
-    }
-
-    public void setCode(Integer code) {
-        this.code = code;
     }
 
     public static SuccessResponseData success(Object object) {

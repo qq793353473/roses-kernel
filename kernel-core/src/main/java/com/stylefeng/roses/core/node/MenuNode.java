@@ -2,6 +2,7 @@ package com.stylefeng.roses.core.node;
 
 
 import com.stylefeng.roses.core.node.config.MenuFlag;
+import lombok.Data;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -13,6 +14,7 @@ import java.util.List;
  * @Description 菜单的节点
  * @date 2016年12月6日 上午11:34:17
  */
+@Data
 public class MenuNode implements Comparable {
 
     /**
@@ -66,104 +68,11 @@ public class MenuNode implements Comparable {
     private List<MenuNode> linkedList = new ArrayList<MenuNode>();
 
     public MenuNode() {
-        super();
     }
 
     public MenuNode(Integer id, Integer parentId) {
-        super();
         this.id = id;
         this.parentId = parentId;
-    }
-
-    public Integer getLevels() {
-        return levels;
-    }
-
-    public void setLevels(Integer levels) {
-        this.levels = levels;
-    }
-
-    public String getIcon() {
-        return icon;
-    }
-
-    public void setIcon(String icon) {
-        this.icon = icon;
-    }
-
-    public static MenuNode createRoot() {
-        return new MenuNode(0, -1);
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public Integer getParentId() {
-        return parentId;
-    }
-
-    public void setParentId(Integer parentId) {
-        this.parentId = parentId;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getUrl() {
-        return url;
-    }
-
-    public void setUrl(String url) {
-        this.url = url;
-    }
-
-    public List<MenuNode> getChildren() {
-        return children;
-    }
-
-    public void setChildren(List<MenuNode> children) {
-        this.children = children;
-    }
-
-    public Integer getNum() {
-        return num;
-    }
-
-    public void setNum(Integer num) {
-        this.num = num;
-    }
-
-    public Integer getIsmenu() {
-        return ismenu;
-    }
-
-    public void setIsmenu(Integer ismenu) {
-        this.ismenu = ismenu;
-    }
-
-    @Override
-    public String toString() {
-        return "MenuNode{" +
-                "id=" + id +
-                ", parentId=" + parentId +
-                ", name='" + name + '\'' +
-                ", levels=" + levels +
-                ", num=" + num +
-                ", url='" + url + '\'' +
-                ", icon='" + icon + '\'' +
-                ", children=" + children +
-                ", linkedList=" + linkedList +
-                '}';
     }
 
     @Override
@@ -174,6 +83,16 @@ public class MenuNode implements Comparable {
             num = 0;
         }
         return this.num.compareTo(num);
+    }
+
+    /**
+     * 创建根节点
+     *
+     * @author stylefeng
+     * @Date 2018/7/22 22:55
+     */
+    public static MenuNode createRoot() {
+        return new MenuNode(0, -1);
     }
 
     /**

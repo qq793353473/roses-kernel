@@ -1,11 +1,14 @@
 package com.stylefeng.roses.core.config.properties;
 
+import lombok.Data;
+
 /**
  * 签名校验需要的配置
  *
  * @author fengshuonan
  * @Date 2018/5/8 下午2:24
  */
+@Data
 public class SignProperties {
 
     /**
@@ -13,11 +16,4 @@ public class SignProperties {
      */
     private long time;
 
-    public long getTime() {
-        return time;
-    }
-
-    public void setTime(long time) {
-        this.time = time;
-    }
 }

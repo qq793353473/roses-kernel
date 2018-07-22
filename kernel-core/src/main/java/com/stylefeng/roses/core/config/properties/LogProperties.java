@@ -1,11 +1,14 @@
 package com.stylefeng.roses.core.config.properties;
 
+import lombok.Data;
+
 /**
  * 日志记录的参数配置
  *
  * @author fengshuonan
  * @Date 2018/5/26 下午2:16
  */
+@Data
 public class LogProperties {
 
     /**
@@ -18,19 +21,4 @@ public class LogProperties {
      */
     private Boolean trace = true;
 
-    public String getLevel() {
-        return level;
-    }
-
-    public void setLevel(String level) {
-        this.level = level;
-    }
-
-    public Boolean getTrace() {
-        return trace;
-    }
-
-    public void setTrace(Boolean trace) {
-        this.trace = trace;
-    }
 }

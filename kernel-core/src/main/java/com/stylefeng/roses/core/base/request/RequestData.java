@@ -4,6 +4,7 @@ import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.util.StrUtil;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import lombok.Data;
 
 import java.io.Serializable;
 import java.util.*;
@@ -14,6 +15,7 @@ import java.util.*;
  * @author fengshuonan
  * @Date 2018/2/11 23:04
  */
+@Data
 public class RequestData implements Serializable {
 
     private static final long serialVersionUID = 9081406366569775542L;
@@ -37,17 +39,6 @@ public class RequestData implements Serializable {
      * 客户端请求的地址
      */
     private String url;
-
-    /**
-     * 获取请求原始json
-     */
-    public JSONObject getData() {
-        return data;
-    }
-
-    public void setData(JSONObject data) {
-        this.data = data;
-    }
 
     /**
      * 解析请求json为指定类
@@ -192,37 +183,4 @@ public class RequestData implements Serializable {
         }
     }
 
-    public String getRequestNo() {
-        return requestNo;
-    }
-
-    public void setRequestNo(String requestNo) {
-        this.requestNo = requestNo;
-    }
-
-    public String getIp() {
-        return ip;
-    }
-
-    public void setIp(String ip) {
-        this.ip = ip;
-    }
-
-    public String getUrl() {
-        return url;
-    }
-
-    public void setUrl(String url) {
-        this.url = url;
-    }
-
-    @Override
-    public String toString() {
-        return "RequestData{" +
-                "data=" + data +
-                ", requestNo='" + requestNo + '\'' +
-                ", ip='" + ip + '\'' +
-                ", url='" + url + '\'' +
-                '}';
-    }
 }

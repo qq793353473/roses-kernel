@@ -2,8 +2,7 @@ package com.stylefeng.roses.core.context;
 
 import com.stylefeng.roses.core.util.HttpContext;
 import com.stylefeng.roses.kernel.model.constants.RosesConstants;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -13,9 +12,8 @@ import javax.servlet.http.HttpServletRequest;
  * @author fengshuonan
  * @date 2018-05-09-下午6:25
  */
+@Slf4j
 public class RequestNoContext {
-
-    private static Logger logger = LoggerFactory.getLogger(RequestNoContext.class);
 
     /**
      * 获取当前请求的请求号，没有请求号则生成空串
@@ -28,7 +26,6 @@ public class RequestNoContext {
         try {
 
             HttpServletRequest request = HttpContext.getRequest();
-
             String requestNo = request.getHeader(RosesConstants.REQUEST_NO_HEADER_NAME);
 
             if (requestNo == null) {
@@ -38,7 +35,7 @@ public class RequestNoContext {
             }
 
         } catch (NullPointerException e) {
-            logger.debug("没有请求号！");
+            log.debug("没有请求号！");
             return "";
         }
 

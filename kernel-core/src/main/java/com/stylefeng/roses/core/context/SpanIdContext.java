@@ -2,8 +2,7 @@ package com.stylefeng.roses.core.context;
 
 import com.stylefeng.roses.core.util.HttpContext;
 import com.stylefeng.roses.kernel.model.constants.RosesConstants;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -13,16 +12,14 @@ import javax.servlet.http.HttpServletRequest;
  * @author fengshuonan
  * @date 2018-05-09-下午6:25
  */
+@Slf4j
 public class SpanIdContext {
-
-    private static Logger logger = LoggerFactory.getLogger(SpanIdContext.class);
 
     public static String getSpanId() {
 
         try {
 
             HttpServletRequest request = HttpContext.getRequest();
-
             String spanId = request.getHeader(RosesConstants.SPAN_ID_HEADER_NAME);
 
             if (spanId == null) {
@@ -32,7 +29,7 @@ public class SpanIdContext {
             }
 
         } catch (NullPointerException e) {
-            logger.debug("没有spanId !");
+            log.debug("没有spanId !");
             return "";
         }
 

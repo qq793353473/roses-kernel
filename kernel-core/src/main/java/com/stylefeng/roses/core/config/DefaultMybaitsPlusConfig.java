@@ -23,7 +23,7 @@ import org.springframework.context.annotation.Configuration;
 public class DefaultMybaitsPlusConfig {
 
     @Autowired
-    DruidProperties druidProperties;
+    private DruidProperties druidProperties;
 
     /**
      * druid配置
