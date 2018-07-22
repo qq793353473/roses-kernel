@@ -19,6 +19,5 @@ public class DefaultRosesErrorAttributes extends DefaultErrorAttributes {
     @Override
     public Map<String, Object> getErrorAttributes(WebRequest webRequest, boolean includeStackTrace) {
         return BeanUtil.beanToMap(ResponseData.error(CoreExceptionEnum.SERVICE_ERROR.getMessage()));
-
     }
 }
