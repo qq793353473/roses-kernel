@@ -1,4 +1,4 @@
-package com.stylefeng.roses.core.base.request;
+package com.stylefeng.roses.core.reqres.request;
 
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.util.StrUtil;

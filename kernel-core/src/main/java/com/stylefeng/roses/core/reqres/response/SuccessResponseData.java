@@ -1,4 +1,4 @@
-package com.stylefeng.roses.core.base.response;
+package com.stylefeng.roses.core.reqres.response;
 
 /**
  * 请求成功的返回
@@ -12,7 +12,7 @@ public class SuccessResponseData extends ResponseData {
     }
 
     public SuccessResponseData(Object object) {
-        super(true, DEFAULT_SUCCESS_CODE, DEFAULT_SUCCESS_MESSAGE, object);
+        super(true, ResponseData.DEFAULT_SUCCESS_CODE, ResponseData.DEFAULT_SUCCESS_MESSAGE, object);
     }
 
     public SuccessResponseData(Integer code, String message, Object object) {

@@ -1,4 +1,4 @@
-package com.stylefeng.roses.core.base.response;
+package com.stylefeng.roses.core.reqres.response;
 
 
 /**
@@ -13,7 +13,7 @@ public class ErrorResponseData extends ResponseData {
     }
 
     public ErrorResponseData(String message) {
-        super(false, DEFAULT_ERROR_CODE, message, null);
+        super(false, ResponseData.DEFAULT_ERROR_CODE, message, null);
     }
 
     public ErrorResponseData(Integer code, String message) {

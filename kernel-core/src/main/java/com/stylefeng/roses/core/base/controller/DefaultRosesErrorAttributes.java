@@ -1,7 +1,7 @@
 package com.stylefeng.roses.core.base.controller;
 
 import cn.hutool.core.bean.BeanUtil;
-import com.stylefeng.roses.core.base.response.ResponseData;
+import com.stylefeng.roses.core.reqres.response.ResponseData;
 import com.stylefeng.roses.kernel.model.exception.CoreExceptionEnum;
 import org.springframework.boot.web.servlet.error.DefaultErrorAttributes;
 import org.springframework.web.context.request.WebRequest;

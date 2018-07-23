@@ -1,7 +1,7 @@
 package com.stylefeng.roses.core.aop;
 
-import com.stylefeng.roses.core.base.request.RequestData;
 import com.stylefeng.roses.core.context.RequestDataHolder;
+import com.stylefeng.roses.core.reqres.request.RequestData;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;

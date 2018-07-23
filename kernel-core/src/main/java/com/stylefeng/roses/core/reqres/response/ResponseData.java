@@ -1,4 +1,4 @@
-package com.stylefeng.roses.core.base.response;
+package com.stylefeng.roses.core.reqres.response;
 
 
 import lombok.Data;

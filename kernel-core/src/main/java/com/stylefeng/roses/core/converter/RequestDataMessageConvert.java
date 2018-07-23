@@ -3,7 +3,7 @@ package com.stylefeng.roses.core.converter;
 import cn.hutool.core.io.IoUtil;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import com.stylefeng.roses.core.base.request.RequestData;
+import com.stylefeng.roses.core.reqres.request.RequestData;
 import com.stylefeng.roses.core.util.HttpContext;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpInputMessage;
