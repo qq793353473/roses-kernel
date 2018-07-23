@@ -13,4 +13,19 @@ public interface AopSortConstants {
      */
     int REQUEST_DATA_AOP_SORT = 500;
 
+    /**
+     * 控制器调用链的aop
+     */
+    int CHAIN_ON_CONTROLLER_SORT = 600;
+
+    /**
+     * provider的调用链aop
+     */
+    int CHAIN_ON_PROVIDER_SORT = 610;
+
+    /**
+     * consumer的调用链aop
+     */
+    int CHAIN_ON_CONSUMMER_SORT = 620;
+
 }
