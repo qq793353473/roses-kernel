@@ -15,6 +15,7 @@
         <module>kernel-model</module>
         <module>kernel-core</module>
         <module>kernel-scanner</module>
+        <module>kernel-generator</module>
     </modules>
 
     <parent>
@@ -160,66 +161,23 @@
                     </configuration>
                 </plugin>
                 <plugin>
-                    <groupId>org.springframework.boot</groupId>
-                    <artifactId>spring-boot-maven-plugin</artifactId>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-source-plugin</artifactId>
+                    <version>2.1</version>
+                    <configuration>
+                        <attach>true</attach>
+                    </configuration>
+                    <executions>
+                        <execution>
+                            <phase>compile</phase>
+                            <goals>
+                                <goal>jar</goal>
+                            </goals>
+                        </execution>
+                    </executions>
                 </plugin>
             </plugins>
         </pluginManagement>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-resources-plugin</artifactId>
-                <configuration>
-                    <delimiters>
-                        <delimiter>@</delimiter>
-                    </delimiters>
-                    <useDefaultDelimiters>false</useDefaultDelimiters>
-                </configuration>
-            </plugin>
-        </plugins>
-        <resources>
-            <resource>
-                <directory>src/main/resources</directory>
-                <filtering>true</filtering>
-            </resource>
-            <resource>
-                <directory>src/main/java</directory>
-                <includes>
-                    <include>**/*.xml</include>
-                </includes>
-            </resource>
-        </resources>
     </build>
-
-    <profiles>
-        <profile>
-            <id>local</id>
-            <properties>
-                <spring.active>local</spring.active>
-            </properties>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
-        </profile>
-        <profile>
-            <id>dev</id>
-            <properties>
-                <spring.active>dev</spring.active>
-            </properties>
-        </profile>
-        <profile>
-            <id>test</id>
-            <properties>
-                <spring.active>test</spring.active>
-            </properties>
-        </profile>
-        <profile>
-            <id>produce</id>
-            <properties>
-                <spring.active>produce</spring.active>
-            </properties>
-        </profile>
-    </profiles>
-
 
 </project>
