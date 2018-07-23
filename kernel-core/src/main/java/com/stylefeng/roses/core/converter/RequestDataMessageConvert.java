@@ -92,8 +92,10 @@ public class RequestDataMessageConvert extends AbstractGenericHttpMessageConvert
 
     private Object getRequestData(String requestBody, HttpServletRequest request) {
         RequestData requestData = new RequestData();
-        requestData.setIp(request.getRemoteHost());
-        requestData.setUrl(request.getServletPath());
+        if (request != null) {
+            requestData.setIp(request.getRemoteHost());
+            requestData.setUrl(request.getServletPath());
+        }
         requestData.setData(clearWhiteSpace(requestBody));
         return requestData;
     }
@@ -104,7 +106,7 @@ public class RequestDataMessageConvert extends AbstractGenericHttpMessageConvert
             Set<Map.Entry<String, Object>> entries = jsonObject.entrySet();
             for (Map.Entry<String, Object> entry : entries) {
                 Object value = entry.getValue();
-                if (value != null && value instanceof String) {
+                if (value instanceof String) {
                     value = ((String) value).trim();
                     jsonObject.put(entry.getKey(), value);
                 }
@@ -114,5 +116,6 @@ public class RequestDataMessageConvert extends AbstractGenericHttpMessageConvert
             return null;
         }
     }
+
 }
 

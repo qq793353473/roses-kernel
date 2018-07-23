@@ -1,6 +1,7 @@
 package com.stylefeng.roses.core.context;
 
 import com.stylefeng.roses.core.util.HttpContext;
+import com.stylefeng.roses.core.util.ToolUtil;
 import com.stylefeng.roses.kernel.model.constants.RosesConstants;
 import lombok.extern.slf4j.Slf4j;
 
@@ -16,23 +17,21 @@ import javax.servlet.http.HttpServletRequest;
 public class SpanIdContext {
 
     public static String getSpanId() {
+        HttpServletRequest request = HttpContext.getRequest();
 
-        try {
-
-            HttpServletRequest request = HttpContext.getRequest();
-            String spanId = request.getHeader(RosesConstants.SPAN_ID_HEADER_NAME);
-
-            if (spanId == null) {
+        if (request == null) {
+            if (log.isDebugEnabled()) {
+                log.info("获取spanId失败，当前不是http请求环境！");
+            }
+            return "";
+        } else {
+            String requestNo = request.getHeader(RosesConstants.SPAN_ID_HEADER_NAME);
+            if (ToolUtil.isEmpty(requestNo)) {
                 return "";
             } else {
-                return spanId;
+                return requestNo;
             }
-
-        } catch (NullPointerException e) {
-            log.debug("没有spanId !");
-            return "";
         }
-
     }
 
 }

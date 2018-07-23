@@ -16,58 +16,89 @@ import static com.stylefeng.roses.core.util.ToolUtil.isNotEmpty;
  * @author fengshuonan
  * @date 2017年11月15日13:52:16
  */
-public class PageFactory<T> {
+public class PageFactory {
 
+    /**
+     * 排序，升序还是降序
+     */
     private static final String ASC = "asc";
 
-    private static final String DESC = "desc";
+    /**
+     * 每页大小的param名称
+     */
+    private static final String PAGE_SIZE_PARAM_NAME = "pageSize";
 
-    private static final String PAGE_SIZE = "pageSize";
+    /**
+     * 第几页的param名称
+     */
+    private static final String PAGE_NO_PARAM_NAME = "pageNo";
 
-    private static final String PAGE_NO = "pageNo";
+    /**
+     * 升序还是降序的param名称
+     */
+    private static final String SORT_PARAM_NAME = "sort";
 
-    private static final String SORT_FIELD = "sort";
+    /**
+     * 根据那个字段排序的param名称
+     */
+    private static final String ORDER_BY_PARAM_NAME = "orderBy";
 
-    private static final String ORDER = "order";
+    /**
+     * 默认规则的分页
+     *
+     * @author fengshuonan
+     * @Date 2018/7/23 下午4:11
+     */
+    public static <T> Page<T> defaultPage() {
 
-    public Page<T> defaultPage() {
-
-        HttpServletRequest request = HttpContext.getRequest();
         int pageSize = 20;
         int pageNo = 1;
 
-        //每页条数
-        String pageSizeString = request.getParameter(PAGE_SIZE);
-        if (isNotEmpty(pageSizeString)) {
-            pageSize = Integer.valueOf(pageSizeString);
-        }
+        HttpServletRequest request = HttpContext.getRequest();
 
-        //第几页
-        String pageNoString = request.getParameter(PAGE_NO);
-        if (isNotEmpty(pageNoString)) {
-            pageNo = Integer.valueOf(pageNoString);
-        }
-
-        //获取排序字段和排序类型(asc/desc)
-        String sort = request.getParameter(SORT_FIELD);
-        String order = request.getParameter(ORDER);
-
-        if (ToolUtil.isEmpty(sort)) {
-            Page<T> page = new Page<>(pageNo, pageSize);
-            page.setOpenSort(false);
-            return page;
+        if (request == null) {
+            return new Page<>(pageNo, pageSize);
         } else {
-            Page<T> page = new Page<>(pageNo, pageSize, sort);
-            if (ASC.equalsIgnoreCase(order)) {
-                page.setAsc(true);
-            } else {
-                page.setAsc(false);
+            //每页条数
+            String pageSizeString = request.getParameter(PAGE_SIZE_PARAM_NAME);
+            if (isNotEmpty(pageSizeString)) {
+                pageSize = Integer.valueOf(pageSizeString);
             }
-            return page;
+
+            //第几页
+            String pageNoString = request.getParameter(PAGE_NO_PARAM_NAME);
+            if (isNotEmpty(pageNoString)) {
+                pageNo = Integer.valueOf(pageNoString);
+            }
+
+            //获取排序字段和排序类型(asc/desc)
+            String sort = request.getParameter(SORT_PARAM_NAME);
+            String orderByField = request.getParameter(ORDER_BY_PARAM_NAME);
+
+            if (ToolUtil.isEmpty(sort)) {
+                Page<T> page = new Page<>(pageNo, pageSize);
+                page.setOpenSort(false);
+                return page;
+            } else {
+                Page<T> page = new Page<>(pageNo, pageSize, orderByField);
+                if (ASC.equalsIgnoreCase(sort)) {
+                    page.setAsc(true);
+                } else {
+                    page.setAsc(false);
+                }
+                return page;
+            }
         }
+
     }
 
-    public Page<T> createPage(PageQuery pageQuery) {
+    /**
+     * 自定义参数的分页
+     *
+     * @author fengshuonan
+     * @Date 2018/7/23 下午4:11
+     */
+    public <T> Page<T> createPage(PageQuery pageQuery) {
 
         int pageSize = 20;
         int pageNo = 1;
@@ -90,8 +121,8 @@ public class PageFactory<T> {
                 page.setOpenSort(false);
                 return page;
             } else {
-                Page<T> page = new Page<>(pageNo, pageSize, pageQuery.getSort());
-                if (ASC.equalsIgnoreCase(pageQuery.getOrder())) {
+                Page<T> page = new Page<>(pageNo, pageSize, pageQuery.getOrderByField());
+                if (ASC.equalsIgnoreCase(pageQuery.getSort())) {
                     page.setAsc(true);
                 } else {
                     page.setAsc(false);

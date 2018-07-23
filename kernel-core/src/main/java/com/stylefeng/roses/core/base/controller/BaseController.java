@@ -15,7 +15,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.*;
+import java.util.Objects;
 
+/**
+ * 控制器基类，封装一些控制器常用的方法
+ *
+ * @author fengshuonan
+ * @Date 2018/7/23 下午3:45
+ */
 public class BaseController {
 
     protected final String REDIRECT = "redirect:";
@@ -30,19 +37,19 @@ public class BaseController {
     }
 
     protected HttpSession getSession() {
-        return HttpContext.getRequest().getSession();
+        return Objects.requireNonNull(HttpContext.getRequest()).getSession();
     }
 
     protected HttpSession getSession(Boolean flag) {
-        return HttpContext.getRequest().getSession(flag);
+        return Objects.requireNonNull(HttpContext.getRequest()).getSession(flag);
     }
 
     protected String getPara(String name) {
-        return HttpContext.getRequest().getParameter(name);
+        return Objects.requireNonNull(HttpContext.getRequest()).getParameter(name);
     }
 
     protected void setAttr(String name, Object value) {
-        HttpContext.getRequest().setAttribute(name, value);
+        Objects.requireNonNull(HttpContext.getRequest()).setAttribute(name, value);
     }
 
     /**

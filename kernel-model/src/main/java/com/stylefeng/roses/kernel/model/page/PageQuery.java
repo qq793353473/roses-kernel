@@ -24,21 +24,20 @@ public class PageQuery {
     /**
      * 排序方式(asc 或者 desc)
      */
-    private String order;
+    private String sort;
 
     /**
      * 排序的字段名称
      */
-    private String sort;
+    private String orderByField;
 
     public PageQuery() {
     }
 
-    public PageQuery(Integer pageSize, Integer pageNo, String order, String sort) {
+    public PageQuery(Integer pageSize, Integer pageNo, String sort, String orderByField) {
         this.pageSize = pageSize;
         this.pageNo = pageNo;
-        this.order = order;
         this.sort = sort;
+        this.orderByField = orderByField;
     }
-
 }

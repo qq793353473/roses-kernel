@@ -3,6 +3,7 @@ package com.stylefeng.roses.core.feign;
 import com.stylefeng.roses.core.util.HttpContext;
 import feign.RequestInterceptor;
 import feign.RequestTemplate;
+import lombok.extern.slf4j.Slf4j;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Enumeration;
@@ -13,22 +14,19 @@ import java.util.Enumeration;
  * @author fengshuonan
  * @date 2018-05-07-下午7:25
  */
+@Slf4j
 public class RosesFeignHeaderProcessInterceptor implements RequestInterceptor {
 
     @Override
     public void apply(RequestTemplate requestTemplate) {
+        HttpServletRequest request = HttpContext.getRequest();
 
-        //当前feign远程调用环境不是由http接口发起，例如test单元测试中的feign调用或者项目启动后的feign调用
-        HttpServletRequest request = null;
-
-        try {
-            request = HttpContext.getRequest();
-        } catch (NullPointerException e) {
-
-            //被调环境中不存在request对象，则不往header里添加当前请求环境的header
+        if (request == null) {
+            if (log.isDebugEnabled()) {
+                log.info("被调环境中不存在request对象，则不往header里添加当前请求环境的header!");
+            }
             return;
-        }
-        if (request != null) {
+        } else {
             Enumeration<String> headerNames = request.getHeaderNames();
             if (headerNames != null) {
                 while (headerNames.hasMoreElements()) {
@@ -38,5 +36,6 @@ public class RosesFeignHeaderProcessInterceptor implements RequestInterceptor {
                 }
             }
         }
+
     }
 }
