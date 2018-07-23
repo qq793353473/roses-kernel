@@ -2,6 +2,8 @@ package com.stylefeng.roses.kernel.model.auth;
 
 import lombok.Data;
 
+import java.util.Set;
+
 /**
  * 登录中的用户信息
  *
@@ -14,26 +16,69 @@ public class LoginUser {
     /**
      * 用户id
      */
-    private Long id;
+    private String infoId;
+
+    /**
+     * 公司id
+     */
+    private String companyId;
+
+    /**
+     * 应用id
+     */
+    private String appId;
+
+    /**
+     * 姓名
+     */
+    private String name;
+
+    /**
+     * 性别
+     */
+    private String gender;
+
+    /**
+     * 账号id
+     */
+    private String accountId;
 
     /**
      * 账号
+     *
+     * @Author 戚传文
+     * @Date 2018/3/29 12:20
      */
     private String account;
 
     /**
-     * 用户姓名
+     * 电话号码
      */
-    private String phoneNumber;
+    private String mobilePhone;
 
     /**
-     * email
+     * 电子邮箱
      */
     private String email;
 
     /**
-     * 状态: 1-启用  0-禁用
+     * 角色id
      */
-    private Integer status;
+    private Set<String> roleIds;
+
+    /**
+     * 角色id
+     */
+    private Set<String> roleCodes;
+
+    /**
+     * 组织id
+     */
+    private Set<String> organizationIds;
+
+    /**
+     * 包含的资源权限url
+     */
+    private Set<String> resourceUrls;
 
 }
