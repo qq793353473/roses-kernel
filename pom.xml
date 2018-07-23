@@ -40,10 +40,6 @@
         <lombok.versin>1.18.0</lombok.versin>
     </properties>
 
-    <dependencies>
-
-    </dependencies>
-
     <dependencyManagement>
         <dependencies>
             <dependency>
@@ -92,11 +88,6 @@
                 <artifactId>mybatis-plus</artifactId>
                 <version>${mp.springboot.version}</version>
             </dependency>
-            <!--<dependency>-->
-            <!--<groupId>org.apache.velocity</groupId>-->
-            <!--<artifactId>velocity-engine-core</artifactId>-->
-            <!--<version>2.0</version>-->
-            <!--</dependency>-->
 
             <!--工具类-->
             <dependency>
