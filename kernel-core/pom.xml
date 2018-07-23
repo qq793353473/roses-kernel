@@ -22,16 +22,24 @@
             <groupId>com.stylefeng.roses</groupId>
             <artifactId>kernel-model</artifactId>
         </dependency>
+
+        <!--feign远程调用，**注意可选**-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-openfeign</artifactId>
             <scope>provided</scope>
         </dependency>
 
-        <!--spring boot 监控-->
+        <!--spring boot 监控，**注意可选**-->
         <dependency>
             <groupId>de.codecentric</groupId>
             <artifactId>spring-boot-admin-starter-client</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+            <scope>provided</scope>
         </dependency>
 
         <!--工具类-->
@@ -78,7 +86,7 @@
             <artifactId>spring-boot-starter-aop</artifactId>
         </dependency>
 
-        <!--web-->
+        <!--web ，**注意可选**-->
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
@@ -90,18 +98,12 @@
             <scope>provided</scope>
         </dependency>
 
-        <!--缓存-->
+        <!--缓存，**注意可选**-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-cache</artifactId>
             <scope>provided</scope>
         </dependency>
 
-        <!--security-->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-security</artifactId>
-            <scope>provided</scope>
-        </dependency>
     </dependencies>
 </project>

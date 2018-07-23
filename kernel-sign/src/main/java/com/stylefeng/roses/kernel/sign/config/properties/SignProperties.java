@@ -1,4 +1,4 @@
-package com.stylefeng.roses.core.config.properties;
+package com.stylefeng.roses.kernel.sign.config.properties;
 
 import lombok.Data;
 

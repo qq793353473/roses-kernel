@@ -1,7 +1,9 @@
-package com.stylefeng.roses.core.util;
+package com.stylefeng.roses.kernel.sign.util;
 
 import cn.hutool.core.date.DateUtil;
-import com.stylefeng.roses.core.config.properties.SignProperties;
+import com.stylefeng.roses.core.util.SpringContextHolder;
+import com.stylefeng.roses.core.util.ToolUtil;
+import com.stylefeng.roses.kernel.sign.config.properties.SignProperties;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.Date;
@@ -96,9 +98,6 @@ public class SignUtil {
         } else {
             return false;
         }
-    }
-
-    public static void main(String[] args) {
     }
 
 }

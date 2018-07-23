@@ -16,6 +16,8 @@
         <module>kernel-core</module>
         <module>kernel-scanner</module>
         <module>kernel-generator</module>
+        <module>kernel-hunter</module>
+        <module>kernel-sign</module>
     </modules>
 
     <parent>
