@@ -1,5 +1,7 @@
 package roses.scanner.modular.model;
 
+import lombok.Data;
+
 import java.util.List;
 
 /**
@@ -8,6 +10,7 @@ import java.util.List;
  * @author fengshuonan
  * @date 2018-01-11 14:56
  */
+@Data
 public class ResourceTreeNode {
 
     /**
@@ -39,27 +42,4 @@ public class ResourceTreeNode {
         this.children = children;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
-    }
-
-    public List<ResourceTreeNode> getChildren() {
-        return children;
-    }
-
-    public void setChildren(List<ResourceTreeNode> children) {
-        this.children = children;
-    }
 }

@@ -13,4 +13,8 @@ public interface ConfigPrefixConstants {
      */
     String LOG_PREFIX = "roses.log";
 
+    /**
+     * 资源扫描器的前缀
+     */
+    String SCANNER_PREFIX = "roses.scanner";
 }

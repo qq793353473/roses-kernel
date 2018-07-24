@@ -20,14 +20,6 @@
             <artifactId>spring-boot-starter</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.stylefeng.roses</groupId>
-            <artifactId>kernel-model</artifactId>
-        </dependency>
-        <dependency>
             <groupId>com.stylefeng.roses</groupId>
             <artifactId>kernel-core</artifactId>
         </dependency>

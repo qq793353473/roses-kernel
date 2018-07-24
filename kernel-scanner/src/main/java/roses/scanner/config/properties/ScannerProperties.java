@@ -1,11 +1,14 @@
 package roses.scanner.config.properties;
 
+import lombok.Data;
+
 /**
  * 扫描的常量
  *
  * @author fengshuonan
  * @date 2018-01-03 21:39
  */
+@Data
 public class ScannerProperties {
 
     /**
@@ -28,35 +31,4 @@ public class ScannerProperties {
      */
     private String linkSymbol = "$";
 
-    public Boolean getOpen() {
-        return open;
-    }
-
-    public void setOpen(Boolean open) {
-        this.open = open;
-    }
-
-    public String getAppName() {
-        return appName;
-    }
-
-    public void setAppName(String appName) {
-        this.appName = appName;
-    }
-
-    public String getLinkSymbol() {
-        return linkSymbol;
-    }
-
-    public void setLinkSymbol(String linkSymbol) {
-        this.linkSymbol = linkSymbol;
-    }
-
-    public String getAppCode() {
-        return appCode;
-    }
-
-    public void setAppCode(String appCode) {
-        this.appCode = appCode;
-    }
 }

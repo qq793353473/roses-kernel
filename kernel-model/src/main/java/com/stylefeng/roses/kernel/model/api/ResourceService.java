@@ -1,4 +1,4 @@
-package roses.scanner.modular.api;
+package com.stylefeng.roses.kernel.model.api;
 
 
 import com.stylefeng.roses.kernel.model.auth.ResourceDefinition;

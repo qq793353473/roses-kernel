@@ -12,8 +12,12 @@ import roses.scanner.modular.factory.DefaultApiResourceFactory;
 import roses.scanner.modular.listener.ResourceReportListener;
 import roses.scanner.modular.service.ResourceCollectService;
 
+import static com.stylefeng.roses.kernel.model.constants.ConfigPrefixConstants.SCANNER_PREFIX;
+
 /**
  * 扫描器默认配置
+ * <p>
+ * 注意：资源扫描的使用需要配置ResourceService这个Bean到Spring容器
  *
  * @author fengshuonan
  * @date 2018-02-06 17:25
@@ -25,7 +29,7 @@ public class ScannerConfig {
     private String applicationName;
 
     @Bean
-    @ConfigurationProperties(prefix = "roses.scanner")
+    @ConfigurationProperties(prefix = SCANNER_PREFIX)
     public ScannerProperties scannerProperties() {
         return new ScannerProperties();
     }
@@ -58,7 +62,7 @@ public class ScannerConfig {
      * 资源扫描之后的资源汇报操作（向roses-auth服务）
      */
     @Bean
-    @ConditionalOnProperty(prefix = "roses.scanner", name = "open", havingValue = "true")
+    @ConditionalOnProperty(prefix = SCANNER_PREFIX, name = "open", havingValue = "true")
     public ResourceReportListener resourceReportListener() {
         return new ResourceReportListener();
     }

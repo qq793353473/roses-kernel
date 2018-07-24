@@ -1,5 +1,6 @@
 package roses.scanner.modular.listener;
 
+import com.stylefeng.roses.kernel.model.api.ResourceService;
 import com.stylefeng.roses.kernel.model.auth.ResourceDefinition;
 import org.springframework.beans.BeansException;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
@@ -7,7 +8,6 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.ApplicationListener;
 import roses.scanner.config.properties.ScannerProperties;
-import roses.scanner.modular.api.ResourceService;
 import roses.scanner.modular.factory.ApiResourceFactory;
 
 import java.util.Map;
