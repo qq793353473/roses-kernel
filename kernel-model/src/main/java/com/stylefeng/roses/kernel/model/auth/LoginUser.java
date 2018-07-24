@@ -45,9 +45,6 @@ public class LoginUser {
 
     /**
      * 账号
-     *
-     * @Author 戚传文
-     * @Date 2018/3/29 12:20
      */
     private String account;
 
