@@ -15,7 +15,7 @@ public class GenerateParams {
 
     private String outputDirectory = "temp";
 
-    private String jdbcDriver = "com.mysql.cj.jdbc.Driver";
+    private String jdbcDriver = "com.mysql.jdbc.Driver";
 
     private String jdbcUrl = "jdbc:mysql://127.0.0.1:3306/guns?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=CONVERT_TO_NULL&useSSL=false&serverTimezone=UTC";
 
