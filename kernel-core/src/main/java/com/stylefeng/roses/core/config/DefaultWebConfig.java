@@ -20,11 +20,20 @@ import java.util.Date;
 @Configuration
 public class DefaultWebConfig extends WebMvcConfigurationSupport {
 
+    @Autowired
+    private RequestMappingHandlerAdapter handlerAdapter;
+
+    /**
+     * 默认错误页面，返回json
+     */
     @Bean("error")
     public GlobalErrorView error() {
         return new GlobalErrorView();
     }
 
+    /**
+     * RequestData解析器，fastjson的converter
+     */
     @Bean
     public RequestMappingHandlerAdapter requestMappingHandlerAdapter(
             FastJsonHttpMessageConverter fastJsonHttpMessageConverter,
@@ -34,14 +43,17 @@ public class DefaultWebConfig extends WebMvcConfigurationSupport {
                 super.requestMappingHandlerAdapter(), fastJsonHttpMessageConverter, requestDataMessageConvert);
     }
 
+    /**
+     * RequestData解析器
+     */
     @Bean
     public RequestDataMessageConvert requestDataMessageConvert() {
         return new RequestDataMessageConvert();
     }
 
-    @Autowired
-    private RequestMappingHandlerAdapter handlerAdapter;
-
+    /**
+     * 时间转化器
+     */
     @PostConstruct
     public void addConversionConfig() {
         ConfigurableWebBindingInitializer initializer = (ConfigurableWebBindingInitializer) handlerAdapter.getWebBindingInitializer();

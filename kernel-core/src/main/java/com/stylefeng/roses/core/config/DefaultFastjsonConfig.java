@@ -48,13 +48,11 @@ public class DefaultFastjsonConfig {
                 SerializerFeature.DisableCircularReferenceDetect
         );
         fastJsonConfig.setDateFormat("yyyy-MM-dd HH:mm:ss");
-        ValueFilter valueFilter = new ValueFilter() {
-            public Object process(Object object, String name, Object value) {
-                if (null == value) {
-                    return "";
-                } else {
-                    return value;
-                }
+        ValueFilter valueFilter = (object, name, value) -> {
+            if (null == value) {
+                return "";
+            } else {
+                return value;
             }
         };
         fastJsonConfig.setCharset(Charset.forName("utf-8"));
