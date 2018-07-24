@@ -50,6 +50,10 @@ public class ResponseData {
         this.object = object;
     }
 
+    public static SuccessResponseData success() {
+        return new SuccessResponseData();
+    }
+
     public static SuccessResponseData success(Object object) {
         return new SuccessResponseData(object);
     }
