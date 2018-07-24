@@ -23,7 +23,7 @@ public class RosesFeignHeaderProcessInterceptor implements RequestInterceptor {
 
         if (request == null) {
             if (log.isDebugEnabled()) {
-                log.info("被调环境中不存在request对象，则不往header里添加当前请求环境的header!");
+                log.debug("被调环境中不存在request对象，则不往header里添加当前请求环境的header!");
             }
             return;
         } else {
@@ -36,6 +36,10 @@ public class RosesFeignHeaderProcessInterceptor implements RequestInterceptor {
                 }
             }
         }
+        this.addOtherHeaders(requestTemplate);
+    }
+
+    public void addOtherHeaders(RequestTemplate requestTemplate) {
 
     }
 }

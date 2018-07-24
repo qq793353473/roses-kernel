@@ -23,33 +23,10 @@
             <artifactId>kernel-model</artifactId>
         </dependency>
 
-        <!--feign远程调用，**注意可选**-->
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-openfeign</artifactId>
-            <scope>provided</scope>
-        </dependency>
-
-        <!--spring boot 监控，**注意可选**-->
-        <dependency>
-            <groupId>de.codecentric</groupId>
-            <artifactId>spring-boot-admin-starter-client</artifactId>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-security</artifactId>
-            <scope>provided</scope>
-        </dependency>
-
         <!--工具类-->
         <dependency>
             <groupId>cn.hutool</groupId>
             <artifactId>hutool-core</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-redis</artifactId>
         </dependency>
 
         <!--数据库-->
@@ -84,6 +61,32 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-aop</artifactId>
+        </dependency>
+
+        <!--feign远程调用，**注意可选**-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-openfeign</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+        <!--spring boot 监控，**注意可选**-->
+        <dependency>
+            <groupId>de.codecentric</groupId>
+            <artifactId>spring-boot-admin-starter-client</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+        <!--缓存，**注意可选**-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
+            <scope>provided</scope>
         </dependency>
 
         <!--web ，**注意可选**-->

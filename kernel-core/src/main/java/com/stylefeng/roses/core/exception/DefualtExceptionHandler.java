@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
+import static com.stylefeng.roses.kernel.model.constants.AopSortConstants.DEFAULT_EXCEPTION_HANDLER_SORT;
+
 /**
  * 全局的的异常拦截器（拦截所有的控制器）（带有@RequestMapping注解的方法上都会拦截）
  *
@@ -20,15 +22,13 @@ import org.springframework.web.bind.annotation.ResponseStatus;
  * @date 2016年11月12日 下午3:19:56
  */
 @ControllerAdvice
-@Order(200)
+@Order(DEFAULT_EXCEPTION_HANDLER_SORT)
 public class DefualtExceptionHandler {
 
     private Logger log = LoggerFactory.getLogger(this.getClass());
 
     /**
      * 拦截业务异常
-     *
-     * @author fengshuonan
      */
     @ExceptionHandler(ServiceException.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
@@ -40,8 +40,6 @@ public class DefualtExceptionHandler {
 
     /**
      * 拦截未知的运行时异常
-     *
-     * @author fengshuonan
      */
     @ExceptionHandler(Exception.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)

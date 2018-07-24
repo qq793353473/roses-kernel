@@ -11,13 +11,15 @@ import lombok.Getter;
 @Getter
 public enum YseOrNotEnum {
 
-    Y("是"),
+    Y(true, "是"),
 
-    N("否");
+    N(false, "否");
 
+    private Boolean flag;
     private String desc;
 
-    YseOrNotEnum(String desc) {
+    YseOrNotEnum(Boolean flag, String desc) {
+        this.flag = flag;
         this.desc = desc;
     }
 

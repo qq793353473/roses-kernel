@@ -17,6 +17,12 @@ import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandl
 import javax.annotation.PostConstruct;
 import java.util.Date;
 
+/**
+ * 默认web配置
+ *
+ * @author fengshuonan
+ * @Date 2018/7/24 下午3:27
+ */
 @Configuration
 public class DefaultWebConfig extends WebMvcConfigurationSupport {
 

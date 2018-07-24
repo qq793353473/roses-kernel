@@ -9,6 +9,11 @@ package com.stylefeng.roses.kernel.model.constants;
 public interface AopSortConstants {
 
     /**
+     * 默认的ExceptionHandler的aop顺序
+     */
+    int DEFAULT_EXCEPTION_HANDLER_SORT = 200;
+
+    /**
      * 临时保存RequestData的aop
      */
     int REQUEST_DATA_AOP_SORT = 500;

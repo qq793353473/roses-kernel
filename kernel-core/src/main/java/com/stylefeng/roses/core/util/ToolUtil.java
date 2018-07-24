@@ -254,7 +254,6 @@ public class ToolUtil {
             }
             return IFCONFIG.toString();
 
-
         } catch (SocketException ex) {
             ex.printStackTrace();
         }

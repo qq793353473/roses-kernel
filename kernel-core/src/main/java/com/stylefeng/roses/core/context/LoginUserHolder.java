@@ -58,6 +58,12 @@ public class LoginUserHolder {
         }
     }
 
+    /**
+     * 删除保存的用户
+     *
+     * @author fengshuonan
+     * @Date 2018/7/24 下午3:28
+     */
     public static void remove() {
         OPEN_UP_FLAG.remove();
         LONGIN_USER_HOLDER.remove();

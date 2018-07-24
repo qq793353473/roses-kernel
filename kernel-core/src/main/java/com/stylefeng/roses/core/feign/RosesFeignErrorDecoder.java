@@ -7,6 +7,7 @@ import com.stylefeng.roses.kernel.model.exception.CoreExceptionEnum;
 import com.stylefeng.roses.kernel.model.exception.ServiceException;
 import feign.Response;
 import feign.codec.ErrorDecoder;
+import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;
 
@@ -16,6 +17,7 @@ import java.io.IOException;
  * @author stylefeng
  * @Date 2018/4/20 23:14
  */
+@Slf4j
 public class RosesFeignErrorDecoder implements ErrorDecoder {
 
     @Override
@@ -34,6 +36,11 @@ public class RosesFeignErrorDecoder implements ErrorDecoder {
             return new ServiceException(CoreExceptionEnum.IO_ERROR);
         }
         JSONObject parse = JSON.parseObject(resposeBody);
+
+        if (log.isDebugEnabled()) {
+            log.debug("FeignErrorDecoder收到错误响应结果：" + parse.toJSONString());
+        }
+
         Integer code = parse.getInteger("code");
         String message = parse.getString("message");
         if (message == null) {

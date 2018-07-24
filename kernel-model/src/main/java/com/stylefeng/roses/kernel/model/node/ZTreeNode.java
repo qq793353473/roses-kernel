@@ -1,4 +1,4 @@
-package com.stylefeng.roses.core.node;
+package com.stylefeng.roses.kernel.model.node;
 
 import lombok.Data;
 
@@ -11,13 +11,13 @@ import lombok.Data;
 @Data
 public class ZTreeNode {
 
-    private Integer id;    //节点id
+    private Integer id;     //节点id
 
-    private Integer pId;//父节点id
+    private Integer pId;    //父节点id
 
-    private String name;//节点名称
+    private String name;    //节点名称
 
-    private Boolean open;//是否打开节点
+    private Boolean open;   //是否打开节点
 
     private Boolean checked = false;//是否被选中
 

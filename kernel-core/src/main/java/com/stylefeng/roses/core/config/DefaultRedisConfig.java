@@ -1,6 +1,7 @@
 package com.stylefeng.roses.core.config;
 
 import com.stylefeng.roses.core.config.cache.FastJson2JsonRedisSerializer;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
@@ -15,6 +16,7 @@ import org.springframework.data.redis.serializer.StringRedisSerializer;
  * @date 2017-05-20 23:11
  */
 @Configuration
+@ConditionalOnClass(RedisTemplate.class)
 public class DefaultRedisConfig {
 
     @Bean
