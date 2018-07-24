@@ -1,4 +1,4 @@
-package roses.scanner.modular.factory;
+package com.stylefeng.roses.kernel.scanner.modular.factory;
 
 
 import com.stylefeng.roses.kernel.model.auth.ResourceDefinition;

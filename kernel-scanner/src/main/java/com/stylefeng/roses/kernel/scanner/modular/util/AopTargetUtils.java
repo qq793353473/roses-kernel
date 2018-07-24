@@ -1,4 +1,4 @@
-package roses.scanner.modular.util;
+package com.stylefeng.roses.kernel.scanner.modular.util;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

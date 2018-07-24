@@ -1,9 +1,15 @@
-package roses.scanner.modular;
+package com.stylefeng.roses.kernel.scanner.modular;
 
 import cn.hutool.core.exceptions.UtilException;
 import cn.hutool.core.util.NetUtil;
 import cn.hutool.core.util.StrUtil;
 import com.stylefeng.roses.kernel.model.auth.ResourceDefinition;
+import com.stylefeng.roses.kernel.scanner.config.properties.ScannerProperties;
+import com.stylefeng.roses.kernel.scanner.modular.annotation.GetResource;
+import com.stylefeng.roses.kernel.scanner.modular.annotation.PostResource;
+import com.stylefeng.roses.kernel.scanner.modular.factory.ApiResourceFactory;
+import com.stylefeng.roses.kernel.scanner.modular.stereotype.ApiResource;
+import com.stylefeng.roses.kernel.scanner.modular.util.AopTargetUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeansException;
@@ -11,12 +17,6 @@ import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import roses.scanner.config.properties.ScannerProperties;
-import roses.scanner.modular.annotation.GetResource;
-import roses.scanner.modular.annotation.PostResource;
-import roses.scanner.modular.factory.ApiResourceFactory;
-import roses.scanner.modular.stereotype.ApiResource;
-import roses.scanner.modular.util.AopTargetUtils;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.InvocationTargetException;

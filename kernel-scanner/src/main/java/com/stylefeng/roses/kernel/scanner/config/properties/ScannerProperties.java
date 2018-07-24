@@ -1,4 +1,4 @@
-package roses.scanner.config.properties;
+package com.stylefeng.roses.kernel.scanner.config.properties;
 
 import lombok.Data;
 

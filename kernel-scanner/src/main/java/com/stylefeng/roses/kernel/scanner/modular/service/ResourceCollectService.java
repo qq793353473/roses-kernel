@@ -1,10 +1,10 @@
-package roses.scanner.modular.service;
+package com.stylefeng.roses.kernel.scanner.modular.service;
 
 import cn.hutool.core.util.StrUtil;
 import com.stylefeng.roses.kernel.model.auth.ResourceDefinition;
-import roses.scanner.config.properties.ScannerProperties;
-import roses.scanner.modular.factory.ApiResourceFactory;
-import roses.scanner.modular.model.ResourceTreeNode;
+import com.stylefeng.roses.kernel.scanner.config.properties.ScannerProperties;
+import com.stylefeng.roses.kernel.scanner.modular.factory.ApiResourceFactory;
+import com.stylefeng.roses.kernel.scanner.modular.model.ResourceTreeNode;
 
 import java.util.ArrayList;
 import java.util.Arrays;

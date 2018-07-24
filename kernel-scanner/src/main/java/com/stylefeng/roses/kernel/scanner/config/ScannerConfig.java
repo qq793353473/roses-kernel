@@ -1,16 +1,16 @@
-package roses.scanner.config;
+package com.stylefeng.roses.kernel.scanner.config;
 
+import com.stylefeng.roses.kernel.scanner.config.properties.ScannerProperties;
+import com.stylefeng.roses.kernel.scanner.modular.ApiResourceScaner;
+import com.stylefeng.roses.kernel.scanner.modular.factory.ApiResourceFactory;
+import com.stylefeng.roses.kernel.scanner.modular.factory.DefaultApiResourceFactory;
+import com.stylefeng.roses.kernel.scanner.modular.listener.ResourceReportListener;
+import com.stylefeng.roses.kernel.scanner.modular.service.ResourceCollectService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import roses.scanner.config.properties.ScannerProperties;
-import roses.scanner.modular.ApiResourceScaner;
-import roses.scanner.modular.factory.ApiResourceFactory;
-import roses.scanner.modular.factory.DefaultApiResourceFactory;
-import roses.scanner.modular.listener.ResourceReportListener;
-import roses.scanner.modular.service.ResourceCollectService;
 
 import static com.stylefeng.roses.kernel.model.constants.ConfigPrefixConstants.SCANNER_PREFIX;
 

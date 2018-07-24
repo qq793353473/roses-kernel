@@ -1,4 +1,4 @@
-package roses.scanner.modular.model;
+package com.stylefeng.roses.kernel.scanner.modular.model;
 
 import lombok.Data;
 

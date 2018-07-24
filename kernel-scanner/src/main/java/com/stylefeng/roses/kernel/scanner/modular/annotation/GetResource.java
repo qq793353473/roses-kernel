@@ -1,4 +1,4 @@
-package roses.scanner.modular.stereotype;
+package com.stylefeng.roses.kernel.scanner.modular.annotation;
 
 import org.springframework.core.annotation.AliasFor;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -7,16 +7,16 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import java.lang.annotation.*;
 
 /**
- * 资源标识
+ * get方式请求http的资源标识
  *
  * @author fengshuonan
  * @date 2018-01-03-下午2:56
  */
-@Target({ElementType.METHOD, ElementType.TYPE})
+@Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 @RequestMapping(method = RequestMethod.POST)
-public @interface ApiResource {
+public @interface GetResource {
 
     /**
      * <pre>
@@ -30,11 +30,6 @@ public @interface ApiResource {
      * </pre>
      */
     String code() default "";
-
-    /**
-     * <p>此属性用在一个程序承载两个业务系统的情况下,标识这个资源所属的模块,用在控制器上</p>
-     */
-    String appCode() default "";
 
     /**
      * 资源名称(必填项)
@@ -66,6 +61,5 @@ public @interface ApiResource {
      * 请求的http方法(同RequestMapping)
      */
     @AliasFor(annotation = RequestMapping.class)
-    RequestMethod[] method() default {};
-
+    RequestMethod[] method() default RequestMethod.GET;
 }
