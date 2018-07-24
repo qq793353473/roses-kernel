@@ -60,6 +60,22 @@
                 <artifactId>kernel-scanner</artifactId>
                 <version>${project.version}</version>
             </dependency>
+            <dependency>
+                <groupId>com.stylefeng.roses</groupId>
+                <artifactId>kernel-generator</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.stylefeng.roses</groupId>
+                <artifactId>kernel-logger</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.stylefeng.roses</groupId>
+                <artifactId>kernel-sign</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
 
             <!--spring cloud-->
             <dependency>
