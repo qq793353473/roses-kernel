@@ -9,7 +9,7 @@ import lombok.Getter;
  * @Date 2018/4/18 23:05
  */
 @Getter
-public enum YseOrNotEnum {
+public enum YesOrNotEnum {
 
     Y(true, "是"),
 
@@ -18,7 +18,7 @@ public enum YseOrNotEnum {
     private Boolean flag;
     private String desc;
 
-    YseOrNotEnum(Boolean flag, String desc) {
+    YesOrNotEnum(Boolean flag, String desc) {
         this.flag = flag;
         this.desc = desc;
     }

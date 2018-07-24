@@ -1,7 +1,7 @@
 package com.stylefeng.roses.kernel.model.node;
 
 
-import com.stylefeng.roses.kernel.model.enums.YseOrNotEnum;
+import com.stylefeng.roses.kernel.model.enums.YesOrNotEnum;
 import lombok.Data;
 
 import java.util.ArrayList;
@@ -175,7 +175,7 @@ public class MenuNode implements Comparable {
     public static List<MenuNode> clearBtn(List<MenuNode> nodes) {
         ArrayList<MenuNode> noBtns = new ArrayList<MenuNode>();
         for (MenuNode node : nodes) {
-            if (node.getMenuFlag() == YseOrNotEnum.Y.getFlag()) {
+            if (node.getMenuFlag() == YesOrNotEnum.Y.getFlag()) {
                 noBtns.add(node);
             }
         }
