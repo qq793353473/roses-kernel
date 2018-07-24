@@ -1,21 +1,22 @@
-package com.stylefeng.roses.kernel.sign.util;
+package com.stylefeng.roses.kernel.sign.service.impl;
 
 import cn.hutool.core.date.DateUtil;
 import com.stylefeng.roses.core.util.SpringContextHolder;
 import com.stylefeng.roses.core.util.ToolUtil;
 import com.stylefeng.roses.kernel.sign.config.properties.SignProperties;
+import com.stylefeng.roses.kernel.sign.service.SignService;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.Date;
 
 /**
- * 签名工具类
+ * 签名方法默认实现，通过md5加密方式
  *
- * @author yaoliguo
- * @date 2018-05-08 09:50
+ * @author fengshuonan
+ * @date 2018-07-24-下午4:35
  */
 @Slf4j
-public class SignUtil {
+public class SimpleSignService implements SignService {
 
     private static final long DEAULT_SIGN_EXPIRED_SECONDS = 60;
 
