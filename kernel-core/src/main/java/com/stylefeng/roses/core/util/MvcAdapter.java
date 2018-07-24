@@ -4,10 +4,12 @@ import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
 import com.stylefeng.roses.core.converter.RequestDataMessageConvert;
 import com.stylefeng.roses.core.converter.RequestDataTypeMethodProcessor;
 import org.springframework.http.converter.HttpMessageConverter;
+import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -30,9 +32,14 @@ public class MvcAdapter {
         argumentResolvers.add(new RequestDataTypeMethodProcessor(converters));
         original.setCustomArgumentResolvers(argumentResolvers);
 
-        List<HttpMessageConverter<?>> fastjson = new ArrayList<>();
-        fastjson.add(fastJsonHttpMessageConverter);
-        original.setMessageConverters(fastjson);
+        List<HttpMessageConverter<?>> list = new LinkedList<>();
+
+        StringHttpMessageConverter stringHttpMessageConverter = new StringHttpMessageConverter();
+        stringHttpMessageConverter.setWriteAcceptCharset(false);  // see SPR-7316
+        list.add(stringHttpMessageConverter);
+
+        list.add(fastJsonHttpMessageConverter);
+        original.setMessageConverters(list);
         return original;
     }
 }
