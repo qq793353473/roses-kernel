@@ -2,6 +2,7 @@ package com.stylefeng.roses.core.page;
 
 import com.baomidou.mybatisplus.plugins.Page;
 import com.stylefeng.roses.core.context.RequestDataHolder;
+import com.stylefeng.roses.core.reqres.request.RequestData;
 import com.stylefeng.roses.core.util.HttpContext;
 import com.stylefeng.roses.core.util.ToolUtil;
 import com.stylefeng.roses.kernel.model.page.PageQuery;
@@ -142,11 +143,16 @@ public class PageFactory {
     private static String getFieldValue(HttpServletRequest request, String fieldName) {
         String parameter = request.getParameter(fieldName);
         if (parameter == null) {
-            Object fieldValue = RequestDataHolder.get().get(fieldName);
-            if (fieldValue == null) {
+            RequestData requestData = RequestDataHolder.get();
+            if (requestData == null) {
                 return null;
             } else {
-                return fieldValue.toString();
+                Object fieldValue = requestData.get(fieldName);
+                if (fieldValue == null) {
+                    return null;
+                } else {
+                    return fieldValue.toString();
+                }
             }
         } else {
             return null;
