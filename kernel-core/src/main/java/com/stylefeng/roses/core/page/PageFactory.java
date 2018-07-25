@@ -142,7 +142,7 @@ public class PageFactory {
     private static String getFieldValue(HttpServletRequest request, String fieldName) {
         String parameter = request.getParameter(fieldName);
         if (parameter == null) {
-            Object fieldValue = RequestDataHolder.get().get("fieldName");
+            Object fieldValue = RequestDataHolder.get().get(fieldName);
             if (fieldValue == null) {
                 return null;
             } else {
