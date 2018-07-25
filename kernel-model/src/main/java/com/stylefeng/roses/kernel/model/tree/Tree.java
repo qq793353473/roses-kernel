@@ -1,4 +1,4 @@
-package com.stylefeng.roses.kernel.model.recursion;
+package com.stylefeng.roses.kernel.model.tree;
 
 import java.util.List;
 
@@ -8,7 +8,7 @@ import java.util.List;
  * @author fengshuonan
  * @date 2018-07-25-下午5:59
  */
-public interface Tree<T> extends Comparable {
+public interface Tree extends Comparable {
 
     /**
      * 获取节点id
@@ -23,12 +23,12 @@ public interface Tree<T> extends Comparable {
     /**
      * 获取子节点
      */
-    List<T> getChildrenNodes();
+    List getChildrenNodes();
 
     /**
      * 设置children
      */
-    void setChildrenNodes(List<T> linkedList);
+    void setChildrenNodes(List childrenNodes);
 
     /**
      * 获取菜单级别

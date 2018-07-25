@@ -1,6 +1,6 @@
 package com.stylefeng.roses.core.util;
 
-import com.stylefeng.roses.kernel.model.recursion.Tree;
+import com.stylefeng.roses.kernel.model.tree.Tree;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -43,7 +43,7 @@ public class TreeBuildFactory<T extends Tree> {
         if (nodeList == null && parentId == null)
             return null;
         for (Iterator<T> iterator = nodeList.iterator(); iterator.hasNext(); ) {
-            T node = (T) iterator.next();
+            T node = iterator.next();
             // 根据传入的某个父节点ID,遍历该父节点的所有子节点
             if (!node.getNodeParentId().equals("-1") && parentId.equals(node.getNodeParentId())) {
                 recursionFn(nodeList, node, parentId);
@@ -97,7 +97,7 @@ public class TreeBuildFactory<T extends Tree> {
      *
      * @date 2017年2月19日 下午11:04:11
      */
-    public List<T> readToBuild(List<T> nodes) {
+    protected List<T> readToBuild(List<T> nodes) {
         return nodes;
     }
 
