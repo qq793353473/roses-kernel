@@ -25,7 +25,7 @@ public class TreeBuildFactory<T extends Tree> {
      *
      * @author fengshuonan
      */
-    public void buildNodeTree(List<T> nodeList) {
+    private void buildNodeTree(List<T> nodeList) {
         for (T treeNode : nodeList) {
             List<T> linkedList = this.findChildNodes(nodeList, treeNode.getNodeId());
             if (linkedList.size() > 0) {
@@ -39,7 +39,7 @@ public class TreeBuildFactory<T extends Tree> {
      *
      * @author fengshuonan
      */
-    public List<T> findChildNodes(List<T> nodeList, String parentId) {
+    private List<T> findChildNodes(List<T> nodeList, String parentId) {
         if (nodeList == null && parentId == null)
             return null;
         for (Iterator<T> iterator = nodeList.iterator(); iterator.hasNext(); ) {
@@ -57,7 +57,7 @@ public class TreeBuildFactory<T extends Tree> {
      *
      * @author fengshuonan
      */
-    public void recursionFn(List<T> nodeList, T node, String pId) {
+    private void recursionFn(List<T> nodeList, T node, String pId) {
         List<T> childList = getChildList(nodeList, node);// 得到子节点列表
         if (childList.size() > 0) {// 判断是否有子节点
             if (node.getNodeParentId().equals(pId)) {
@@ -65,7 +65,7 @@ public class TreeBuildFactory<T extends Tree> {
             }
             Iterator<T> it = childList.iterator();
             while (it.hasNext()) {
-                T n = (T) it.next();
+                T n = it.next();
                 recursionFn(nodeList, n, pId);
             }
         } else {
@@ -81,10 +81,10 @@ public class TreeBuildFactory<T extends Tree> {
      * @author fengshuonan
      */
     private List<T> getChildList(List<T> list, T node) {
-        List<T> nodeList = new ArrayList<T>();
+        List<T> nodeList = new ArrayList<>();
         Iterator<T> it = list.iterator();
         while (it.hasNext()) {
-            T n = (T) it.next();
+            T n = it.next();
             if (n.getNodeParentId().equals(node.getNodeId())) {
                 nodeList.add(n);
             }
@@ -97,23 +97,17 @@ public class TreeBuildFactory<T extends Tree> {
      *
      * @date 2017年2月19日 下午11:04:11
      */
-    //public static <T> List<T> clearBtn(List<T> nodes) {
-    //    ArrayList<T> noBtns = new ArrayList<T>();
-    //    for (T node : nodes) {
-    //        if (node.getMenuFlag() == YesOrNotEnum.Y.getFlag()) {
-    //            noBtns.add(node);
-    //        }
-    //    }
-    //    return noBtns;
-    //}
+    public List<T> readToBuild(List<T> nodes) {
+        return nodes;
+    }
 
     /**
      * 清除所有二级菜单
      *
      * @date 2017年2月19日 下午11:18:19
      */
-    public List<T> clearLevelTwo(List<T> nodes) {
-        ArrayList<T> results = new ArrayList<T>();
+    private List<T> clearLevelTwo(List<T> nodes) {
+        ArrayList<T> results = new ArrayList<>();
         for (T node : nodes) {
             Integer levels = node.getLevels();
             if (levels.equals(1)) {
@@ -128,11 +122,13 @@ public class TreeBuildFactory<T extends Tree> {
      *
      * @date 2017年2月19日 下午11:18:19
      */
-    public List<T> buildTitle(List<T> nodes) {
+    public List<T> doBuild(List<T> nodes) {
 
-        new TreeBuildFactory().buildNodeTree(nodes);
+        List<T> processNodes = this.readToBuild(nodes);
 
-        List<T> menuNodes = clearLevelTwo(nodes);
+        new TreeBuildFactory<T>().buildNodeTree(processNodes);
+
+        List<T> menuNodes = clearLevelTwo(processNodes);
 
         //对菜单排序
         Collections.sort(menuNodes);
