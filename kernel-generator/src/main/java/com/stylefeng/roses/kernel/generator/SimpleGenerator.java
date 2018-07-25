@@ -1,9 +1,13 @@
 package com.stylefeng.roses.kernel.generator;
 
+import com.baomidou.mybatisplus.enums.FieldFill;
 import com.baomidou.mybatisplus.generator.AutoGenerator;
 import com.baomidou.mybatisplus.generator.config.*;
+import com.baomidou.mybatisplus.generator.config.po.TableFill;
 import com.baomidou.mybatisplus.generator.config.rules.DbType;
 import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
+
+import java.util.ArrayList;
 
 /**
  * 简单代码生成器，service不生成接口
@@ -55,6 +59,12 @@ public class SimpleGenerator {
 
         // 需要生成的表
         strategy.setInclude(generateParams.getIncludeTables());
+
+        // 公共字段填充
+        ArrayList<TableFill> tableFills = new ArrayList<>();
+        tableFills.add(new TableFill("CREATE_TIME", FieldFill.INSERT));
+        tableFills.add(new TableFill("UPDATE_TIME", FieldFill.UPDATE));
+        strategy.setTableFillList(tableFills);
 
         mpg.setStrategy(strategy);
 

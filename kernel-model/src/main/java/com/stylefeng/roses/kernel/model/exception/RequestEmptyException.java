@@ -15,6 +15,12 @@ public class RequestEmptyException extends RuntimeException {
 
     private String errorMessage;
 
+    public RequestEmptyException() {
+        super("请求数据不完整或格式错误！");
+        this.code = 400;
+        this.errorMessage = "请求数据不完整或格式错误！";
+    }
+
     public RequestEmptyException(String errorMessage) {
         super(errorMessage);
         this.code = 400;
