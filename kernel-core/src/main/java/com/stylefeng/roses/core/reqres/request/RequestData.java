@@ -142,6 +142,13 @@ public class RequestData implements Serializable {
     }
 
     /**
+     * 获取指定key对应的long值
+     */
+    public Long getLong(String key) {
+        return this.data.getLong(key);
+    }
+
+    /**
      * 解析请求数据抓华为map
      */
     public Map<String, Object> parseMap() {

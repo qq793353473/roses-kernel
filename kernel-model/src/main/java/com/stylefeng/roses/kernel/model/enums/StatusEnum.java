@@ -25,14 +25,14 @@ public enum StatusEnum {
 
     public static StatusEnum toEnum(Integer code) {
         if (null == code) {
-            return StatusEnum.DISABLE;
+            return null;
         } else {
             for (StatusEnum e : StatusEnum.values()) {
                 if (e.getCode().equals(code)) {
                     return e;
                 }
             }
-            return StatusEnum.DISABLE;
+            return null;
         }
     }
 
