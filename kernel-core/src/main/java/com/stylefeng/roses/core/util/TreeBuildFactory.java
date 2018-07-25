@@ -1,7 +1,6 @@
 package com.stylefeng.roses.core.util;
 
-import com.stylefeng.roses.kernel.model.enums.YesOrNotEnum;
-import com.stylefeng.roses.kernel.model.recursion.Recursion;
+import com.stylefeng.roses.kernel.model.recursion.Tree;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -14,7 +13,7 @@ import java.util.List;
  * @author fengshuonan
  * @Date 2018/7/25 下午5:59
  */
-public class RecursionUtil<T extends Recursion>{
+public class TreeBuildFactory<T extends Tree> {
 
     /**
      * 查询子节点时候的临时集合
@@ -28,9 +27,9 @@ public class RecursionUtil<T extends Recursion>{
      */
     public void buildNodeTree(List<T> nodeList) {
         for (T treeNode : nodeList) {
-            List<T> linkedList = treeNode.findChildNodes(nodeList, treeNode.getId());
+            List<T> linkedList = this.findChildNodes(nodeList, treeNode.getNodeId());
             if (linkedList.size() > 0) {
-                treeNode.setChildren(linkedList);
+                treeNode.setChildrenNodes(linkedList);
             }
         }
     }
@@ -40,13 +39,13 @@ public class RecursionUtil<T extends Recursion>{
      *
      * @author fengshuonan
      */
-    public List<T> findChildNodes(List<T> nodeList, Integer parentId) {
+    public List<T> findChildNodes(List<T> nodeList, String parentId) {
         if (nodeList == null && parentId == null)
             return null;
         for (Iterator<T> iterator = nodeList.iterator(); iterator.hasNext(); ) {
             T node = (T) iterator.next();
             // 根据传入的某个父节点ID,遍历该父节点的所有子节点
-            if (node.getParentId() != 0 && parentId.equals(node.getParentId())) {
+            if (!node.getNodeParentId().equals("-1") && parentId.equals(node.getNodeParentId())) {
                 recursionFn(nodeList, node, parentId);
             }
         }
@@ -58,10 +57,10 @@ public class RecursionUtil<T extends Recursion>{
      *
      * @author fengshuonan
      */
-    public void recursionFn(List<T> nodeList, T node, Integer pId) {
+    public void recursionFn(List<T> nodeList, T node, String pId) {
         List<T> childList = getChildList(nodeList, node);// 得到子节点列表
         if (childList.size() > 0) {// 判断是否有子节点
-            if (node.getParentId().equals(pId)) {
+            if (node.getNodeParentId().equals(pId)) {
                 linkedList.add(node);
             }
             Iterator<T> it = childList.iterator();
@@ -70,7 +69,7 @@ public class RecursionUtil<T extends Recursion>{
                 recursionFn(nodeList, n, pId);
             }
         } else {
-            if (node.getParentId().equals(pId)) {
+            if (node.getNodeParentId().equals(pId)) {
                 linkedList.add(node);
             }
         }
@@ -86,7 +85,7 @@ public class RecursionUtil<T extends Recursion>{
         Iterator<T> it = list.iterator();
         while (it.hasNext()) {
             T n = (T) it.next();
-            if (n.getParentId().equals(node.getId())) {
+            if (n.getNodeParentId().equals(node.getNodeId())) {
                 nodeList.add(n);
             }
         }
@@ -98,22 +97,22 @@ public class RecursionUtil<T extends Recursion>{
      *
      * @date 2017年2月19日 下午11:04:11
      */
-    public static List<T> clearBtn(List<T> nodes) {
-        ArrayList<T> noBtns = new ArrayList<T>();
-        for (T node : nodes) {
-            if (node.getMenuFlag() == YesOrNotEnum.Y.getFlag()) {
-                noBtns.add(node);
-            }
-        }
-        return noBtns;
-    }
+    //public static <T> List<T> clearBtn(List<T> nodes) {
+    //    ArrayList<T> noBtns = new ArrayList<T>();
+    //    for (T node : nodes) {
+    //        if (node.getMenuFlag() == YesOrNotEnum.Y.getFlag()) {
+    //            noBtns.add(node);
+    //        }
+    //    }
+    //    return noBtns;
+    //}
 
     /**
      * 清除所有二级菜单
      *
      * @date 2017年2月19日 下午11:18:19
      */
-    public static List<T> clearLevelTwo(List<T> nodes) {
+    public List<T> clearLevelTwo(List<T> nodes) {
         ArrayList<T> results = new ArrayList<T>();
         for (T node : nodes) {
             Integer levels = node.getLevels();
@@ -129,25 +128,22 @@ public class RecursionUtil<T extends Recursion>{
      *
      * @date 2017年2月19日 下午11:18:19
      */
-    public static List<T> buildTitle(List<T> nodes) {
+    public List<T> buildTitle(List<T> nodes) {
 
-        List<T> clearBtn = clearBtn(nodes);
+        new TreeBuildFactory().buildNodeTree(nodes);
 
-        new T().buildNodeTree(clearBtn);
-
-        List<T> menuNodes = clearLevelTwo(clearBtn);
+        List<T> menuNodes = clearLevelTwo(nodes);
 
         //对菜单排序
         Collections.sort(menuNodes);
 
         //对菜单的子菜单进行排序
         for (T menuNode : menuNodes) {
-            if (menuNode.getChildren() != null && menuNode.getChildren().size() > 0) {
-                Collections.sort(menuNode.getChildren());
+            if (menuNode.getChildrenNodes() != null && menuNode.getChildrenNodes().size() > 0) {
+                Collections.sort(menuNode.getChildrenNodes());
             }
         }
 
         return menuNodes;
     }
-
 }
