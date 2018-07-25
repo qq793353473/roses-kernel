@@ -3,6 +3,7 @@ package com.stylefeng.roses.core.exception;
 import com.stylefeng.roses.core.reqres.response.ErrorResponseData;
 import com.stylefeng.roses.core.reqres.response.ResponseData;
 import com.stylefeng.roses.kernel.model.exception.CoreExceptionEnum;
+import com.stylefeng.roses.kernel.model.exception.RequestEmptyException;
 import com.stylefeng.roses.kernel.model.exception.ServiceException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,6 +29,16 @@ public class DefualtExceptionHandler {
     private Logger log = LoggerFactory.getLogger(this.getClass());
 
     /**
+     * 拦截请求为空的异常
+     */
+    @ExceptionHandler(RequestEmptyException.class)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    @ResponseBody
+    public ResponseData emptyRequest(RequestEmptyException e) {
+        return new ErrorResponseData(e.getCode(), e.getErrorMessage());
+    }
+
+    /**
      * 拦截业务异常
      */
     @ExceptionHandler(ServiceException.class)
@@ -35,7 +46,7 @@ public class DefualtExceptionHandler {
     @ResponseBody
     public ResponseData notFount(ServiceException e) {
         log.info("业务异常:", e);
-        return new ErrorResponseData(e.getErrorMessage());
+        return new ErrorResponseData(e.getCode(), e.getErrorMessage());
     }
 
     /**
