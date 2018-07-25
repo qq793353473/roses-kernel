@@ -20,4 +20,15 @@ public class RequestEmptyException extends RuntimeException {
         this.code = 400;
         this.errorMessage = errorMessage;
     }
+
+    /**
+     * 不拷贝栈信息，提高性能
+     *
+     * @author fengshuonan
+     * @Date 2018/7/25 下午1:48
+     */
+    @Override
+    public synchronized Throwable fillInStackTrace() {
+        return null;
+    }
 }
