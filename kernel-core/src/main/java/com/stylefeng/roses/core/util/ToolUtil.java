@@ -1,6 +1,8 @@
 package com.stylefeng.roses.core.util;
 
 
+import cn.hutool.core.bean.BeanUtil;
+import cn.hutool.core.bean.copier.CopyOptions;
 import com.stylefeng.roses.core.config.properties.AppNameProperties;
 import com.stylefeng.roses.kernel.model.exception.CoreExceptionEnum;
 import com.stylefeng.roses.kernel.model.exception.ServiceException;
@@ -263,5 +265,15 @@ public class ToolUtil {
             e.printStackTrace();
         }
         return null;
+    }
+
+    /**
+     * 拷贝属性，为null的不拷贝
+     *
+     * @author fengshuonan
+     * @Date 2018/7/25 下午4:41
+     */
+    public static void copyProperties(Object source, Object target) {
+        BeanUtil.copyProperties(source, target, CopyOptions.create().setIgnoreNullValue(true));
     }
 }
