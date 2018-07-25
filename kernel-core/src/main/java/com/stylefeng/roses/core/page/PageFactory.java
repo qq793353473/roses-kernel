@@ -98,7 +98,7 @@ public class PageFactory {
      * @author fengshuonan
      * @Date 2018/7/23 下午4:11
      */
-    public <T> Page<T> createPage(PageQuery pageQuery) {
+    public static <T> Page<T> createPage(PageQuery pageQuery) {
 
         int pageSize = 20;
         int pageNo = 1;
