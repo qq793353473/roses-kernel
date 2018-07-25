@@ -10,8 +10,9 @@ import java.util.Iterator;
 import java.util.List;
 
 /**
+ * 菜单的节点
+ *
  * @author fengshuonan
- * @Description 菜单的节点
  * @date 2016年12月6日 上午11:34:17
  */
 @Data
