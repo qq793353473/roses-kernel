@@ -1,6 +1,7 @@
 package com.stylefeng.roses.core.page;
 
 import com.baomidou.mybatisplus.plugins.Page;
+import com.stylefeng.roses.core.context.RequestDataHolder;
 import com.stylefeng.roses.core.util.HttpContext;
 import com.stylefeng.roses.core.util.ToolUtil;
 import com.stylefeng.roses.kernel.model.page.PageQuery;
@@ -60,20 +61,20 @@ public class PageFactory {
             return new Page<>(pageNo, pageSize);
         } else {
             //每页条数
-            String pageSizeString = request.getParameter(PAGE_SIZE_PARAM_NAME);
+            String pageSizeString = getFieldValue(request, PAGE_SIZE_PARAM_NAME);
             if (isNotEmpty(pageSizeString)) {
                 pageSize = Integer.valueOf(pageSizeString);
             }
 
             //第几页
-            String pageNoString = request.getParameter(PAGE_NO_PARAM_NAME);
+            String pageNoString = getFieldValue(request, PAGE_NO_PARAM_NAME);
             if (isNotEmpty(pageNoString)) {
                 pageNo = Integer.valueOf(pageNoString);
             }
 
             //获取排序字段和排序类型(asc/desc)
-            String sort = request.getParameter(SORT_PARAM_NAME);
-            String orderByField = request.getParameter(ORDER_BY_PARAM_NAME);
+            String sort = getFieldValue(request, SORT_PARAM_NAME);
+            String orderByField = getFieldValue(request, ORDER_BY_PARAM_NAME);
 
             if (ToolUtil.isEmpty(sort)) {
                 Page<T> page = new Page<>(pageNo, pageSize);
@@ -129,6 +130,26 @@ public class PageFactory {
                 }
                 return page;
             }
+        }
+    }
+
+    /**
+     * 获取参数值，通过param或从requestBody中取
+     *
+     * @author fengshuonan
+     * @Date 2018/7/25 下午1:12
+     */
+    private static String getFieldValue(HttpServletRequest request, String fieldName) {
+        String parameter = request.getParameter(fieldName);
+        if (parameter == null) {
+            Object fieldValue = RequestDataHolder.get().get("fieldName");
+            if (fieldValue == null) {
+                return null;
+            } else {
+                return fieldValue.toString();
+            }
+        } else {
+            return null;
         }
     }
 }
