@@ -8,7 +8,7 @@ import java.util.List;
  * @author fengshuonan
  * @date 2018-07-25-下午5:59
  */
-public interface Tree extends Comparable {
+public interface Tree {
 
     /**
      * 获取节点id
