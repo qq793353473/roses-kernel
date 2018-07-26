@@ -4,7 +4,6 @@ import com.stylefeng.roses.core.treebuild.abst.AbstractTreeBuildFactory;
 import com.stylefeng.roses.kernel.model.tree.Tree;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -21,55 +20,29 @@ public class DefaultTreeBuildFactory<T extends Tree> extends AbstractTreeBuildFa
     private static final String ROOT_PARENT_ID = "-1";
 
     /**
-     * 查询子节点时候的临时集合
-     */
-    private List<T> tempList = new ArrayList<>();
-
-    /**
      * 查询子节点的集合
      *
-     * @param nodeList 所有节点的集合
-     * @param nodeId   被查询节点的id
+     * @param totalNodes     所有节点的集合
+     * @param node           被查询节点的id
+     * @param childNodeLists 被查询节点的子节点集合
      */
-    private List<T> findChildNodes(List<T> nodeList, String nodeId) {
-        if (nodeList == null || nodeId == null)
-            return null;
-        for (T nodeItem : nodeList) {
-            // 根据传入的某个父节点ID,遍历该父节点的所有子节点
-            if (!nodeItem.getNodeParentId().equals(ROOT_PARENT_ID) && nodeId.equals(nodeItem.getNodeParentId())) {
-                recursionFn(nodeList, nodeItem, nodeId);
-            }
+    private void buildChildNodes(List<T> totalNodes, T node, List<T> childNodeLists) {
+        if (totalNodes == null || node == null) {
+            return;
         }
-        return tempList;
-    }
 
-    /**
-     * 遍历一个节点的子节点
-     *
-     * @param nodeList 所有节点的集合
-     * @param node     被操作的节点
-     * @param pId      被操作节点的父级id
-     */
-    private void recursionFn(List<T> nodeList, T node, String pId) {
+        List<T> nodeSubLists = getSubChildsLevelOne(totalNodes, node);
 
-        // 获取子一级节点的集合
-        List<T> childList = getSubChildsLevelOne(nodeList, node);
+        if (nodeSubLists.size() == 0) {
 
-        // 判断子一级节点中是否还有子节点
-        if (childList.size() > 0) {
-            if (node.getNodeParentId().equals(pId)) {
-                tempList.add(node);
-            }
-            Iterator<T> it = childList.iterator();
-            while (it.hasNext()) {
-                T n = it.next();
-                recursionFn(nodeList, n, pId);
-            }
         } else {
-            if (node.getNodeParentId().equals(pId)) {
-                tempList.add(node);
+            for (T nodeSubList : nodeSubLists) {
+                buildChildNodes(totalNodes, nodeSubList, new ArrayList<>());
             }
         }
+
+        childNodeLists.addAll(nodeSubLists);
+        node.setChildrenNodes(childNodeLists);
     }
 
     /**
@@ -100,10 +73,7 @@ public class DefaultTreeBuildFactory<T extends Tree> extends AbstractTreeBuildFa
     @Override
     protected List<T> executeBuilding(List<T> nodes) {
         for (T treeNode : nodes) {
-            List<T> linkedList = this.findChildNodes(nodes, treeNode.getNodeId());
-            if (linkedList.size() > 0) {
-                treeNode.setChildrenNodes(linkedList);
-            }
+            this.buildChildNodes(nodes, treeNode, new ArrayList<>());
         }
         return nodes;
     }

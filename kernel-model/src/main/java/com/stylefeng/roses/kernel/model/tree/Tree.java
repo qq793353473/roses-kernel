@@ -21,17 +21,7 @@ public interface Tree extends Comparable {
     String getNodeParentId();
 
     /**
-     * 获取子节点
-     */
-    List getChildrenNodes();
-
-    /**
      * 设置children
      */
     void setChildrenNodes(List childrenNodes);
-
-    /**
-     * 获取菜单级别
-     */
-    Integer getLevels();
 }
