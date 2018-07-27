@@ -17,4 +17,9 @@ public interface ConfigPrefixConstants {
      * 资源扫描器的前缀
      */
     String SCANNER_PREFIX = "roses.scanner";
+
+    /**
+     * 阿里云的oss文件存储
+     */
+    String ALIYUN_OSS = "aliyun.oss";
 }
