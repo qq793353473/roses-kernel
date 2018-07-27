@@ -1,0 +1,4 @@
+# AutoConfiguration
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+com.stylefeng.roses.kernel.actuator.DefaultSecurityConfig,\
+com.stylefeng.roses.kernel.actuator.DefaultActuatorSecurityConfig

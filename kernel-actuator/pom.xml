@@ -8,31 +8,24 @@
         <version>1.0.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>kernel-sign</artifactId>
+    <artifactId>kernel-actuator</artifactId>
     <packaging>jar</packaging>
 
-    <name>kernel-sign</name>
-    <description>签名相关的工具类等</description>
+    <name>kernel-actuator</name>
+    <description>spring boot admin监控的客户端</description>
 
     <dependencies>
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter</artifactId>
+            <groupId>de.codecentric</groupId>
+            <artifactId>spring-boot-admin-starter-client</artifactId>
         </dependency>
-        <dependency>
-            <groupId>com.stylefeng.roses</groupId>
-            <artifactId>kernel-core</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-        </dependency>
-
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-configuration-processor</artifactId>
-            <optional>true</optional>
+            <artifactId>spring-boot-starter-security</artifactId>
         </dependency>
     </dependencies>
 
+    <build>
+        <finalName>kernel-actuator</finalName>
+    </build>
 </project>

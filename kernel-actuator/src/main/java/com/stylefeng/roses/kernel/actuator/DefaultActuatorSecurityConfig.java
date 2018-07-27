@@ -1,4 +1,4 @@
-package com.stylefeng.roses.core.config;
+package com.stylefeng.roses.kernel.actuator;
 
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.context.annotation.Configuration;

@@ -70,18 +70,6 @@
             <scope>provided</scope>
         </dependency>
 
-        <!--spring boot 监控，**注意可选**-->
-        <dependency>
-            <groupId>de.codecentric</groupId>
-            <artifactId>spring-boot-admin-starter-client</artifactId>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-security</artifactId>
-            <scope>provided</scope>
-        </dependency>
-
         <!--缓存，**注意可选**-->
         <dependency>
             <groupId>org.springframework.boot</groupId>

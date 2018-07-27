@@ -1,6 +1,5 @@
 # AutoConfiguration
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-com.stylefeng.roses.core.config.DefaultActuatorSecurityConfig,\
 com.stylefeng.roses.core.config.DefaultAopConfig,\
 com.stylefeng.roses.core.config.DefaultRedisConfig,\
 com.stylefeng.roses.core.config.DefaultFastjsonConfig,\
