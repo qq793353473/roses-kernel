@@ -100,10 +100,10 @@ public abstract class DbInitializer {
 
             //如果集合不为空，代表有实体和数据库不一致的数据
             if (!fieldsNotInClass.isEmpty()) {
+                log.error("实体中和数据库字段不一致的字段如下：" + JSON.toJSONString(fieldsNotInClass));
                 if (fieldValidatorExceptionFlag) {
                     throw new ServiceException(CoreExceptionEnum.FIELD_VALIDATE_ERROR);
                 }
-                log.error("实体中和数据库字段不一致的字段如下：" + JSON.toJSONString(fieldsNotInClass));
             }
         }
     }
