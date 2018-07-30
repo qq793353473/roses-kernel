@@ -126,12 +126,22 @@ public abstract class DbInitializer {
     }
 
     /**
+     * 获取表的字段
+     *
+     * @author stylefeng
+     * @Date 2018/7/29 22:49
+     */
+    private String showColumnsSql() {
+        return "SHOW COLUMNS FROM " + this.getTableName();
+    }
+
+    /**
      * 获取表的初始化语句
      *
      * @author stylefeng
      * @Date 2018/7/29 22:10
      */
-    abstract String getTableInitSql();
+    protected abstract String getTableInitSql();
 
     /**
      * 获取表的名称
@@ -139,15 +149,7 @@ public abstract class DbInitializer {
      * @author stylefeng
      * @Date 2018/7/29 22:10
      */
-    abstract String getTableName();
-
-    /**
-     * 获取表的字段
-     *
-     * @author stylefeng
-     * @Date 2018/7/29 22:49
-     */
-    abstract String showColumnsSql();
+    protected abstract String getTableName();
 
     /**
      * 获取表对应的实体
@@ -155,5 +157,5 @@ public abstract class DbInitializer {
      * @author stylefeng
      * @Date 2018/7/29 22:49
      */
-    abstract Class<?> getEntityClass();
+    protected abstract Class<?> getEntityClass();
 }
