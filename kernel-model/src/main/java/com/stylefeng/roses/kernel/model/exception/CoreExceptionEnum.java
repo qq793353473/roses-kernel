@@ -27,6 +27,11 @@ public enum CoreExceptionEnum implements AbstractServiceException {
     FILE_NOT_FOUND(400, "FILE_NOT_FOUND!"),
 
     /**
+     * 数据库字段与实体字段不一致
+     */
+    FIELD_VALIDATE_ERROR(700, "数据库字段与实体字段不一致!"),
+
+    /**
      * 错误的请求
      */
     PAGE_NULL(404, "请求页面不存在"),
