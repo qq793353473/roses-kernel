@@ -4,6 +4,7 @@ import cn.hutool.core.util.ClassUtil;
 import cn.hutool.core.util.StrUtil;
 import com.alibaba.fastjson.JSON;
 import com.baomidou.mybatisplus.mapper.SqlRunner;
+import com.stylefeng.roses.core.util.ToolUtil;
 import com.stylefeng.roses.kernel.model.exception.CoreExceptionEnum;
 import com.stylefeng.roses.kernel.model.exception.ServiceException;
 import lombok.Getter;
@@ -14,6 +15,8 @@ import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+
+import static com.stylefeng.roses.kernel.model.exception.CoreExceptionEnum.INIT_TABLE_EMPTY_PARAMS;
 
 /**
  * 数据库初始化，可初始化表，校验字段，校验表名是否存在等
@@ -65,12 +68,22 @@ public abstract class DbInitializer {
      * @Date 2018/7/30 上午10:24
      */
     private void initTable() {
+
+        //校验参数
+        String tableName = this.getTableName();
+        String tableInitSql = this.getTableInitSql();
+        if (ToolUtil.isOneEmpty(tableName, tableInitSql)) {
+            if (fieldValidatorExceptionFlag) {
+                throw new ServiceException(INIT_TABLE_EMPTY_PARAMS);
+            }
+        }
+
         //列出数据库中所有的表
         List<Object> tableLists = SqlRunner.db().selectObjs("SHOW TABLES");
 
         //判断数据库中是否有这张表，如果没有就初始化
-        if (!tableLists.contains(this.getTableName().toUpperCase()) && !tableLists.contains(this.getTableName().toLowerCase())) {
-            SqlRunner.db().update(this.getTableInitSql());
+        if (!tableLists.contains(tableName.toUpperCase()) && !tableLists.contains(tableName.toLowerCase())) {
+            SqlRunner.db().update(tableInitSql);
             log.info("初始化" + getTableName() + "成功！");
         }
     }
@@ -82,8 +95,17 @@ public abstract class DbInitializer {
      * @Date 2018/7/30 上午10:24
      */
     private void fieldsValidate() {
+
+        //校验参数
+        String sql = this.showColumnsSql();
+        if (ToolUtil.isOneEmpty(sql)) {
+            if (fieldValidatorExceptionFlag) {
+                throw new ServiceException(INIT_TABLE_EMPTY_PARAMS);
+            }
+        }
+
         //检查数据库中的字段，是否和实体字段一致
-        List<Map<String, Object>> tableFields = SqlRunner.db().selectList(this.showColumnsSql());
+        List<Map<String, Object>> tableFields = SqlRunner.db().selectList(sql);
         if (tableFields != null && !tableFields.isEmpty()) {
 
             //用于保存实体中不存在的字段的名称集合

@@ -10,9 +10,10 @@ package com.stylefeng.roses.kernel.model.exception;
 public enum CoreExceptionEnum implements AbstractServiceException {
 
     /**
-     * token异常
+     * 初始化数据库的异常
      */
     NO_CURRENT_USER(700, "当前没有登录的用户"),
+    INIT_TABLE_EMPTY_PARAMS(701, "初始化数据库，存在为空的字段"),
 
     /**
      * 其他
