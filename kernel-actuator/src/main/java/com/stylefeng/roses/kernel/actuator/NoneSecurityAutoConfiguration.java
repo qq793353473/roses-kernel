@@ -13,7 +13,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
  */
 @Configuration
 @ConditionalOnClass(WebSecurityConfigurerAdapter.class)
-public class DefaultActuatorSecurityConfig extends WebSecurityConfigurerAdapter {
+public class NoneSecurityAutoConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {

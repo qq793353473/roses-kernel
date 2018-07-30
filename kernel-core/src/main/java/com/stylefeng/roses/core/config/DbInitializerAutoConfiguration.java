@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Configuration;
  * @Date 2018/7/30 下午12:22
  */
 @Configuration
-public class DefaultDbInitializerConfig {
+public class DbInitializerAutoConfiguration {
 
     @Bean
     public InitDictTableListener initDictTableListener() {

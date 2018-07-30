@@ -17,7 +17,7 @@ import org.springframework.data.redis.serializer.StringRedisSerializer;
  */
 @Configuration
 @ConditionalOnClass(RedisTemplate.class)
-public class DefaultRedisConfig {
+public class RedisAutoConfiguration {
 
     @Bean
     public RedisSerializer fastJson2JsonRedisSerializer() {

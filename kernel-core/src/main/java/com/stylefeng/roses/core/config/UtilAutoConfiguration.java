@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Configuration;
  * @date 2018-01-07 12:33
  */
 @Configuration
-public class DefaultUtilConfig {
+public class UtilAutoConfiguration {
 
     @Bean
     public SpringContextHolder springContextHolder() {

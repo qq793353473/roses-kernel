@@ -13,7 +13,7 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
  */
 @Configuration
 @EnableAspectJAutoProxy
-public class DefaultAopConfig {
+public class AopAutoConfiguration {
 
     /**
      * 默认的异常拦截器

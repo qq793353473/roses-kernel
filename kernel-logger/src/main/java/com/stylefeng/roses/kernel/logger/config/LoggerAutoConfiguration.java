@@ -24,7 +24,7 @@ import static com.stylefeng.roses.kernel.model.constants.ConfigPrefixConstants.L
  * @date 2016年11月12日 下午4:48:10
  */
 @Configuration
-public class DefaultLoggerConfig {
+public class LoggerAutoConfiguration {
 
     @Bean
     @ConfigurationProperties(prefix = ConfigPrefixConstants.LOG_PREFIX)

@@ -14,7 +14,7 @@ import org.springframework.context.annotation.PropertySource;
  */
 @Configuration
 @PropertySource("classpath:/default-config.properties")
-public class DefaultProperties {
+public class PropertiesAutoConfiguration {
 
     @Bean
     @ConfigurationProperties(prefix = "spring.application.name")

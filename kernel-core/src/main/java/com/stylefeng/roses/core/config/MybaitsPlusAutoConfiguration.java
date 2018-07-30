@@ -20,7 +20,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @MapperScan(basePackages = {"com.stylefeng.roses.**.mapper"})
 @ConditionalOnProperty(prefix = "spring.datasource", name = "url")
-public class DefaultMybaitsPlusConfig {
+public class MybaitsPlusAutoConfiguration {
 
     @Autowired
     private DruidProperties druidProperties;

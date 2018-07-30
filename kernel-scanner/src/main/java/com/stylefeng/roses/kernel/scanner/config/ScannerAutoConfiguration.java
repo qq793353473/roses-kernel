@@ -23,7 +23,7 @@ import static com.stylefeng.roses.kernel.model.constants.ConfigPrefixConstants.S
  * @date 2018-02-06 17:25
  */
 @Configuration
-public class ScannerConfig {
+public class ScannerAutoConfiguration {
 
     @Value("${spring.application.name}")
     private String applicationName;
