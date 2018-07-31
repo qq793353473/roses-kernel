@@ -82,12 +82,14 @@ public class LogUtil {
 
         //获取被调用的类的名称
         StackTraceElement[] stack = Thread.currentThread().getStackTrace();
-        String className;
+        String className = null;
+        String methodName = null;
 
-        if (stack == null || stack.length < 4) {
+        if (stack.length < 5) {
             className = LogUtil.class.getName();
         } else {
             className = stack[4].getClassName();
+            methodName = stack[4].getMethodName();
         }
 
         //记录日志
@@ -137,6 +139,7 @@ public class LogUtil {
 
                 log.setRequestNo(requestNo);
                 log.setClassName(className);
+                log.setMethodName(methodName == null ? "" : methodName);
                 log.setAppCode(user.getAppId());
                 log.setAccountId(user.getAccountId() != null ? Long.valueOf(user.getAccountId()) : null);
                 log.setLevel(level.name());

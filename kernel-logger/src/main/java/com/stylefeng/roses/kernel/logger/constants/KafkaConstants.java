@@ -8,16 +8,16 @@ package com.stylefeng.roses.kernel.logger.constants;
  */
 public interface KafkaConstants {
 
-    String LOG_TOPIC = "LOG_TOPIC";
+    String LOG_TOPIC = "_LOG_TOPIC";
 
-    String TRACE_LOG_TOPIC = "TRACE_LOG_TOPIC";
+    String TRACE_LOG_TOPIC = "_TRACE_LOG_TOPIC";
 
-    String TC_LOG_TOPIC = "TC_LOG_TOPIC";
+    String TC_LOG_TOPIC = "_TC_LOG_TOPIC";
 
-    String LOG_TOPIC_KEY = "LOG_TOPIC_KEY";
+    String LOG_TOPIC_KEY = "_LOG_TOPIC_KEY";
 
-    String TRACE_LOG_TOPIC_KEY = "TRACE_LOG_TOPIC_KEY";
+    String TRACE_LOG_TOPIC_KEY = "_TRACE_LOG_TOPIC_KEY";
 
-    String TC_LOG_TOPIC_KEY = "TC_LOG_TOPIC_KEY";
+    String TC_LOG_TOPIC_KEY = "_TC_LOG_TOPIC_KEY";
 
 }
