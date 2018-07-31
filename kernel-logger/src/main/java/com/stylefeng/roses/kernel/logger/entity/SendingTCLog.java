@@ -11,7 +11,7 @@ import java.util.Date;
  * @Date 2018/7/16 下午5:13
  */
 @Data
-public class TimeConsumingLog {
+public class SendingTCLog {
 
     private static final long serialVersionUID = 1L;
 

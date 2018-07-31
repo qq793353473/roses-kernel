@@ -5,8 +5,8 @@ import com.stylefeng.roses.core.util.SpringContextHolder;
 import com.stylefeng.roses.core.util.ToolUtil;
 import com.stylefeng.roses.kernel.logger.chain.enums.RpcPhaseEnum;
 import com.stylefeng.roses.kernel.logger.config.properties.LogProperties;
-import com.stylefeng.roses.kernel.logger.entity.TimeConsumingLog;
-import com.stylefeng.roses.kernel.logger.entity.TraceLog;
+import com.stylefeng.roses.kernel.logger.entity.SendingTCLog;
+import com.stylefeng.roses.kernel.logger.entity.SendingTraceLog;
 import com.stylefeng.roses.kernel.logger.service.LogProducerService;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.slf4j.Logger;
@@ -42,20 +42,19 @@ public class TraceUtil {
                 //为空代表当前没有http请求
             }
 
-            TraceLog traceLog = new TraceLog();
-            traceLog.setIp(ToolUtil.getIP());
-            traceLog.setApplicationName(ToolUtil.getApplicationName());
-            traceLog.setCreateTime(System.currentTimeMillis());
-            traceLog.setMethodName(methodSignature == null ? "" : methodSignature.getMethod().getName());
-            traceLog.setParentSpanId(parentSpanId);
-            traceLog.setSpanId(spanId);
-            traceLog.setRpcPhase(rpcPhaseEnum.name());
-            traceLog.setServletPath(servletPath);
-            traceLog.setTraceId(traceId);
-            traceLog.setContent(errorMessage);
+            SendingTraceLog sendingTraceLog = new SendingTraceLog();
+            sendingTraceLog.setIp(ToolUtil.getIP());
+            sendingTraceLog.setAppCode(ToolUtil.getApplicationName());
+            sendingTraceLog.setCreateTime(new Date());
+            sendingTraceLog.setParentSpanId(parentSpanId);
+            sendingTraceLog.setSpanId(spanId);
+            sendingTraceLog.setRpcPhase(rpcPhaseEnum.name());
+            sendingTraceLog.setServletPath(servletPath);
+            sendingTraceLog.setTraceId(traceId);
+            sendingTraceLog.setContent(errorMessage);
 
             try {
-                getLogProducer().sendTraceMsg(traceLog);
+                getLogProducer().sendTraceMsg(sendingTraceLog);
             } catch (Exception e) {
                 logger.error("发送trace消息错误！", e);
             }
@@ -67,13 +66,13 @@ public class TraceUtil {
 
         if (isTraceFlag()) {
 
-            TimeConsumingLog timeConsumingLog = new TimeConsumingLog();
-            timeConsumingLog.setCreateTime(new Date());
-            timeConsumingLog.setRequestPath(requestPath);
-            timeConsumingLog.setUseTime(useTime);
+            SendingTCLog sendingTCLog = new SendingTCLog();
+            sendingTCLog.setCreateTime(new Date());
+            sendingTCLog.setRequestPath(requestPath);
+            sendingTCLog.setUseTime(useTime);
 
             try {
-                getLogProducer().sendTcMsg(timeConsumingLog);
+                getLogProducer().sendTcMsg(sendingTCLog);
             } catch (Exception e) {
                 logger.error("发送trace tc消息错误！", e);
             }

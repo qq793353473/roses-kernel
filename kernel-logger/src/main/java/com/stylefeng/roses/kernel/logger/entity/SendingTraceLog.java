@@ -2,6 +2,8 @@ package com.stylefeng.roses.kernel.logger.entity;
 
 import lombok.Data;
 
+import java.util.Date;
+
 /**
  * 日志链实体类
  *
@@ -9,21 +11,24 @@ import lombok.Data;
  * @date 2018-05-16 09:40
  */
 @Data
-public class TraceLog {
+public class SendingTraceLog {
 
     private static final long serialVersionUID = 1L;
 
+    /**
+     * 主键id
+     */
     private Long id;
 
     /**
-     * 应用名称
+     * 应用编码
      */
-    private String applicationName;
+    private String appCode;
 
     /**
-     * 方法名称
+     * ip地址
      */
-    private String methodName;
+    private String ip;
 
     /**
      * 请求路径
@@ -74,18 +79,13 @@ public class TraceLog {
     private String parentSpanId;
 
     /**
-     * 生成时间戳
-     */
-    private Long createTime;
-
-    /**
      * 日志内容
      */
     private String content;
 
     /**
-     * ip地址
+     * 生成时间戳
      */
-    private String ip;
+    private Date createTime;
 
 }

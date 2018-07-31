@@ -1,8 +1,8 @@
 package com.stylefeng.roses.kernel.logger.service;
 
-import com.stylefeng.roses.kernel.logger.entity.LoggerContent;
-import com.stylefeng.roses.kernel.logger.entity.TimeConsumingLog;
-import com.stylefeng.roses.kernel.logger.entity.TraceLog;
+import com.stylefeng.roses.kernel.logger.entity.SendingCommonLog;
+import com.stylefeng.roses.kernel.logger.entity.SendingTCLog;
+import com.stylefeng.roses.kernel.logger.entity.SendingTraceLog;
 
 /**
  * 发送日志到消息队列的接口类
@@ -18,7 +18,7 @@ public interface LogProducerService {
      * @author yaoliguo
      * @date 2018-04-25 10:37
      */
-    void sendMsg(LoggerContent log);
+    void sendMsg(SendingCommonLog log);
 
     /**
      * 发送trace日志
@@ -26,7 +26,7 @@ public interface LogProducerService {
      * @author fengshuonan
      * @Date 2018/5/15 下午7:16
      */
-    void sendTraceMsg(TraceLog traceLog);
+    void sendTraceMsg(SendingTraceLog sendingTraceLog);
 
     /**
      * 发送接口调用时间日志
@@ -34,6 +34,6 @@ public interface LogProducerService {
      * @author fengshuonan
      * @Date 2018/5/15 下午7:16
      */
-    void sendTcMsg(TimeConsumingLog timeConsumingLog);
+    void sendTcMsg(SendingTCLog sendingTCLog);
 
 }
