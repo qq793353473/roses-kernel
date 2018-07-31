@@ -15,8 +15,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.kafka.core.DefaultKafkaProducerFactory;
 import org.springframework.kafka.core.ProducerFactory;
 
-import static com.stylefeng.roses.kernel.model.constants.ConfigPrefixConstants.LOG_PREFIX;
-
 /**
  * 默认kafka消息队列日志
  *
@@ -33,7 +31,7 @@ public class LoggerAutoConfiguration {
     }
 
     @Bean
-    @ConditionalOnProperty(prefix = LOG_PREFIX, name = "queue", matchIfMissing = true)
+    @ConditionalOnProperty(prefix = "spring.kafka", name = "bootstrapServers")
     @ConditionalOnClass(ProducerFactory.class)
     public ProducerFactory<?, ?> kafkaProducerFactory(KafkaProperties properties) {
         DefaultKafkaProducerFactory<String, Object> factory = new DefaultKafkaProducerFactory<>(properties

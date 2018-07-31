@@ -183,16 +183,23 @@ public class LogUtil {
 
         LogProperties logProperties = getLogProperties();
 
-        String pro = logProperties.getLevel();
-
-        if (pro == null || "".equals(pro.trim())) {
-            pro = "info,error";
+        /**
+         * 判断总开关是否开启
+         */
+        if (!logProperties.getKafka()) {
+            return false;
         }
-        pro = pro.toUpperCase();
 
+        /**
+         * 判断当前请求的日志级别是否在配置文件中开启
+         */
+        String logLevelPropertes = logProperties.getLevel();
+        if (ToolUtil.isEmpty(logLevelPropertes)) {
+            logLevelPropertes = "info,error";
+        }
+        logLevelPropertes = logLevelPropertes.toUpperCase();
         String levelName = level.name();
-
-        if (pro.contains(levelName)) {
+        if (logLevelPropertes.contains(levelName)) {
             return true;
         } else {
             return false;

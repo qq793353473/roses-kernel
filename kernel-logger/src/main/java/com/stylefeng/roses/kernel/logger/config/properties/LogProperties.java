@@ -12,6 +12,11 @@ import lombok.Data;
 public class LogProperties {
 
     /**
+     * 日志记录的总开关（通过kafka）
+     */
+    private Boolean kafka = false;
+
+    /**
      * 记录日志的级别（逗号隔开）
      */
     private String level = "error,info";
