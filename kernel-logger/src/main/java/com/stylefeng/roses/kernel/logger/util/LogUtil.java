@@ -16,7 +16,6 @@ import org.slf4j.LoggerFactory;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
-import java.util.Date;
 
 /**
  * 日志记录工具
@@ -144,7 +143,7 @@ public class LogUtil {
                 log.setAccountId(user.getAccountId() != null ? Long.valueOf(user.getAccountId()) : null);
                 log.setLevel(level.name());
                 log.setLogContent(message);
-                log.setCreateTime(new Date());
+                log.setCreateTimestamp(System.currentTimeMillis());
                 log.setAppCode(ToolUtil.getApplicationName());
 
                 if (level.equals(LogLevel.ERROR) && exception != null) {

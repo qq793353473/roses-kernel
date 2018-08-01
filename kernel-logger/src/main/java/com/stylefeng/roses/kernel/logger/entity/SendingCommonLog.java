@@ -2,8 +2,6 @@ package com.stylefeng.roses.kernel.logger.entity;
 
 import lombok.Data;
 
-import java.util.Date;
-
 /**
  * 日志实体类
  *
@@ -73,6 +71,6 @@ public class SendingCommonLog {
     /**
      * 创建时间
      */
-    private Date createTime;
+    private Long createTimestamp;
 
 }

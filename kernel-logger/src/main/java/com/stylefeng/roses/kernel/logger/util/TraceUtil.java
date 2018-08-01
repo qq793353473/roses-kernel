@@ -45,7 +45,7 @@ public class TraceUtil {
             SendingTraceLog sendingTraceLog = new SendingTraceLog();
             sendingTraceLog.setIp(ToolUtil.getIP());
             sendingTraceLog.setAppCode(ToolUtil.getApplicationName());
-            sendingTraceLog.setCreateTime(new Date());
+            sendingTraceLog.setCreateTimestamp(System.currentTimeMillis());
             sendingTraceLog.setParentSpanId(parentSpanId);
             sendingTraceLog.setSpanId(spanId);
             sendingTraceLog.setRpcPhase(rpcPhaseEnum.name());
