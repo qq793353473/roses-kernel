@@ -15,7 +15,7 @@ import java.util.Map;
  * @date 2018/4/23 9:57
  */
 @Slf4j
-public class InitDictTableListener implements ApplicationListener<ApplicationReadyEvent>, Ordered {
+public class InitTableListener implements ApplicationListener<ApplicationReadyEvent>, Ordered {
 
     @Override
     public void onApplicationEvent(ApplicationReadyEvent event) {

@@ -1,6 +1,6 @@
 package com.stylefeng.roses.core.config;
 
-import com.stylefeng.roses.core.db.listener.InitDictTableListener;
+import com.stylefeng.roses.core.db.listener.InitTableListener;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -14,8 +14,8 @@ import org.springframework.context.annotation.Configuration;
 public class DbInitializerAutoConfiguration {
 
     @Bean
-    public InitDictTableListener initDictTableListener() {
-        return new InitDictTableListener();
+    public InitTableListener initDictTableListener() {
+        return new InitTableListener();
     }
 }
 
