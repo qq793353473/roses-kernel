@@ -4,6 +4,7 @@ package com.stylefeng.roses.core.context;
 import com.stylefeng.roses.core.util.HttpContext;
 import com.stylefeng.roses.core.util.SpringContextHolder;
 import com.stylefeng.roses.core.util.ToolUtil;
+import com.stylefeng.roses.kernel.model.api.AuthService;
 import com.stylefeng.roses.kernel.model.auth.LoginUser;
 import com.stylefeng.roses.kernel.model.exception.CoreExceptionEnum;
 import com.stylefeng.roses.kernel.model.exception.ServiceException;
@@ -17,6 +18,15 @@ import javax.servlet.http.HttpServletRequest;
  * @date 2018-02-05 16:58
  */
 public class LoginContext {
+
+    /**
+     * 鉴权服务
+     */
+    private AuthService authService;
+
+    public LoginContext(AuthService authService) {
+        this.authService = authService;
+    }
 
     public static LoginContext me() {
         return SpringContextHolder.getBean(LoginContext.class);
@@ -65,8 +75,7 @@ public class LoginContext {
             return currentUser;
         } else {
             String token = getCurrentUserToken();
-            //LoginUser loginUser = authService.getLoginUserByToken(token);
-            return null;
+            return authService.getLoginUserByToken(token);
         }
     }
 
