@@ -2,6 +2,7 @@ package com.stylefeng.roses.core.config;
 
 import cn.hutool.core.date.DateUtil;
 import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
+import com.stylefeng.roses.core.aop.RequestDataAop;
 import com.stylefeng.roses.core.base.controller.GlobalErrorView;
 import com.stylefeng.roses.core.converter.RequestDataMessageConvert;
 import com.stylefeng.roses.core.util.MvcAdapter;
@@ -35,6 +36,14 @@ public class WebAutoConfiguration extends WebMvcConfigurationSupport {
     @Bean("error")
     public GlobalErrorView error() {
         return new GlobalErrorView();
+    }
+
+    /**
+     * 控制器层临时缓存RequestData的aop
+     */
+    @Bean
+    public RequestDataAop requestDataAop() {
+        return new RequestDataAop();
     }
 
     /**
