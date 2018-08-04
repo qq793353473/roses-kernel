@@ -52,22 +52,4 @@ public interface AuthService {
     @RequestMapping(value = "/getLoginUserByToken", method = RequestMethod.POST)
     LoginUser getLoginUserByToken(@RequestParam("token") String token);
 
-    /**
-     * 刷新当前用户登录的公司
-     *
-     * @author fengshuonan
-     * @Date 2018/4/2 14:31
-     */
-    @RequestMapping(value = "/refreshCompanyId", method = RequestMethod.POST)
-    void refreshCompanyId(@RequestParam("token") String token, @RequestParam("companyId") String companyId);
-
-    /**
-     * 刷新当前用户登录的应用
-     *
-     * @author fengshuonan
-     * @Date 2018/4/2 14:31
-     */
-    @RequestMapping(value = "/refreshAppId", method = RequestMethod.POST)
-    void refreshAppId(@RequestParam("token") String token, @RequestParam("appId") String appId);
-
 }
