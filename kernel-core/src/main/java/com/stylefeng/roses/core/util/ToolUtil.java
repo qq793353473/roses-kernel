@@ -4,8 +4,8 @@ package com.stylefeng.roses.core.util;
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.bean.copier.CopyOptions;
 import com.stylefeng.roses.core.config.properties.AppNameProperties;
-import com.stylefeng.roses.kernel.model.exception.CoreExceptionEnum;
 import com.stylefeng.roses.kernel.model.exception.ServiceException;
+import com.stylefeng.roses.kernel.model.exception.enums.CoreExceptionEnum;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

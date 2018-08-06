@@ -18,7 +18,7 @@ public class ServiceException extends RuntimeException {
         this.errorMessage = errorMessage;
     }
 
-    public ServiceException(AbstractServiceException exception) {
+    public ServiceException(AbstractBaseExceptionEnum exception) {
         super(exception.getMessage());
         this.code = exception.getCode();
         this.errorMessage = exception.getMessage();

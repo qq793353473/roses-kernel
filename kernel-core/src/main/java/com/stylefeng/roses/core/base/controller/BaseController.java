@@ -2,8 +2,8 @@ package com.stylefeng.roses.core.base.controller;
 
 import com.stylefeng.roses.core.base.warpper.BaseControllerWarpper;
 import com.stylefeng.roses.core.util.HttpContext;
-import com.stylefeng.roses.kernel.model.exception.CoreExceptionEnum;
 import com.stylefeng.roses.kernel.model.exception.ServiceException;
+import com.stylefeng.roses.kernel.model.exception.enums.CoreExceptionEnum;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;

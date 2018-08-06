@@ -1,7 +1,7 @@
 package com.stylefeng.roses.core.util;
 
-import com.stylefeng.roses.kernel.model.exception.CoreExceptionEnum;
 import com.stylefeng.roses.kernel.model.exception.ServiceException;
+import com.stylefeng.roses.kernel.model.exception.enums.CoreExceptionEnum;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

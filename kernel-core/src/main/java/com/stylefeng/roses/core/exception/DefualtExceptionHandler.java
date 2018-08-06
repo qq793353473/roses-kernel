@@ -2,9 +2,9 @@ package com.stylefeng.roses.core.exception;
 
 import com.stylefeng.roses.core.reqres.response.ErrorResponseData;
 import com.stylefeng.roses.core.reqres.response.ResponseData;
-import com.stylefeng.roses.kernel.model.exception.CoreExceptionEnum;
 import com.stylefeng.roses.kernel.model.exception.RequestEmptyException;
 import com.stylefeng.roses.kernel.model.exception.ServiceException;
+import com.stylefeng.roses.kernel.model.exception.enums.CoreExceptionEnum;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.annotation.Order;

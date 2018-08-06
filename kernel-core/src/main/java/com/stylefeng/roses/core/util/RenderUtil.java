@@ -1,8 +1,8 @@
 package com.stylefeng.roses.core.util;
 
 import com.alibaba.fastjson.JSON;
-import com.stylefeng.roses.kernel.model.exception.CoreExceptionEnum;
 import com.stylefeng.roses.kernel.model.exception.ServiceException;
+import com.stylefeng.roses.kernel.model.exception.enums.CoreExceptionEnum;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;

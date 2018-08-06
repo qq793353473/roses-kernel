@@ -9,22 +9,14 @@ import lombok.Data;
  * @date 2016年11月12日 下午5:05:10
  */
 @Data
-public class RequestEmptyException extends RuntimeException {
-
-    private Integer code;
-
-    private String errorMessage;
+public class RequestEmptyException extends ServiceException {
 
     public RequestEmptyException() {
-        super("请求数据不完整或格式错误！");
-        this.code = 400;
-        this.errorMessage = "请求数据不完整或格式错误！";
+        super(400, "请求数据不完整或格式错误！");
     }
 
     public RequestEmptyException(String errorMessage) {
-        super(errorMessage);
-        this.code = 400;
-        this.errorMessage = errorMessage;
+        super(400, errorMessage);
     }
 
     /**

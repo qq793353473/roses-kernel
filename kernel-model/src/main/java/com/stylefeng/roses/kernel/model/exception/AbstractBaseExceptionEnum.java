@@ -6,7 +6,7 @@ package com.stylefeng.roses.kernel.model.exception;
  * @author fengshuonan
  * @date 2017-12-17-下午10:22
  */
-public interface AbstractServiceException {
+public interface AbstractBaseExceptionEnum {
 
     /**
      * 获取异常的状态码
