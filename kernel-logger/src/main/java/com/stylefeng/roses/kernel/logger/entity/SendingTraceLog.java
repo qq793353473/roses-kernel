@@ -35,29 +35,25 @@ public class SendingTraceLog {
 
     /**
      * rpc调用类型，
-     * G1,     //网关发送请求
+     * G1,     //网关发送请求(网关前置拦截器)
      * <p>
-     * G2,     //接收网关请求（切controller）
+     * P1,     //控制器接受到请求(controllerAOP)
      * <p>
-     * P1,     //调用端发送请求（切consumer）
+     * P2,     //准备调用远程服务(consumerAOP)
      * <p>
-     * P2,     //被调用端接收到请求（切provider）
+     * P3,     //被调用端接收到请求(providerAOP)
      * <p>
-     * P3,     //被调用端发送响应成功
+     * EP1,    //控制器处理过程中出错(controllerAOP)
      * <p>
-     * P4,     //调用端接收到响应成功
+     * EP2,    //feign远程调用，调用方出错(consumerAOP)
      * <p>
-     * EP3,    //被调用端发送响应失败
+     * EP3,    //feign远程调用，被调用方出错(providerAOP)
      * <p>
-     * EP4,    //调用端接收到响应失败
+     * G2,     //网关接收到成功请求(网关后置拦截器)
      * <p>
-     * G3,     //控制器响应网关成功
+     * EG2,    //网关接收到错误响应(网关后置拦截器)
      * <p>
-     * G4,     //网关接收到成功请求
-     * <p>
-     * EG3,    //控制器接收到错误响应
-     * <p>
-     * EG4,    //网关接收到错误响应
+     * TC      //记录请求耗时的类型
      */
     private String rpcPhase;
 

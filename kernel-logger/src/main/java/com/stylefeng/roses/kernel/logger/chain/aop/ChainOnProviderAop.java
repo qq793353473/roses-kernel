@@ -84,9 +84,6 @@ public class ChainOnProviderAop {
 
         try {
 
-            //报告:接收到远程调用
-            TraceUtil.trace(methodSignature, RpcPhaseEnum.P2, traceId, currentSpanId, parentSpanId);
-
             if (logger.isDebugEnabled()) {
                 logger.debug("provider aop 开始提供远程服务业务！" + (System.currentTimeMillis() - begin));
             }
@@ -96,9 +93,6 @@ public class ChainOnProviderAop {
             if (logger.isDebugEnabled()) {
                 logger.debug("provider aop 提供远程服务完成！" + (System.currentTimeMillis() - begin));
             }
-
-            //报告:响应成功的远程调用
-            TraceUtil.trace(methodSignature, RpcPhaseEnum.P3, traceId, currentSpanId, parentSpanId);
 
             return result;
 

@@ -9,29 +9,23 @@ package com.stylefeng.roses.kernel.logger.chain.enums;
 public enum RpcPhaseEnum {
 
 
-    G1,     //网关发送请求
+    G1,     //网关发送请求(网关前置拦截器)
 
-    G2,     //接收网关请求（切controller）
+    P1,     //控制器接受到请求(controllerAOP)
 
-    P1,     //调用端发送请求（切consumer）
+    P2,     //准备调用远程服务(consumerAOP)
 
-    P2,     //被调用端接收到请求（切provider）
+    P3,     //被调用端接收到请求(providerAOP)
 
-    P3,     //被调用端发送响应成功
+    EP1,    //控制器处理过程中出错(controllerAOP)
 
-    P4,     //调用端接收到响应成功
+    EP2,    //feign远程调用，调用方出错(consumerAOP)
 
-    EP3,    //被调用端发送响应失败
+    EP3,    //feign远程调用，被调用方出错(providerAOP)
 
-    EP4,    //调用端接收到响应失败
+    G2,     //网关接收到成功请求(网关后置拦截器)
 
-    G3,     //控制器响应网关成功
-
-    G4,     //网关接收到成功请求
-
-    EG3,    //控制器发送失败的响应
-
-    EG4,    //网关接收到错误响应
+    EG2,    //网关接收到错误响应(网关后置拦截器)
 
     TC      //记录请求耗时的类型
 

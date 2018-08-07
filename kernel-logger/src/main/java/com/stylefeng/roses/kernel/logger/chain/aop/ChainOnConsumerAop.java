@@ -64,7 +64,7 @@ public class ChainOnConsumerAop {
         try {
 
             //报告:开始调用远程服务
-            TraceUtil.trace(methodSignature, RpcPhaseEnum.P1, traceId, currentSpanId, parentSpanId);
+            TraceUtil.trace(methodSignature, RpcPhaseEnum.P2, traceId, currentSpanId, parentSpanId);
 
             if (logger.isDebugEnabled()) {
                 logger.debug("consumer aop 开始调用远程服务前！" + (System.currentTimeMillis() - begin));
@@ -75,9 +75,6 @@ public class ChainOnConsumerAop {
             if (logger.isDebugEnabled()) {
                 logger.debug("consumer aop 调用完远程服务！" + (System.currentTimeMillis() - begin));
             }
-
-            //报告:调用远程服务成功
-            TraceUtil.trace(methodSignature, RpcPhaseEnum.P4, traceId, currentSpanId, parentSpanId);
 
             if (logger.isDebugEnabled()) {
                 logger.debug("consumer aop 发送调用成功！" + (System.currentTimeMillis() - begin));
@@ -90,7 +87,7 @@ public class ChainOnConsumerAop {
             String exceptionMsg = ToolUtil.getExceptionMsg(exception);
 
             //报告:调用远程服务失败
-            TraceUtil.trace(methodSignature, RpcPhaseEnum.EP4, traceId, currentSpanId, parentSpanId, exceptionMsg);
+            TraceUtil.trace(methodSignature, RpcPhaseEnum.EP2, traceId, currentSpanId, parentSpanId, exceptionMsg);
 
             if (logger.isDebugEnabled()) {
                 logger.debug("consumer aop 记录完错误日志！" + (System.currentTimeMillis() - begin));

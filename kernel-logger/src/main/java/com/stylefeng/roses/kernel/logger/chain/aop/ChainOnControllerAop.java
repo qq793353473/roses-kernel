@@ -87,9 +87,6 @@ public class ChainOnControllerAop {
 
         try {
 
-            //报告:接收到网关的转发
-            TraceUtil.trace(methodSignature, RpcPhaseEnum.G2, traceId, currentSpanId, parentSpanId);
-
             if (logger.isDebugEnabled()) {
                 logger.debug("controller aop 开始执行控制器之前！" + (System.currentTimeMillis() - begin));
             }
@@ -99,9 +96,6 @@ public class ChainOnControllerAop {
             if (logger.isDebugEnabled()) {
                 logger.debug("controller aop 执行控制器成功完成！" + (System.currentTimeMillis() - begin));
             }
-
-            //报告:响应成功的网关转发
-            TraceUtil.trace(methodSignature, RpcPhaseEnum.G3, traceId, currentSpanId, parentSpanId);
 
             return result;
 
@@ -114,10 +108,10 @@ public class ChainOnControllerAop {
             }
 
             //报告:发送给网关失败的响应
-            TraceUtil.trace(methodSignature, RpcPhaseEnum.EG3, traceId, currentSpanId, parentSpanId, exceptionMsg);
+            TraceUtil.trace(methodSignature, RpcPhaseEnum.EP1, traceId, currentSpanId, parentSpanId, exceptionMsg);
 
             //报告执行错误的sql的信息
-            TraceUtil.trace(methodSignature, RpcPhaseEnum.EG3, traceId, currentSpanId, parentSpanId, SqlHolder.getSqlInfoStrings());
+            TraceUtil.trace(methodSignature, RpcPhaseEnum.EP1, traceId, currentSpanId, parentSpanId, SqlHolder.getSqlInfoStrings());
 
             throw exception;
 
