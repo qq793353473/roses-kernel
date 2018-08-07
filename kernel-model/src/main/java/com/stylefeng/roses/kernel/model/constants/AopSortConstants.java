@@ -19,6 +19,11 @@ public interface AopSortConstants {
     int REQUEST_DATA_AOP_SORT = 500;
 
     /**
+     * 参数校验为空的aop
+     */
+    int PARAM_VALIDATE_AOP_SORT = 510;
+
+    /**
      * 控制器调用链的aop
      */
     int CHAIN_ON_CONTROLLER_SORT = 600;

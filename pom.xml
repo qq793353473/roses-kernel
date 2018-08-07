@@ -26,6 +26,7 @@
         <module>kernel-logger</module>
         <module>kernel-sign</module>
         <module>kernel-actuator</module>
+        <module>kernel-validator</module>
     </modules>
 
     <properties>
