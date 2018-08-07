@@ -12,7 +12,7 @@
     <packaging>jar</packaging>
 
     <name>kernel-logger</name>
-    <description>日志记录的客户端，以jar包方式集成在项目里</description>
+    <description>日志记录的客户端，包含调用链治理，以jar包方式集成在项目里</description>
 
     <dependencies>
         <dependency>

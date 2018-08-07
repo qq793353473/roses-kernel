@@ -2,10 +2,10 @@ package com.stylefeng.roses.kernel.logger.util;
 
 import com.stylefeng.roses.core.context.LoginContext;
 import com.stylefeng.roses.core.context.RequestDataHolder;
-import com.stylefeng.roses.core.context.RequestNoContext;
 import com.stylefeng.roses.core.reqres.request.RequestData;
 import com.stylefeng.roses.core.util.SpringContextHolder;
 import com.stylefeng.roses.core.util.ToolUtil;
+import com.stylefeng.roses.kernel.logger.chain.context.TraceIdHolder;
 import com.stylefeng.roses.kernel.logger.config.properties.LogProperties;
 import com.stylefeng.roses.kernel.logger.entity.SendingCommonLog;
 import com.stylefeng.roses.kernel.logger.service.LogProducerService;
@@ -68,7 +68,7 @@ public class LogUtil {
      * @Date 2018/1/16 15:02
      */
     private static void doLog(LogLevel level, RequestData requestData, String message, Throwable exception) {
-        doLog(RequestNoContext.getRequestNo(), level, requestData, message, exception);
+        doLog(TraceIdHolder.get(), level, requestData, message, exception);
     }
 
     /**
@@ -213,16 +213,14 @@ public class LogUtil {
      * 创建日志内容
      */
     private static String createMessage(RequestData requestData, String message) {
-        String requestNo = RequestNoContext.getRequestNo();
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("RequestNo: ");
-        stringBuilder.append(requestNo);
-        stringBuilder.append(" ==>> ");
-        stringBuilder.append("Messages: ");
-        stringBuilder.append(message);
-        stringBuilder.append(" ==>> RequestData: ");
-        stringBuilder.append(requestData);
-        return stringBuilder.toString();
+        String requestNo = TraceIdHolder.get();
+        return "RequestNo: " +
+                requestNo +
+                " ==>> " +
+                "Messages: " +
+                message +
+                " ==>> RequestData: " +
+                requestData;
     }
 
     /**

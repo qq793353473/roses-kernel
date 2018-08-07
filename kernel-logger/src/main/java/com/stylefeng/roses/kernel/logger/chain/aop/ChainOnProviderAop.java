@@ -53,27 +53,24 @@ public class ChainOnProviderAop {
     @Around("cutService()")
     public Object sessionKit(ProceedingJoinPoint point) throws Throwable {
 
-        MethodSignature methodSignature = null;
-        Signature signature = point.getSignature();
-        if (signature instanceof MethodSignature) {
-            methodSignature = (MethodSignature) signature;
-        }
-
         long begin = System.currentTimeMillis();
         if (logger.isDebugEnabled()) {
             logger.debug("开始记录provider aop耗时！");
         }
+
+        //获取拦截方法的参数
+        Object[] methodParams = point.getArgs();
 
         //生成本节点的spanId
         String currentSpanId = IdWorker.getIdStr();
         SpanIdHolder.set(currentSpanId);
 
         //获取当前节点的parentSpanId
-        String parentSpanId = SpanIdContext.getSpanId();
+        String parentSpanId = SpanIdContext.getSpanIdByRequestParam(methodParams);
         ParentSpanIdHolder.set(parentSpanId);
 
         //获取traceId
-        String traceId = RequestNoContext.getRequestNo();
+        String traceId = RequestNoContext.getRequestNoByRequestParam(methodParams);
         TraceIdHolder.set(traceId);
 
         //初始化临时LoginUser
@@ -84,9 +81,6 @@ public class ChainOnProviderAop {
         }
 
         try {
-
-            //获取拦截方法的参数
-            Object[] methodParams = point.getArgs();
 
             //如果参数中，包含BaseValidatingParam的子类就开始校验参数
             if (methodParams != null && methodParams.length > 0) {
@@ -111,6 +105,12 @@ public class ChainOnProviderAop {
 
             if (logger.isDebugEnabled()) {
                 logger.debug("provider aop 记录完错误日志！" + (System.currentTimeMillis() - begin));
+            }
+
+            MethodSignature methodSignature = null;
+            Signature signature = point.getSignature();
+            if (signature instanceof MethodSignature) {
+                methodSignature = (MethodSignature) signature;
             }
 
             //报告:发送给消费端失败的远程调用

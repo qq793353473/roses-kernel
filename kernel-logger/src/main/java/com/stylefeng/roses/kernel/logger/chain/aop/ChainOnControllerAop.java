@@ -68,11 +68,11 @@ public class ChainOnControllerAop {
         SpanIdHolder.set(currentSpanId);
 
         //获取当前节点的parentSpanId
-        String parentSpanId = SpanIdContext.getSpanId();
+        String parentSpanId = SpanIdContext.getSpanIdByHttpHeader();
         ParentSpanIdHolder.set(parentSpanId);
 
         //获取traceId
-        String traceId = RequestNoContext.getRequestNo();
+        String traceId = RequestNoContext.getRequestNoByHttpHeader();
         TraceIdHolder.set(traceId);
 
         //初始化log记录

@@ -2,6 +2,7 @@ package com.stylefeng.roses.core.context;
 
 import com.stylefeng.roses.core.util.HttpContext;
 import com.stylefeng.roses.core.util.ToolUtil;
+import com.stylefeng.roses.kernel.model.api.base.AbstractBaseRequest;
 import com.stylefeng.roses.kernel.model.constants.RosesConstants;
 import lombok.extern.slf4j.Slf4j;
 
@@ -16,7 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 @Slf4j
 public class RequestNoContext {
 
-    public static String getRequestNo() {
+    public static String getRequestNoByHttpHeader() {
         HttpServletRequest request = HttpContext.getRequest();
 
         if (request == null) {
@@ -31,6 +32,24 @@ public class RequestNoContext {
             } else {
                 return requestNo;
             }
+        }
+    }
+
+    /**
+     * 通过请求参数获取requestNo，参数必须是AbstractBaseRequest的子类
+     */
+    public static String getRequestNoByRequestParam(Object[] params) {
+
+        if (params == null || params.length <= 0) {
+            return "";
+        } else {
+            for (Object paramItem : params) {
+                if (paramItem instanceof AbstractBaseRequest) {
+                    AbstractBaseRequest abstractBaseRequest = (AbstractBaseRequest) paramItem;
+                    return abstractBaseRequest.getRequestNo();
+                }
+            }
+            return "";
         }
     }
 

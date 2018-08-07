@@ -6,6 +6,7 @@ import com.stylefeng.roses.kernel.logger.chain.context.SpanIdHolder;
 import com.stylefeng.roses.kernel.logger.chain.context.TraceIdHolder;
 import com.stylefeng.roses.kernel.logger.chain.enums.RpcPhaseEnum;
 import com.stylefeng.roses.kernel.logger.util.TraceUtil;
+import com.stylefeng.roses.kernel.model.api.base.AbstractBaseRequest;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.Signature;
 import org.aspectj.lang.annotation.Around;
@@ -66,6 +67,9 @@ public class ChainOnConsumerAop {
             //报告:开始调用远程服务
             TraceUtil.trace(methodSignature, RpcPhaseEnum.P2, traceId, currentSpanId, parentSpanId);
 
+            //设置方法的参数，添加上requestNo和spanId
+            setRequestParam(point);
+
             if (logger.isDebugEnabled()) {
                 logger.debug("consumer aop 开始调用远程服务前！" + (System.currentTimeMillis() - begin));
             }
@@ -97,5 +101,22 @@ public class ChainOnConsumerAop {
 
         }
 
+    }
+
+    /**
+     * 设置被拦截方法的参数内部的spanId和RequestNo的值
+     *
+     * @author fengshuonan
+     * @Date 2018/8/7 下午1:04
+     */
+    private void setRequestParam(ProceedingJoinPoint point) {
+        Object[] params = point.getArgs();
+        for (Object param : params) {
+            if (param instanceof AbstractBaseRequest) {
+                AbstractBaseRequest abstractBaseRequest = (AbstractBaseRequest) param;
+                abstractBaseRequest.setRequestNo(TraceIdHolder.get());
+                abstractBaseRequest.setSpanId(SpanIdHolder.get());
+            }
+        }
     }
 }
