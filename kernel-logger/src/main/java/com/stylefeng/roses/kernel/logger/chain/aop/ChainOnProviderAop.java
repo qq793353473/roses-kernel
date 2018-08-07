@@ -10,6 +10,7 @@ import com.stylefeng.roses.kernel.logger.chain.context.SpanIdHolder;
 import com.stylefeng.roses.kernel.logger.chain.context.TraceIdHolder;
 import com.stylefeng.roses.kernel.logger.chain.enums.RpcPhaseEnum;
 import com.stylefeng.roses.kernel.logger.util.TraceUtil;
+import com.stylefeng.roses.kernel.validator.util.ValidationUtil;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.Signature;
 import org.aspectj.lang.annotation.Around;
@@ -83,6 +84,14 @@ public class ChainOnProviderAop {
         }
 
         try {
+
+            //获取拦截方法的参数
+            Object[] methodParams = point.getArgs();
+
+            //如果参数中，包含BaseValidatingParam的子类就开始校验参数
+            if (methodParams != null && methodParams.length > 0) {
+                ValidationUtil.validateParameters(methodParams);
+            }
 
             if (logger.isDebugEnabled()) {
                 logger.debug("provider aop 开始提供远程服务业务！" + (System.currentTimeMillis() - begin));

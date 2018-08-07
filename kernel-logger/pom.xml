@@ -24,6 +24,10 @@
             <artifactId>kernel-core</artifactId>
         </dependency>
         <dependency>
+            <groupId>com.stylefeng.roses</groupId>
+            <artifactId>kernel-validator</artifactId>
+        </dependency>
+        <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
             <scope>provided</scope>
