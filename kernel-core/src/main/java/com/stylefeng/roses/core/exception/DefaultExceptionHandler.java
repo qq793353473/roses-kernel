@@ -36,6 +36,7 @@ public class DefaultExceptionHandler {
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     @ResponseBody
     public ResponseData apiService(ApiServiceException e) {
+        log.error("服务具体异常:", e);
         ErrorResponseData errorResponseData = new ErrorResponseData(e.getCode(), e.getErrorMessage());
         errorResponseData.setExceptionClazz(e.getExceptionClassName());
         return errorResponseData;

@@ -3,6 +3,9 @@ package com.stylefeng.roses.core.feign;
 import cn.hutool.core.io.IoUtil;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.stylefeng.roses.core.util.ToolUtil;
+import com.stylefeng.roses.kernel.model.exception.AbstractBaseExceptionEnum;
+import com.stylefeng.roses.kernel.model.exception.ApiServiceException;
 import com.stylefeng.roses.kernel.model.exception.ServiceException;
 import com.stylefeng.roses.kernel.model.exception.enums.CoreExceptionEnum;
 import feign.Response;
@@ -10,6 +13,8 @@ import feign.codec.ErrorDecoder;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
 
 /**
  * roses自己的feign错误解码器（为了feign接收到错误的返回，转化成roses可识别的ServiceException）
@@ -22,6 +27,10 @@ public class RosesFeignErrorDecoder implements ErrorDecoder {
 
     @Override
     public Exception decode(String methodKey, Response response) {
+
+        /**
+         * 首先解析出来ResponseBody内容，如果body解析异常则直接抛出ServiceException
+         */
         String resposeBody;
         try {
             if (response == null || response.body() == null) {
@@ -35,21 +44,43 @@ public class RosesFeignErrorDecoder implements ErrorDecoder {
         } catch (IOException e) {
             return new ServiceException(CoreExceptionEnum.IO_ERROR);
         }
-        JSONObject parse = JSON.parseObject(resposeBody);
 
+        /**
+         * 解析出来ResponseBody后，用json反序列化
+         */
+        JSONObject jsonObject = JSON.parseObject(resposeBody);
         if (log.isDebugEnabled()) {
-            log.debug("FeignErrorDecoder收到错误响应结果：" + parse.toJSONString());
+            log.debug("FeignErrorDecoder收到错误响应结果：" + resposeBody);
         }
 
-        Integer code = parse.getInteger("code");
-        String message = parse.getString("message");
+        /**
+         * 获取有效信息
+         */
+        String exceptionClazz = jsonObject.getString("exceptionClazz");
+        Integer code = jsonObject.getInteger("code");
+        String message = jsonObject.getString("message");
+
+        /**
+         * 首先判断是否有exceptionClazz字段，如果有，代表是服务抛出的业务接口异常ApiServiceException的子类，那么需要返回这个异常
+         */
+        if (ToolUtil.isNotEmpty(exceptionClazz)) {
+            ApiServiceException apiServiceExceptionByClassName =
+                    this.getApiServiceExceptionByClassName(exceptionClazz, code, message);
+            if (apiServiceExceptionByClassName != null) {
+                return apiServiceExceptionByClassName;
+            }
+        }
+
+        /**
+         * 如果不是ApiServiceException的子类，则抛出ServiceException
+         */
         if (message == null) {
             message = CoreExceptionEnum.SERVICE_ERROR.getMessage();
         }
         if (code == null) {
 
             //status为spring默认返回的数据
-            Integer status = parse.getInteger("status");
+            Integer status = jsonObject.getInteger("status");
 
             if (status == null) {
                 return new ServiceException(CoreExceptionEnum.SERVICE_ERROR.getCode(), message);
@@ -58,6 +89,30 @@ public class RosesFeignErrorDecoder implements ErrorDecoder {
             }
         } else {
             return new ServiceException(code, message);
+        }
+    }
+
+    /**
+     * 通过类名称（字符串）反射获取具体的异常类
+     */
+    private ApiServiceException getApiServiceExceptionByClassName(String className, Integer code, String message) {
+
+        try {
+            Class<?> clazz = Class.forName(className);
+            Constructor constructor = clazz.getConstructor(AbstractBaseExceptionEnum.class);
+            return (ApiServiceException) constructor.newInstance(new AbstractBaseExceptionEnum() {
+                @Override
+                public Integer getCode() {
+                    return code;
+                }
+
+                @Override
+                public String getMessage() {
+                    return message;
+                }
+            });
+        } catch (ClassNotFoundException | NoSuchMethodException | InstantiationException | IllegalAccessException | InvocationTargetException e) {
+            return null;
         }
     }
 }
