@@ -1,16 +1,21 @@
 package com.stylefeng.roses.core.reqres.response;
 
 
+import lombok.Data;
+
 /**
  * 请求失败的返回
  *
  * @author stylefeng
  * @Date 2018/1/4 22:39
  */
+@Data
 public class ErrorResponseData extends ResponseData {
 
-    public ErrorResponseData() {
-    }
+    /**
+     * 异常的具体类名称
+     */
+    private String exceptionClazz;
 
     public ErrorResponseData(String message) {
         super(false, ResponseData.DEFAULT_ERROR_CODE, message, null);

@@ -1,6 +1,7 @@
 package com.stylefeng.roses.kernel.model.exception;
 
 import lombok.Getter;
+import lombok.Setter;
 
 /**
  * 远程接口调用出现的业务异常
@@ -9,7 +10,8 @@ import lombok.Getter;
  * @date 2018-08-06-上午11:33
  */
 @Getter
-public class ApiServiceException extends Exception {
+@Setter
+public abstract class ApiServiceException extends Exception {
 
     /**
      * 错误编码
@@ -26,4 +28,9 @@ public class ApiServiceException extends Exception {
         this.code = exception.getCode();
         this.errorMessage = exception.getMessage();
     }
+
+    /**
+     * 获取异常的类的具体名称
+     */
+    public abstract String getExceptionClassName();
 }

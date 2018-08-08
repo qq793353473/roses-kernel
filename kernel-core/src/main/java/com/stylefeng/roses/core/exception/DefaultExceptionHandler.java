@@ -2,6 +2,7 @@ package com.stylefeng.roses.core.exception;
 
 import com.stylefeng.roses.core.reqres.response.ErrorResponseData;
 import com.stylefeng.roses.core.reqres.response.ResponseData;
+import com.stylefeng.roses.kernel.model.exception.ApiServiceException;
 import com.stylefeng.roses.kernel.model.exception.RequestEmptyException;
 import com.stylefeng.roses.kernel.model.exception.ServiceException;
 import com.stylefeng.roses.kernel.model.exception.enums.CoreExceptionEnum;
@@ -24,9 +25,21 @@ import static com.stylefeng.roses.kernel.model.constants.AopSortConstants.DEFAUL
  */
 @ControllerAdvice
 @Order(DEFAULT_EXCEPTION_HANDLER_SORT)
-public class DefualtExceptionHandler {
+public class DefaultExceptionHandler {
 
     private Logger log = LoggerFactory.getLogger(this.getClass());
+
+    /**
+     * 拦截各个服务的具体异常
+     */
+    @ExceptionHandler(ApiServiceException.class)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    @ResponseBody
+    public ResponseData apiService(ApiServiceException e) {
+        ErrorResponseData errorResponseData = new ErrorResponseData(e.getCode(), e.getErrorMessage());
+        errorResponseData.setExceptionClazz(e.getExceptionClassName());
+        return errorResponseData;
+    }
 
     /**
      * 拦截请求为空的异常
@@ -55,7 +68,7 @@ public class DefualtExceptionHandler {
     @ExceptionHandler(Exception.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     @ResponseBody
-    public ResponseData notFount(Exception e) {
+    public ResponseData serverError(Exception e) {
         log.error("运行时异常:", e);
         return new ErrorResponseData(CoreExceptionEnum.SERVICE_ERROR.getCode(), CoreExceptionEnum.SERVICE_ERROR.getMessage());
     }
