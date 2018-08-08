@@ -10,7 +10,7 @@ import com.stylefeng.roses.kernel.model.validator.BaseValidatingParam;
  * @author fengshuonan
  * @date 2018-08-07-上午10:34
  */
-public class ValidationUtil {
+public class CheckUtil {
 
     public static void validateParameters(Object[] methodParams) {
         for (Object methodParam : methodParams) {

@@ -1,7 +1,7 @@
 package com.stylefeng.roses.kernel.validator.aop;
 
 import com.stylefeng.roses.kernel.model.constants.AopSortConstants;
-import com.stylefeng.roses.kernel.validator.util.ValidationUtil;
+import com.stylefeng.roses.kernel.validator.util.CheckUtil;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
@@ -35,7 +35,7 @@ public class ParamValidateAop {
         } else {
 
             //如果参数中，包含BaseValidatingParam的子类就开始校验参数
-            ValidationUtil.validateParameters(methodParams);
+            CheckUtil.validateParameters(methodParams);
             return point.proceed();
         }
     }

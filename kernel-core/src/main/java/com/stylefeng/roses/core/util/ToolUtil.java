@@ -6,6 +6,7 @@ import cn.hutool.core.bean.copier.CopyOptions;
 import com.stylefeng.roses.core.config.properties.AppNameProperties;
 import com.stylefeng.roses.kernel.model.exception.ServiceException;
 import com.stylefeng.roses.kernel.model.exception.enums.CoreExceptionEnum;
+import com.stylefeng.roses.kernel.model.util.ValidateUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -18,7 +19,10 @@ import java.net.SocketException;
 import java.net.UnknownHostException;
 import java.security.MessageDigest;
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Enumeration;
+import java.util.Random;
 
 /**
  * 高频方法集合
@@ -26,7 +30,7 @@ import java.util.*;
  * @author fengshuonan
  * @Date 2018/3/18 21:55
  */
-public class ToolUtil {
+public class ToolUtil extends ValidateUtil {
 
     /**
      * 默认密码盐长度
@@ -81,88 +85,6 @@ public class ToolUtil {
         } catch (Exception e) {
             throw new ServiceException(CoreExceptionEnum.ENCRYPT_ERROR);
         }
-    }
-
-    /**
-     * 对象是否不为空(新增)
-     *
-     * @author fengshuonan
-     * @Date 2018/3/18 21:57
-     */
-    public static boolean isNotEmpty(Object o) {
-        return !isEmpty(o);
-    }
-
-    /**
-     * 对象是否为空
-     *
-     * @author fengshuonan
-     * @Date 2018/3/18 21:57
-     */
-    public static boolean isEmpty(Object o) {
-        if (o == null) {
-            return true;
-        }
-        if (o instanceof String) {
-            if (o.toString().trim().equals("")) {
-                return true;
-            }
-        } else if (o instanceof List) {
-            if (((List) o).size() == 0) {
-                return true;
-            }
-        } else if (o instanceof Map) {
-            if (((Map) o).size() == 0) {
-                return true;
-            }
-        } else if (o instanceof Set) {
-            if (((Set) o).size() == 0) {
-                return true;
-            }
-        } else if (o instanceof Object[]) {
-            if (((Object[]) o).length == 0) {
-                return true;
-            }
-        } else if (o instanceof int[]) {
-            if (((int[]) o).length == 0) {
-                return true;
-            }
-        } else if (o instanceof long[]) {
-            if (((long[]) o).length == 0) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    /**
-     * 对象组中是否存在空对象
-     *
-     * @author fengshuonan
-     * @Date 2018/3/18 21:59
-     */
-    public static boolean isOneEmpty(Object... os) {
-        for (Object o : os) {
-            if (isEmpty(o)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    /**
-     * 对象组中是否全是空对象
-     *
-     * @author fengshuonan
-     * @Date 2018/3/18 21:59
-     */
-    public static boolean isAllEmpty(Object... os) {
-        for (Object o : os) {
-            if (!isEmpty(o)) {
-                return false;
-            }
-        }
-        return true;
     }
 
     /**
