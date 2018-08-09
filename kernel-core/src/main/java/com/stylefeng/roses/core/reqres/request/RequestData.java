@@ -26,11 +26,6 @@ public class RequestData implements Serializable {
     private JSONObject data;
 
     /**
-     * 请求号,标识请求的唯一性,用来定位多个服务调用链的日志记录
-     */
-    private String requestNo;
-
-    /**
      * 客户端请求的ip
      */
     private String ip;
@@ -60,28 +55,6 @@ public class RequestData implements Serializable {
      */
     public <T> T parse(String key, Class<T> clazz) {
         return this.data.getObject(key, clazz);
-    }
-
-    /**
-     * <pre>
-     * 解析请求json中指定key,并转化为string数组
-     *
-     * 例如请求json:
-     *  {names:"zhangsan,lisi,wangwu", num:3}
-     *
-     * 执行:
-     *  getStringArray("names")
-     *
-     * 运行结果得到一个string数组:
-     *  ["zhangsan","lisi","wangwu"]
-     *  </pre>
-     */
-    public String[] getStringArray(String key) {
-        String values = this.data.getString(key);
-        if (StrUtil.isBlank(values)) {
-            return new String[]{};
-        }
-        return values.split(",");
     }
 
     /**
@@ -149,7 +122,7 @@ public class RequestData implements Serializable {
     }
 
     /**
-     * 解析请求数据抓华为map
+     * 解析请求数据转化为map
      */
     public Map<String, Object> parseMap() {
         return this.jsonObjet2Map(this.data);
