@@ -31,7 +31,7 @@ public class ChainOnConsumerAop {
 
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    @Pointcut("execution(* com.stylefeng.roses.*..consumer.*.*(..))")
+    @Pointcut("execution(* com.stylefeng.roses..api.*+.*(..))")
     public void cutService() {
     }
 
