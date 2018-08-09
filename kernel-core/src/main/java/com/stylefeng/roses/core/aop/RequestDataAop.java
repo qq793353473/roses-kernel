@@ -20,7 +20,7 @@ import static com.stylefeng.roses.kernel.model.constants.AopSortConstants.REQUES
 @Order(REQUEST_DATA_AOP_SORT)
 public class RequestDataAop {
 
-    @Pointcut("execution(* com.stylefeng.roses.*..controller.*.*(..))")
+    @Pointcut("execution(* *..controller.*.*(..))")
     public void cutService() {
     }
 

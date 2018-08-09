@@ -38,7 +38,7 @@ public class ChainOnControllerAop {
     /**
      * 拦截控制器层和远程提供者层
      */
-    @Pointcut("execution(* com.stylefeng.roses.*..controller.*.*(..))")
+    @Pointcut("execution(* *..controller.*.*(..))")
     public void cutService() {
     }
 

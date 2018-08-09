@@ -18,7 +18,7 @@ import org.springframework.context.annotation.Configuration;
  * @Date 2017/5/20 21:58
  */
 @Configuration
-@MapperScan(basePackages = {"com.stylefeng.roses.**.mapper"})
+@MapperScan(basePackages = {"**.mapper"})
 @ConditionalOnProperty(prefix = "spring.datasource", name = "url")
 public class MybaitsPlusAutoConfiguration {
 
