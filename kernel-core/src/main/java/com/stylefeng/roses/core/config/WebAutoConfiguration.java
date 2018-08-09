@@ -72,7 +72,7 @@ public class WebAutoConfiguration extends WebMvcConfigurationSupport {
     @PostConstruct
     public void addConversionConfig() {
         ConfigurableWebBindingInitializer initializer = (ConfigurableWebBindingInitializer) handlerAdapter.getWebBindingInitializer();
-        if (initializer.getConversionService() != null) {
+        if ((initializer != null ? initializer.getConversionService() : null) != null) {
             GenericConversionService genericConversionService = (GenericConversionService) initializer.getConversionService();
             genericConversionService.addConverter(new StringToDateConverter());
         }
