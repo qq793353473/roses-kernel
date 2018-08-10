@@ -1,7 +1,7 @@
 package com.stylefeng.roses.kernel.validator.util;
 
-import com.stylefeng.roses.core.util.ToolUtil;
 import com.stylefeng.roses.kernel.model.exception.RequestEmptyException;
+import com.stylefeng.roses.kernel.model.util.ValidateUtil;
 import com.stylefeng.roses.kernel.model.validator.BaseValidatingParam;
 
 /**
@@ -19,7 +19,7 @@ public class CheckUtil {
                 String checkResult = baseValidatingParam.checkParam();
 
                 //如果校验结果不为空，则代表参数校验有空的或者不符合规则的，并且checkResult为参数错误的提示信息
-                if (ToolUtil.isNotEmpty(checkResult)) {
+                if (ValidateUtil.isNotEmpty(checkResult)) {
                     throw new RequestEmptyException(checkResult);
                 }
             }
