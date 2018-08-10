@@ -132,15 +132,17 @@ public class LogUtil {
 
                 try {
                     user = LoginContext.me().getLoginUser();
+                    log.setAppCode(user.getAppId().toString());
+                    log.setAccountId(user.getUniqueId() != null ? user.getUniqueId().toString() : null);
                 } catch (Exception e) {
-                    user = new LoginUser();
+                    if (logger.isDebugEnabled()) {
+                        logger.debug("当前没有登录用户！");
+                    }
                 }
 
                 log.setRequestNo(requestNo);
                 log.setClassName(className);
                 log.setMethodName(methodName == null ? "" : methodName);
-                log.setAppCode(user.getAppId());
-                log.setAccountId(user.getAccountId() != null ? Long.valueOf(user.getAccountId()) : null);
                 log.setLevel(level.name());
                 log.setLogContent(message);
                 log.setCreateTimestamp(System.currentTimeMillis());

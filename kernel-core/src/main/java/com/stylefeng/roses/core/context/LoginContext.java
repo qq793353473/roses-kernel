@@ -62,10 +62,10 @@ public class LoginContext {
 
     /**
      * 获取当前用户
+     * <p>
+     * 先从ThreadLocal中拿user，如果有值就直接返回，没取到再去调用远程服务,调用完远程服务把获取到的user放到Threadlocal里
      */
     public LoginUser getLoginUser() {
-
-        //先从ThreadLocal中拿user，如果有值就直接返回，没取到再去调用远程服务,调用完远程服务把获取到的user放到Threadlocal里
         LoginUser currentUser = LoginUserHolder.get();
         if (currentUser != null) {
             return currentUser;
@@ -78,24 +78,13 @@ public class LoginContext {
     /**
      * 获取当前登录用户的账户id
      */
-    public String getAccountId() {
+    public Object getAccountId() {
         LoginUser loginUser = this.getLoginUser();
         if (loginUser == null) {
             return null;
         } else {
-            return loginUser.getAccountId();
+            return loginUser.getUniqueId();
         }
     }
 
-    /**
-     * 获取当前登录用户的公司id
-     */
-    public String getCompanyId() {
-        LoginUser loginUser = this.getLoginUser();
-        if (loginUser == null) {
-            return null;
-        } else {
-            return loginUser.getCompanyId();
-        }
-    }
 }

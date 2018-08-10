@@ -32,11 +32,11 @@ public class CustomMetaObjectHandler extends MetaObjectHandler {
         if (createUser == null) {
 
             //如果获取不到当前登录用户
-            String accountId = null;
+            Object accountId = null;
             try {
                 accountId = LoginContext.me().getAccountId();
             } catch (Exception e) {
-                accountId = "";
+                //如果获取不到当前用户id就不记录
             }
 
             setFieldValByName(getCreateUserFieldName(), accountId, metaObject);
@@ -51,11 +51,11 @@ public class CustomMetaObjectHandler extends MetaObjectHandler {
         if (updateUser == null) {
 
             //如果获取不到当前登录用户
-            String accountId = null;
+            Object accountId = null;
             try {
                 accountId = LoginContext.me().getAccountId();
             } catch (Exception e) {
-                accountId = "";
+                //如果获取不到当前用户id就不记录
             }
 
             setFieldValByName(getUpdateUserFieldName(), accountId, metaObject);

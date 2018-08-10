@@ -46,7 +46,7 @@ public class SendingCommonLog {
     /**
      * 用户账号id
      */
-    private Long accountId;
+    private String accountId;
 
     /**
      * 日志号

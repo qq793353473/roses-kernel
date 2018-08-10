@@ -1,81 +1,55 @@
 package com.stylefeng.roses.kernel.model.auth;
 
-import lombok.Data;
-
 import java.util.Set;
 
 /**
  * 登录中的用户信息
+ * <p>
+ * 为何类型是Object，因为具体的项目不知道类型是什么
  *
  * @author fengshuonan
  * @date 2017-11-09-下午5:47
  */
-@Data
-public class LoginUser {
+public interface LoginUser {
 
     /**
-     * 用户id
+     * 获取用户唯一id
+     *
+     * @author fengshuonan
+     * @Date 2018/8/10 下午5:38
      */
-    private String infoId;
+    Object getUniqueId();
 
     /**
-     * 公司id
+     * 获取用户唯一id
+     *
+     * @author fengshuonan
+     * @Date 2018/8/10 下午5:38
      */
-    private String companyId;
+    Object getAppId();
 
     /**
-     * 应用id
+     * 获取角色id的集合
+     *
+     * @author fengshuonan
+     * @Date 2018/8/10 下午5:40
      */
-    private String appId;
+    Set<Object> getRoleIds();
 
     /**
-     * 姓名
+     * 角色编码集合
+     *
+     * @author fengshuonan
+     * @Date 2018/8/10 下午5:40
      */
-    private String name;
-
-    /**
-     * 性别
-     */
-    private String gender;
-
-    /**
-     * 账号id
-     */
-    private String accountId;
-
-    /**
-     * 账号
-     */
-    private String account;
-
-    /**
-     * 电话号码
-     */
-    private String mobilePhone;
-
-    /**
-     * 电子邮箱
-     */
-    private String email;
-
-    /**
-     * 角色id
-     */
-    private Set<String> roleIds;
-
-    /**
-     * 角色id
-     */
-    private Set<String> roleCodes;
-
-    /**
-     * 组织id
-     */
-    private Set<String> organizationIds;
+    Set<Object> getRoleCodes();
 
     /**
      * 包含的资源权限url
+     *
+     * @author fengshuonan
+     * @Date 2018/8/10 下午5:40
      */
-    private Set<String> resourceUrls;
+    Set<Object> getResourceUrls();
 
 }
