@@ -47,20 +47,16 @@ public class LoginContext {
         }
 
         //如果请求是在http环境下，则有request对象
-        if (request != null) {
-            String authorization = request.getHeader("Authorization");
-            if (ToolUtil.isNotEmpty(authorization)) {
-                return authorization;
-            } else {
-                String token = request.getParameter("token");
-                if (ToolUtil.isNotEmpty(token)) {
-                    return token;
-                } else {
-                    throw new ServiceException(CoreExceptionEnum.NO_CURRENT_USER);
-                }
-            }
+        String authorization = request.getHeader("Authorization");
+        if (ToolUtil.isNotEmpty(authorization)) {
+            return authorization;
         } else {
-            throw new ServiceException(CoreExceptionEnum.NO_CURRENT_USER);
+            String token = request.getParameter("token");
+            if (ToolUtil.isNotEmpty(token)) {
+                return token;
+            } else {
+                throw new ServiceException(CoreExceptionEnum.NO_CURRENT_USER);
+            }
         }
     }
 
