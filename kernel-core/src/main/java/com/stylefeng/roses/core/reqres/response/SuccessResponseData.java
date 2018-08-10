@@ -9,6 +9,7 @@ package com.stylefeng.roses.core.reqres.response;
 public class SuccessResponseData extends ResponseData {
 
     public SuccessResponseData() {
+        super(true, ResponseData.DEFAULT_SUCCESS_CODE, ResponseData.DEFAULT_SUCCESS_MESSAGE, null);
     }
 
     public SuccessResponseData(Object object) {
