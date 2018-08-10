@@ -18,7 +18,7 @@ public interface LoginUser {
      * @author fengshuonan
      * @Date 2018/8/10 下午5:38
      */
-    Object getUniqueId();
+    Object getUserUniqueId();
 
     /**
      * 获取用户唯一id

@@ -78,12 +78,12 @@ public class LoginContext {
     /**
      * 获取当前登录用户的账户id
      */
-    public Object getAccountId() {
+    public Object getUserUniqueId() {
         LoginUser loginUser = this.getLoginUser();
         if (loginUser == null) {
             return null;
         } else {
-            return loginUser.getUniqueId();
+            return loginUser.getUserUniqueId();
         }
     }
 

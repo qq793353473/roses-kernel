@@ -133,7 +133,7 @@ public class LogUtil {
                 try {
                     user = LoginContext.me().getLoginUser();
                     log.setAppCode(user.getAppId().toString());
-                    log.setAccountId(user.getUniqueId() != null ? user.getUniqueId().toString() : null);
+                    log.setAccountId(user.getUserUniqueId() != null ? user.getUserUniqueId().toString() : null);
                 } catch (Exception e) {
                     if (logger.isDebugEnabled()) {
                         logger.debug("当前没有登录用户！");

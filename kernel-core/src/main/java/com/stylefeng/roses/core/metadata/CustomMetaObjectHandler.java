@@ -34,7 +34,7 @@ public class CustomMetaObjectHandler extends MetaObjectHandler {
             //如果获取不到当前登录用户
             Object accountId = null;
             try {
-                accountId = LoginContext.me().getAccountId();
+                accountId = LoginContext.me().getUserUniqueId();
             } catch (Exception e) {
                 //如果获取不到当前用户id就不记录
             }
@@ -53,7 +53,7 @@ public class CustomMetaObjectHandler extends MetaObjectHandler {
             //如果获取不到当前登录用户
             Object accountId = null;
             try {
-                accountId = LoginContext.me().getAccountId();
+                accountId = LoginContext.me().getUserUniqueId();
             } catch (Exception e) {
                 //如果获取不到当前用户id就不记录
             }
