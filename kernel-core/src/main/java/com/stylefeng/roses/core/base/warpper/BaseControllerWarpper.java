@@ -1,5 +1,8 @@
 package com.stylefeng.roses.core.base.warpper;
 
+import com.baomidou.mybatisplus.plugins.Page;
+import com.stylefeng.roses.kernel.model.page.PageResult;
+
 import java.util.List;
 import java.util.Map;
 
@@ -11,27 +14,46 @@ import java.util.Map;
  */
 public abstract class BaseControllerWarpper {
 
-    public Object obj = null;
+    public Map<String, Object> single = null;
 
-    public BaseControllerWarpper(Object obj) {
-        this.obj = obj;
+    public List<Map<String, Object>> multi = null;
+
+    public BaseControllerWarpper(Map<String, Object> single) {
+        this.single = single;
+    }
+
+    public BaseControllerWarpper(List<Map<String, Object>> multi) {
+        this.multi = multi;
+    }
+
+    public BaseControllerWarpper(Page<Map<String, Object>> page) {
+        if (page != null && page.getRecords() != null) {
+            this.multi = page.getRecords();
+        }
+    }
+
+    public BaseControllerWarpper(PageResult<Map<String, Object>> pageResult) {
+        if (pageResult != null && pageResult.getRows() != null) {
+            this.multi = pageResult.getRows();
+        }
     }
 
     @SuppressWarnings("unchecked")
-    public Object warp() {
-        if (this.obj instanceof List) {
-            List<Map<String, Object>> list = (List<Map<String, Object>>) this.obj;
-            for (Map<String, Object> map : list) {
+    public <T> T warp() {
+
+        if (single != null) {
+            warpTheMap(single);
+            return (T) single;
+        }
+
+        if (multi != null) {
+            for (Map<String, Object> map : multi) {
                 warpTheMap(map);
             }
-            return list;
-        } else if (this.obj instanceof Map) {
-            Map<String, Object> map = (Map<String, Object>) this.obj;
-            warpTheMap(map);
-            return map;
-        } else {
-            return this.obj;
+            return (T) multi;
         }
+
+        return null;
     }
 
     protected abstract void warpTheMap(Map<String, Object> map);
