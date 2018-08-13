@@ -14,9 +14,13 @@ import java.util.Map;
  */
 public abstract class BaseControllerWrapper {
 
-    public Map<String, Object> single = null;
+    private Page<Map<String, Object>> page = null;
 
-    public List<Map<String, Object>> multi = null;
+    private PageResult<Map<String, Object>> pageResult = null;
+
+    private Map<String, Object> single = null;
+
+    private List<Map<String, Object>> multi = null;
 
     public BaseControllerWrapper(Map<String, Object> single) {
         this.single = single;
@@ -28,12 +32,14 @@ public abstract class BaseControllerWrapper {
 
     public BaseControllerWrapper(Page<Map<String, Object>> page) {
         if (page != null && page.getRecords() != null) {
+            this.page = page;
             this.multi = page.getRecords();
         }
     }
 
     public BaseControllerWrapper(PageResult<Map<String, Object>> pageResult) {
         if (pageResult != null && pageResult.getRows() != null) {
+            this.pageResult = pageResult;
             this.multi = pageResult.getRows();
         }
     }
@@ -41,15 +47,31 @@ public abstract class BaseControllerWrapper {
     @SuppressWarnings("unchecked")
     public <T> T wrap() {
 
+        /**
+         * 包装结果
+         */
         if (single != null) {
             wrapTheMap(single);
-            return (T) single;
         }
-
         if (multi != null) {
             for (Map<String, Object> map : multi) {
                 wrapTheMap(map);
             }
+        }
+
+        /**
+         * 根据请求的参数响应
+         */
+        if (page != null) {
+            return (T) page;
+        }
+        if (pageResult != null) {
+            return (T) pageResult;
+        }
+        if (single != null) {
+            return (T) single;
+        }
+        if (multi != null) {
             return (T) multi;
         }
 
