@@ -1,6 +1,6 @@
 package com.stylefeng.roses.core.base.controller;
 
-import com.stylefeng.roses.core.base.warpper.BaseControllerWarpper;
+import com.stylefeng.roses.core.base.warpper.BaseControllerWrapper;
 import com.stylefeng.roses.core.util.HttpContext;
 import com.stylefeng.roses.kernel.model.exception.ServiceException;
 import com.stylefeng.roses.kernel.model.exception.enums.CoreExceptionEnum;
@@ -55,8 +55,8 @@ public class BaseController {
     /**
      * 包装一个list，让list增加额外属性
      */
-    protected Object warpObject(BaseControllerWarpper warpper) {
-        return warpper.warp();
+    protected Object warpObject(BaseControllerWrapper warpper) {
+        return warpper.wrap();
     }
 
     /**

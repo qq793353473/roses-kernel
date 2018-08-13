@@ -12,43 +12,43 @@ import java.util.Map;
  * @author fengshuonan
  * @date 2017年2月13日 下午10:49:36
  */
-public abstract class BaseControllerWarpper {
+public abstract class BaseControllerWrapper {
 
     public Map<String, Object> single = null;
 
     public List<Map<String, Object>> multi = null;
 
-    public BaseControllerWarpper(Map<String, Object> single) {
+    public BaseControllerWrapper(Map<String, Object> single) {
         this.single = single;
     }
 
-    public BaseControllerWarpper(List<Map<String, Object>> multi) {
+    public BaseControllerWrapper(List<Map<String, Object>> multi) {
         this.multi = multi;
     }
 
-    public BaseControllerWarpper(Page<Map<String, Object>> page) {
+    public BaseControllerWrapper(Page<Map<String, Object>> page) {
         if (page != null && page.getRecords() != null) {
             this.multi = page.getRecords();
         }
     }
 
-    public BaseControllerWarpper(PageResult<Map<String, Object>> pageResult) {
+    public BaseControllerWrapper(PageResult<Map<String, Object>> pageResult) {
         if (pageResult != null && pageResult.getRows() != null) {
             this.multi = pageResult.getRows();
         }
     }
 
     @SuppressWarnings("unchecked")
-    public <T> T warp() {
+    public <T> T wrap() {
 
         if (single != null) {
-            warpTheMap(single);
+            wrapTheMap(single);
             return (T) single;
         }
 
         if (multi != null) {
             for (Map<String, Object> map : multi) {
-                warpTheMap(map);
+                wrapTheMap(map);
             }
             return (T) multi;
         }
@@ -56,5 +56,5 @@ public abstract class BaseControllerWarpper {
         return null;
     }
 
-    protected abstract void warpTheMap(Map<String, Object> map);
+    protected abstract void wrapTheMap(Map<String, Object> map);
 }
