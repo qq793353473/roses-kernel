@@ -2,6 +2,7 @@ package com.stylefeng.roses.core.base.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.stylefeng.roses.core.reqres.response.ErrorResponseData;
+import com.stylefeng.roses.kernel.model.exception.enums.CoreExceptionEnum;
 import org.springframework.web.servlet.View;
 
 import javax.servlet.http.HttpServletRequest;
@@ -29,8 +30,13 @@ public class GlobalErrorView implements View {
         if (map != null && map.get("code") != null && map.get("message") != null) {
             httpServletResponse.getWriter().write(JSON.toJSONString(new ErrorResponseData((Integer) map.get("code"), (String) map.get("message"))));
         } else {
-            httpServletResponse.getWriter().write(JSON.toJSONString(map));
+            if (map != null && map.get("status") != null && map.get("error") != null) {
+                Object status = map.get("status");
+                Object error = map.get("error");
+                httpServletResponse.getWriter().write(JSON.toJSONString(new ErrorResponseData((Integer) status, (String) error)));
+            } else {
+                httpServletResponse.getWriter().write(JSON.toJSONString(new ErrorResponseData(CoreExceptionEnum.PAGE_NULL.getCode(), CoreExceptionEnum.PAGE_NULL.getMessage())));
+            }
         }
-
     }
 }
