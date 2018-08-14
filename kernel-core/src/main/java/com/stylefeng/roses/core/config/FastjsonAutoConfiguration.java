@@ -48,15 +48,8 @@ public class FastjsonAutoConfiguration {
                 SerializerFeature.DisableCircularReferenceDetect
         );
         fastJsonConfig.setDateFormat("yyyy-MM-dd HH:mm:ss");
-        ValueFilter valueFilter = (object, name, value) -> {
-            if (null == value) {
-                return "";
-            } else {
-                return value;
-            }
-        };
         fastJsonConfig.setCharset(Charset.forName("utf-8"));
-        fastJsonConfig.setSerializeFilters(valueFilter);
+        initOtherValueFilters(fastJsonConfig);
         return fastJsonConfig;
     }
 
@@ -88,6 +81,22 @@ public class FastjsonAutoConfiguration {
         mediaTypes.add(MediaType.valueOf("application/vnd.spring-boot.actuator.v2+json"));
 
         return mediaTypes;
+    }
+
+    /**
+     * 初始化value过滤器
+     * <p>
+     * 默认的valueFilter是把空的字段转化为空串
+     */
+    protected void initOtherValueFilters(FastJsonConfig fastJsonConfig) {
+        ValueFilter valueFilter = (object, name, value) -> {
+            if (null == value) {
+                return "";
+            } else {
+                return value;
+            }
+        };
+        fastJsonConfig.setSerializeFilters(valueFilter);
     }
 
 }
