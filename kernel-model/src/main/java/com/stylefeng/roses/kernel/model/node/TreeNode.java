@@ -1,6 +1,9 @@
 package com.stylefeng.roses.kernel.model.node;
 
+import com.stylefeng.roses.kernel.model.tree.Tree;
 import lombok.Data;
+
+import java.util.List;
 
 /**
  * tree节点参数的封装
@@ -9,18 +12,55 @@ import lombok.Data;
  * @date 2017年2月17日 下午8:25:14
  */
 @Data
-public class TreeNode {
+public class TreeNode implements Tree {
 
-    private Integer id;     //节点id
+    /**
+     * 节点id
+     */
+    private Object id;
 
-    private Integer pId;    //父节点id
+    /**
+     * 父节点id
+     */
+    private Object pId;
 
-    private String name;    //节点名称
+    /**
+     * 节点名称
+     */
+    private String name;
 
-    private Boolean open;   //是否打开节点
+    /**
+     * 是否打开节点
+     */
+    private Boolean open;
 
-    private Boolean checked = false;//是否被选中
+    /**
+     * 是否被选中
+     */
+    private Boolean checked = false;
 
-    private Integer isMenu; //是否是菜单(1:是功能权限   2:是操作权限)
+    /**
+     * 是否是菜单(Y:是菜单  N:不是菜单)
+     */
+    private String isMenu;
 
+    /**
+     * 子节点
+     */
+    private List<TreeNode> children;
+
+    @Override
+    public String getNodeId() {
+        return id.toString();
+    }
+
+    @Override
+    public String getNodeParentId() {
+        return pId.toString();
+    }
+
+    @Override
+    public void setChildrenNodes(List childrenNodes) {
+        this.children = childrenNodes;
+    }
 }
