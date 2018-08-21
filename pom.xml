@@ -82,7 +82,6 @@
                 <version>${project.version}</version>
             </dependency>
 
-
             <!--spring cloud-->
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
@@ -200,5 +199,18 @@
             </resource>
         </resources>
     </build>
+
+    <distributionManagement>
+        <repository>
+            <id>maven-host-sedinBJ</id>
+            <name>maven-host-sedinBJ</name>
+            <url>http://172.30.10.82:8081/repository/maven-host-sedinBJ/</url>
+        </repository>
+        <snapshotRepository>
+            <id>maven-host-snapshot</id>
+            <name>maven-host-snapshot</name>
+            <url>http://172.30.10.82:8081/repository/maven-host-snapshot/</url>
+        </snapshotRepository>
+    </distributionManagement>
 
 </project>

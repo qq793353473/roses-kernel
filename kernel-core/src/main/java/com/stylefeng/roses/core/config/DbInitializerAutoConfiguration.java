@@ -14,7 +14,7 @@ import org.springframework.context.annotation.Configuration;
 public class DbInitializerAutoConfiguration {
 
     @Bean
-    public InitTableListener initDictTableListener() {
+    public InitTableListener initTableListener() {
         return new InitTableListener();
     }
 }
