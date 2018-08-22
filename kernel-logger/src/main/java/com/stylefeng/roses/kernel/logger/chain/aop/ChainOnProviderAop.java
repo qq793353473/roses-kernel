@@ -1,7 +1,6 @@
 package com.stylefeng.roses.kernel.logger.chain.aop;
 
 import com.baomidou.mybatisplus.toolkit.IdWorker;
-import com.stylefeng.roses.core.context.LoginUserHolder;
 import com.stylefeng.roses.core.context.RequestNoContext;
 import com.stylefeng.roses.core.util.ToolUtil;
 import com.stylefeng.roses.kernel.logger.chain.context.ParentSpanIdHolder;
@@ -10,6 +9,7 @@ import com.stylefeng.roses.kernel.logger.chain.context.SpanIdHolder;
 import com.stylefeng.roses.kernel.logger.chain.context.TraceIdHolder;
 import com.stylefeng.roses.kernel.logger.chain.enums.RpcPhaseEnum;
 import com.stylefeng.roses.kernel.logger.util.TraceUtil;
+import com.stylefeng.roses.kernel.model.auth.context.LoginUserHolder;
 import com.stylefeng.roses.kernel.validator.util.CheckUtil;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.Signature;

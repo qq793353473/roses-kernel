@@ -1,7 +1,6 @@
 package com.stylefeng.roses.core.metadata;
 
 import com.baomidou.mybatisplus.mapper.MetaObjectHandler;
-import com.stylefeng.roses.core.context.LoginContext;
 import org.apache.ibatis.reflection.MetaObject;
 
 import java.util.Date;
@@ -10,6 +9,8 @@ import java.util.Date;
  * 自定义sql字段填充器,本类默认在default-config.properties中配置
  * <p>
  * 若实际项目中，字段名称不一样，可以新建一个此类，在yml配置中覆盖mybatis-plus.global-config.metaObject-handler配置即可
+ * <p>
+ * 注意默认获取的userId为空
  *
  * @author fengshuonan
  * @Date 2018/7/4 下午12:42
@@ -31,13 +32,8 @@ public class CustomMetaObjectHandler extends MetaObjectHandler {
         Object createUser = getFieldValByName(getCreateUserFieldName(), metaObject);
         if (createUser == null) {
 
-            //如果获取不到当前登录用户
-            Object accountId = null;
-            try {
-                accountId = LoginContext.me().getUserUniqueId();
-            } catch (Exception e) {
-                //如果获取不到当前用户id就不记录
-            }
+            //获取当前登录用户
+            Object accountId = getUserUniqueId();
 
             setFieldValByName(getCreateUserFieldName(), accountId, metaObject);
         }
@@ -50,13 +46,8 @@ public class CustomMetaObjectHandler extends MetaObjectHandler {
         Object updateUser = getFieldValByName(getUpdateUserFieldName(), metaObject);
         if (updateUser == null) {
 
-            //如果获取不到当前登录用户
-            Object accountId = null;
-            try {
-                accountId = LoginContext.me().getUserUniqueId();
-            } catch (Exception e) {
-                //如果获取不到当前用户id就不记录
-            }
+            //获取当前登录用户
+            Object accountId = getUserUniqueId();
 
             setFieldValByName(getUpdateUserFieldName(), accountId, metaObject);
         }
@@ -102,5 +93,12 @@ public class CustomMetaObjectHandler extends MetaObjectHandler {
      */
     protected String getUpdateUserFieldName() {
         return "updateUser";
+    }
+
+    /**
+     * 获取用户唯一id（注意默认获取的用户唯一id为空，如果想填写则需要继承本类）
+     */
+    protected String getUserUniqueId() {
+        return "";
     }
 }

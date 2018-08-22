@@ -1,7 +1,7 @@
 package com.stylefeng.roses.kernel.model.api;
 
 
-import com.stylefeng.roses.kernel.model.auth.ResourceDefinition;
+import com.stylefeng.roses.kernel.model.resource.ResourceDefinition;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;

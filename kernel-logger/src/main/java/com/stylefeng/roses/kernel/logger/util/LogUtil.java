@@ -1,6 +1,5 @@
 package com.stylefeng.roses.kernel.logger.util;
 
-import com.stylefeng.roses.core.context.LoginContext;
 import com.stylefeng.roses.core.context.RequestDataHolder;
 import com.stylefeng.roses.core.reqres.request.RequestData;
 import com.stylefeng.roses.core.util.SpringContextHolder;
@@ -10,6 +9,7 @@ import com.stylefeng.roses.kernel.logger.config.properties.LogProperties;
 import com.stylefeng.roses.kernel.logger.entity.SendingCommonLog;
 import com.stylefeng.roses.kernel.logger.service.LogProducerService;
 import com.stylefeng.roses.kernel.model.auth.AbstractLoginUser;
+import com.stylefeng.roses.kernel.model.auth.context.AbstractLoginContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -128,12 +128,12 @@ public class LogUtil {
                     log.setUrl(requestData.getUrl());
                 }
 
-                AbstractLoginUser user = null;
-
+                //获取当前登录用户
                 try {
-                    user = LoginContext.me().getLoginUser();
-                    log.setAppCode(user.getAppId().toString());
-                    log.setAccountId(user.getUserUniqueId() != null ? user.getUserUniqueId().toString() : null);
+                    AbstractLoginContext bean = SpringContextHolder.getBean(AbstractLoginContext.class);
+                    AbstractLoginUser loginUser = bean.getLoginUser();
+                    log.setAppCode(loginUser.getAppId().toString());
+                    log.setAccountId(loginUser.getUserUniqueId() != null ? loginUser.getUserUniqueId().toString() : null);
                 } catch (Exception e) {
                     if (logger.isDebugEnabled()) {
                         logger.debug("当前没有登录用户！");

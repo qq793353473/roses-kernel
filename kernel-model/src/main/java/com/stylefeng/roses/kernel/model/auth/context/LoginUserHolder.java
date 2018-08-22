@@ -1,4 +1,4 @@
-package com.stylefeng.roses.core.context;
+package com.stylefeng.roses.kernel.model.auth.context;
 
 import com.stylefeng.roses.kernel.model.auth.AbstractLoginUser;
 

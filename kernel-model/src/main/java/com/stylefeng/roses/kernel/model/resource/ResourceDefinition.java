@@ -1,4 +1,4 @@
-package com.stylefeng.roses.kernel.model.auth;
+package com.stylefeng.roses.kernel.model.resource;
 
 import lombok.Data;
 

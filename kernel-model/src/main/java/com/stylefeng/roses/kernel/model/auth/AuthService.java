@@ -1,7 +1,6 @@
-package com.stylefeng.roses.kernel.model.api;
+package com.stylefeng.roses.kernel.model.auth;
 
 
-import com.stylefeng.roses.kernel.model.auth.AbstractLoginUser;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
