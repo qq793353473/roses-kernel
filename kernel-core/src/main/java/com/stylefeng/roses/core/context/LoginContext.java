@@ -5,7 +5,7 @@ import com.stylefeng.roses.core.util.HttpContext;
 import com.stylefeng.roses.core.util.SpringContextHolder;
 import com.stylefeng.roses.core.util.ToolUtil;
 import com.stylefeng.roses.kernel.model.api.AuthService;
-import com.stylefeng.roses.kernel.model.auth.LoginUser;
+import com.stylefeng.roses.kernel.model.auth.AbstractLoginUser;
 import com.stylefeng.roses.kernel.model.exception.ServiceException;
 import com.stylefeng.roses.kernel.model.exception.enums.CoreExceptionEnum;
 
@@ -65,8 +65,8 @@ public class LoginContext {
      * <p>
      * 先从ThreadLocal中拿user，如果有值就直接返回，没取到再去调用远程服务,调用完远程服务把获取到的user放到Threadlocal里
      */
-    public LoginUser getLoginUser() {
-        LoginUser currentUser = LoginUserHolder.get();
+    public AbstractLoginUser getLoginUser() {
+        AbstractLoginUser currentUser = LoginUserHolder.get();
         if (currentUser != null) {
             return currentUser;
         } else {
@@ -79,11 +79,11 @@ public class LoginContext {
      * 获取当前登录用户的账户id
      */
     public Object getUserUniqueId() {
-        LoginUser loginUser = this.getLoginUser();
-        if (loginUser == null) {
+        AbstractLoginUser abstractLoginUser = this.getLoginUser();
+        if (abstractLoginUser == null) {
             return null;
         } else {
-            return loginUser.getUserUniqueId();
+            return abstractLoginUser.getUserUniqueId();
         }
     }
 

@@ -10,7 +10,7 @@ import java.util.Set;
  * @author fengshuonan
  * @date 2017-11-09-下午5:47
  */
-public interface LoginUser {
+public interface AbstractLoginUser {
 
     /**
      * 获取用户唯一id

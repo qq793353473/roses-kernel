@@ -1,6 +1,6 @@
 package com.stylefeng.roses.core.context;
 
-import com.stylefeng.roses.kernel.model.auth.LoginUser;
+import com.stylefeng.roses.kernel.model.auth.AbstractLoginUser;
 
 /**
  * <pre>
@@ -16,7 +16,7 @@ import com.stylefeng.roses.kernel.model.auth.LoginUser;
 public class LoginUserHolder {
 
     private static final ThreadLocal<Boolean> OPEN_UP_FLAG = new ThreadLocal<>();
-    private static final ThreadLocal<LoginUser> LONGIN_USER_HOLDER = new ThreadLocal<>();
+    private static final ThreadLocal<AbstractLoginUser> LONGIN_USER_HOLDER = new ThreadLocal<>();
 
     /**
      * 初始化
@@ -34,12 +34,12 @@ public class LoginUserHolder {
      * @author fengshuonan
      * @Date 2018/7/4 上午11:09
      */
-    public static void set(LoginUser loginUser) {
+    public static void set(AbstractLoginUser abstractLoginUser) {
         Boolean openUpFlag = OPEN_UP_FLAG.get();
         if (openUpFlag == null || openUpFlag.equals(false)) {
             return;
         } else {
-            LONGIN_USER_HOLDER.set(loginUser);
+            LONGIN_USER_HOLDER.set(abstractLoginUser);
         }
     }
 
@@ -49,7 +49,7 @@ public class LoginUserHolder {
      * @author fengshuonan
      * @Date 2018/7/4 上午11:09
      */
-    public static LoginUser get() {
+    public static AbstractLoginUser get() {
         Boolean openUpFlag = OPEN_UP_FLAG.get();
         if (openUpFlag == null || openUpFlag.equals(false)) {
             return null;

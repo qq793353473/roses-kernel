@@ -9,7 +9,7 @@ import com.stylefeng.roses.kernel.logger.chain.context.TraceIdHolder;
 import com.stylefeng.roses.kernel.logger.config.properties.LogProperties;
 import com.stylefeng.roses.kernel.logger.entity.SendingCommonLog;
 import com.stylefeng.roses.kernel.logger.service.LogProducerService;
-import com.stylefeng.roses.kernel.model.auth.LoginUser;
+import com.stylefeng.roses.kernel.model.auth.AbstractLoginUser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -128,7 +128,7 @@ public class LogUtil {
                     log.setUrl(requestData.getUrl());
                 }
 
-                LoginUser user = null;
+                AbstractLoginUser user = null;
 
                 try {
                     user = LoginContext.me().getLoginUser();

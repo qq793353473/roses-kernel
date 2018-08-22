@@ -1,7 +1,7 @@
 package com.stylefeng.roses.kernel.model.api;
 
 
-import com.stylefeng.roses.kernel.model.auth.LoginUser;
+import com.stylefeng.roses.kernel.model.auth.AbstractLoginUser;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -50,6 +50,6 @@ public interface AuthService {
      * @Date 2018/1/12 16:32
      */
     @RequestMapping(value = "/getLoginUserByToken", method = RequestMethod.POST)
-    LoginUser getLoginUserByToken(@RequestParam("token") String token);
+    AbstractLoginUser getLoginUserByToken(@RequestParam("token") String token);
 
 }
