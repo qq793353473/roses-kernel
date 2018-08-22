@@ -5,7 +5,7 @@ import java.util.Set;
 /**
  * 登录中的用户信息
  * <p>
- * 为何类型是Object，因为具体的项目不知道类型是什么
+ * 为何类型是泛型，因为具体的项目不知道类型是什么
  *
  * @author fengshuonan
  * @date 2017-11-09-下午5:47
@@ -18,7 +18,7 @@ public interface AbstractLoginUser {
      * @author fengshuonan
      * @Date 2018/8/10 下午5:38
      */
-    Object getUserUniqueId();
+    <T> T getUserUniqueId();
 
     /**
      * 获取用户唯一id
@@ -26,7 +26,7 @@ public interface AbstractLoginUser {
      * @author fengshuonan
      * @Date 2018/8/10 下午5:38
      */
-    Object getAppId();
+    <T> T getAppId();
 
     /**
      * 获取角色id的集合
@@ -34,7 +34,7 @@ public interface AbstractLoginUser {
      * @author fengshuonan
      * @Date 2018/8/10 下午5:40
      */
-    Set<Object> getRoleIds();
+    <T> Set<T> getRoleIds();
 
     /**
      * 角色编码集合
@@ -42,7 +42,7 @@ public interface AbstractLoginUser {
      * @author fengshuonan
      * @Date 2018/8/10 下午5:40
      */
-    Set<Object> getRoleCodes();
+    <T> Set<T> getRoleCodes();
 
     /**
      * 包含的资源权限url
@@ -50,6 +50,6 @@ public interface AbstractLoginUser {
      * @author fengshuonan
      * @Date 2018/8/10 下午5:40
      */
-    Set<Object> getResourceUrls();
+    <T> Set<T> getResourceUrls();
 
 }
