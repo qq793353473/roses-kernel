@@ -27,6 +27,7 @@
         <module>kernel-sign</module>
         <module>kernel-actuator</module>
         <module>kernel-validator</module>
+        <module>kernel-jwt</module>
     </modules>
 
     <properties>
@@ -79,6 +80,16 @@
             <dependency>
                 <groupId>com.stylefeng.roses</groupId>
                 <artifactId>kernel-validator</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.stylefeng.roses</groupId>
+                <artifactId>kernel-jwt</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.stylefeng.roses</groupId>
+                <artifactId>kernel-actuator</artifactId>
                 <version>${project.version}</version>
             </dependency>
 
