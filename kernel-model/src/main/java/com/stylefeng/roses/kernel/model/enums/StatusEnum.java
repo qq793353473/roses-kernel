@@ -23,6 +23,19 @@ public enum StatusEnum {
         this.desc = desc;
     }
 
+    public static String getNameByCode(Integer code) {
+        if (code == null) {
+            return "";
+        } else {
+            for (StatusEnum enumItem : StatusEnum.values()) {
+                if (enumItem.getCode().equals(code)) {
+                    return enumItem.getDesc();
+                }
+            }
+            return "";
+        }
+    }
+
     public static StatusEnum toEnum(Integer code) {
         if (null == code) {
             return null;
