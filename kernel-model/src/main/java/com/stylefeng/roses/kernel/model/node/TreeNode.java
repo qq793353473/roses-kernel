@@ -28,12 +28,12 @@ public class TreeNode implements Tree {
     /**
      * 节点id
      */
-    private Object id;
+    private String id;
 
     /**
      * 父节点id
      */
-    private Object pId;
+    private String pId;
 
     /**
      * 节点名称
