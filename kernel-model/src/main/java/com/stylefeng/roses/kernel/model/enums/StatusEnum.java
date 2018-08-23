@@ -1,26 +1,22 @@
 package com.stylefeng.roses.kernel.model.enums;
 
-import lombok.Getter;
-
 /**
- * 启用禁用标识
+ * 状态的枚举
  *
  * @author fengshuonan
- * @Date 2018/7/24 下午5:31
+ * @Date 2018年1月23日 15:20:33
  */
-@Getter
 public enum StatusEnum {
 
     ENABLE(1, "启用"),
-
     DISABLE(2, "禁用");
 
     private Integer code;
-    private String desc;
+    private String name;
 
-    StatusEnum(Integer code, String desc) {
+    StatusEnum(Integer code, String name) {
         this.code = code;
-        this.desc = desc;
+        this.name = name;
     }
 
     public static String getNameByCode(Integer code) {
@@ -29,24 +25,18 @@ public enum StatusEnum {
         } else {
             for (StatusEnum enumItem : StatusEnum.values()) {
                 if (enumItem.getCode().equals(code)) {
-                    return enumItem.getDesc();
+                    return enumItem.getName();
                 }
             }
             return "";
         }
     }
 
-    public static StatusEnum toEnum(Integer code) {
-        if (null == code) {
-            return null;
-        } else {
-            for (StatusEnum e : StatusEnum.values()) {
-                if (e.getCode().equals(code)) {
-                    return e;
-                }
-            }
-            return null;
-        }
+    public Integer getCode() {
+        return code;
     }
 
+    public String getName() {
+        return name;
+    }
 }
