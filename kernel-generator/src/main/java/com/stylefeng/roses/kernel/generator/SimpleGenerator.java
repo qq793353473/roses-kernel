@@ -33,8 +33,13 @@ public class SimpleGenerator {
         gc.setAuthor(generateParams.getAuthor());
 
         // 自定义文件命名，注意 %s 会自动填充表实体属性！
-        gc.setServiceName("%sService");
-        gc.setServiceImplName("%sService");
+        if (generateParams.getGeneratorInterface()) {
+            gc.setServiceName("%sService");
+            gc.setServiceImplName("%sServiceImpl");
+        } else {
+            gc.setServiceName("%sService");
+            gc.setServiceImplName("%sService");
+        }
         mpg.setGlobalConfig(gc);
 
         // 数据源配置
@@ -86,7 +91,15 @@ public class SimpleGenerator {
         pc.setParent(generateParams.getParentPackage());
         pc.setModuleName("");
         pc.setXml("mapper.mapping");
-        pc.setServiceImpl("service");
+
+        if (generateParams.getGeneratorInterface()) {
+            pc.setServiceImpl("service.impl");
+            pc.setService("service");
+        } else {
+            pc.setServiceImpl("service");
+            pc.setService("service");
+        }
+
         mpg.setPackageInfo(pc);
 
         // 执行生成
