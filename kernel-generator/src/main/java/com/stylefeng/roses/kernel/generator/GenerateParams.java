@@ -29,4 +29,6 @@ public class GenerateParams {
 
     private String parentPackage = "com.stylefeng.roses.xxx.modular";
 
+    private Boolean generatorInterface = false;
+
 }
