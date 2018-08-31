@@ -1,4 +1,4 @@
-# roses-kernel 
+# roses-kernel 项目骨架，开发利器
 
 ---
    
@@ -27,9 +27,18 @@
 
 > * 开发环境为jdk 1.8
 > * maven推荐使用阿里云镜像，拉取jar包保证成功
+> * （重要）因为目前roses-kernel没有推送到maven中央仓库，所以为了别的项目的正常运行，请mvn install到本地仓库，或者deploy到您的私服中
 
 ---
 
 ## 项目特点
 
-业务服务的核心，开发微服务的利器，包含自动配置，工具类，常用model等
+roses-kernel的定位是项目开发的基础骨架，包含自动配置，工具类封装，代码生成工具，jwt校验等等。需要注意的是，pom中有些依赖是provided，有些jar包还是需要具体应用中具体引入，roses-kernel
+不仅仅适用于**微服务的构建**，也同样适用于**单体项目的构建**
+
+### kernel-actuator
+
+当开启spring boot admin，需要引入kernel-actuator模块，这个模块包含了基本的spring 
+security的配置，需要注意的是NoneSecurityAutoConfiguration这个自动配置中，spring security的配置为`permitAll()`，会绕过spring 
+security的所有拦截器，若需要开启安全验证可参考[http://codecentric.github.io/spring-boot-admin/2.0.1/](http://codecentric.github
+.io/spring-boot-admin/2.0.1/)修改相关配置
