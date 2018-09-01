@@ -42,3 +42,55 @@ roses-kernel的定位是项目开发的基础骨架，包含自动配置，工�
 security的配置，需要注意的是NoneSecurityAutoConfiguration这个自动配置中，spring security的配置为`permitAll()`，会绕过spring 
 security的所有拦截器，若需要开启安全验证可参考[http://codecentric.github.io/spring-boot-admin/2.0.1/](http://codecentric.github
 .io/spring-boot-admin/2.0.1/)修改相关配置
+
+### kernel-core
+
+项目构架的核心模块，包含常用的自动配置，例如mybatis-plus的自动配置，fastjson，redis，web应用的等等。还有一些上下文工具类，例如RequestNoContext，存放当前请求唯一请求号的工具类，还有数据库初始化的工具类DbInitializer，还有Roses框架自己封装的feign错误解码器，feign的拦截器，构造树的工具类DefaultTreeBuildFactory，另外Roses集成了hutool工具类，还有一些拓展的工具类在com.stylefeng.roses.core.util包中
+
+### kernel-generator
+
+代码生成器模块，简单包装了mybatis-plus的代码生成器，可自动根据数据库表结构自动生成entity，mapper，service，使用时，只需要两部来生成，如下：
+```
+//初始化参数
+GenerateParams generateParams = new GenerateParams();
+generateParams.setXXX();
+generateParams.setXXX();
+generateParams.setXXX();
+generateParams.setXXX();
+
+//执行代码生成
+SimpleGenerator.doGeneration(generateParams);
+```
+
+关于代码生成器各个参数的含义可参考如下：
+```
+//生成代码里，注释的作者
+private String author = "fengshuonan";
+
+//代码生成输出的目录，可为项目路径的相对路径
+private String outputDirectory = "temp";
+
+//jdbc驱动
+private String jdbcDriver = "com.mysql.jdbc.Driver";
+
+//数据库连接地址
+private String jdbcUrl = "jdbc:mysql://127.0.0.1:3306/guns?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false&serverTimezone=UTC";
+
+//数据库账号
+private String jdbcUserName = "root";
+
+//数据库密码
+private String jdbcPassword = "root";
+
+//去掉表的前缀
+private String[] removeTablePrefix = {"xx_"};
+
+//代码生成包含的表，可为空，为空默认生成所有
+private String[] includeTables;
+
+//代码生成的类的父包名称
+private String parentPackage = "com.stylefeng.roses.xxx.modular";
+
+//service是否生成接口，这个根据自己项目情况决定
+private Boolean generatorInterface = false;
+```
