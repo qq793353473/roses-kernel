@@ -94,3 +94,75 @@ private String parentPackage = "com.stylefeng.roses.xxx.modular";
 //service是否生成接口，这个根据自己项目情况决定
 private Boolean generatorInterface = false;
 ```
+
+### kernel-jwt
+
+jwt模块封装了jwt操作相关的方法，JwtTokenUtil类中包含构造token，获取token中的信息，校验token，查看token是否过期等等操作方法，JwtProperties中包含了jwt
+需要的配置，有过期时间和私钥的配置，JwtAutoConfiguration为jwt的自动配置，如果您引入了kernel-jwt模块，那么这个模块也会帮您把配置自动配置好，需要注意的是JwtProperties类的配置映射在jwt
+开头的配置文件中，在引入后一定要把这个配置替换掉，例如在application.yml中，改为如下
+```
+jwt:
+  secret: abcdefg
+  expiration: 82800
+```
+
+### kernel-logger
+
+logger模块主要包含两个功能，一个是调用链治理的日志记录（ChainAop），一个是记录系统里的业务日志和系统日志（LogUtil）。调用链治理ChainOnConsumerAop，ChainOnControllerAop
+，ChainOnProviderAop对控制器层，消费者层，提供者层进行日志记录，具体记录了哪些日志，可参考这三个类，也可直接参考RpcPhaseEnum这个枚举，里边记录了所有的日志类型
+```
+G1,     //网关发送请求(网关前置拦截器)
+
+P1,     //控制器接受到请求(controllerAOP)
+
+P2,     //准备调用远程服务(consumerAOP)
+
+P3,     //被调用端接收到请求(providerAOP)
+
+EP1,    //控制器处理过程中出错(controllerAOP)
+
+EP2,    //feign远程调用，调用方出错(consumerAOP)
+
+EP3,    //feign远程调用，被调用方出错(providerAOP)
+
+G2,     //网关接收到成功请求(网关后置拦截器)
+
+EG2,    //网关接收到错误响应(网关后置拦截器)
+
+TC      //记录请求耗时的类型
+```
+
+LogUtil日志记录工具类的使用方法可参考如下：
+
+```
+LogUtil.info(String message);
+
+LogUtil.error(String message, Throwable exception);
+
+LogUtil.debug(String message);
+
+LogUtil.trace(String message);
+
+LogUtil.warn(String message);
+```
+
+### kernel-model
+
+这个模块包含了整个框架中使用的常量，枚举，异常，分页类，通用model等等。这些类是框架里需要用到的，也可以供业务项目中调用使用。kernel-model中还包含一些接口，例如AuthService和ResourceService
+，定义了鉴权和资源收集的方法，还有获取当前登录用户的接口AbstractLoginUser，这些接口在roses-system有默认的实现。还有分页相关的请求和响应model的封装，PageQuery和PageResult。
+
+### kernel-scanner
+
+这个模块是Roses独有的资源扫描工具，Roses中设立了@ApiResource注解，用来标注控制器里的接口，在Roses
+框架中，用户对应了角色，角色又对应着资源，菜单关联资源。资源扫描器的作用一方面是便于管理所有的接口资源的权限控制，另一方面是简化了资源录入系统的方式
+ （不用手写），当程序启动时，会自动扫描带有@ApiResource注解的方法，扫描之后会对资源进行包装，写入到数据库。所以当使用了资源扫描器之后可以很方便的搜集所有服务上面的接口资源，并通过roses-system
+ 的接口，统一的汇报到roses-system服务上面去，从而实现了资源的集中管理。
+ 
+ ### kernel-sign
+ 
+ 这个模块定义了数据签名的方法和自动配置，通过本模块提供的工具类，可以实现基本的数据签名和校验，方式数据在传输的过程中被别人窃取和篡改。
+ 
+ ### kernel-validator
+ 
+ kernel-validator是一套轻量级的参数校验工具，利用aop拦截，通过在service的方法上加注解@ParamValidator即可实现对请求参数的校验，使用过程中只要把参数继承BaseValidatingParam
+ 并实现checkParam()方法即可，checkParam()方法返回null表示没有空的值，如果有空的值就返回字符串类型的提示。

@@ -13,7 +13,7 @@ import org.springframework.context.annotation.Configuration;
  * @date 2018-02-08 9:49
  */
 @Configuration
-public class JwtConfig {
+public class JwtAutoConfiguration {
 
     /**
      * jwt token的配置
