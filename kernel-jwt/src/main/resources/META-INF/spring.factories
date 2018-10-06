@@ -1,2 +1,2 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-com.stylefeng.roses.kernel.jwt.config.JwtAutoConfiguration
+cn.stylefeng.roses.kernel.jwt.config.JwtAutoConfiguration

@@ -13,10 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.stylefeng.roses.kernel.jwt.config;
+package cn.stylefeng.roses.kernel.jwt.config;
 
-import com.stylefeng.roses.kernel.jwt.properties.JwtProperties;
-import com.stylefeng.roses.kernel.jwt.utils.JwtTokenUtil;
+import cn.stylefeng.roses.kernel.jwt.properties.JwtProperties;
+import cn.stylefeng.roses.kernel.jwt.utils.JwtTokenUtil;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
