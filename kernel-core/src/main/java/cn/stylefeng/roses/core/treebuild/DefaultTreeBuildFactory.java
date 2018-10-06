@@ -16,7 +16,7 @@
 package cn.stylefeng.roses.core.treebuild;
 
 import cn.stylefeng.roses.core.treebuild.abst.AbstractTreeBuildFactory;
-import com.stylefeng.roses.kernel.model.tree.Tree;
+import cn.stylefeng.roses.kernel.model.tree.Tree;
 
 import java.util.ArrayList;
 import java.util.List;

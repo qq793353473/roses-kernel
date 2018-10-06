@@ -27,7 +27,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import static com.stylefeng.roses.kernel.model.constants.ConfigPrefixConstants.SCANNER_PREFIX;
+import static cn.stylefeng.roses.kernel.model.constants.ConfigPrefixConstants.SCANNER_PREFIX;
 
 /**
  * 扫描器默认配置

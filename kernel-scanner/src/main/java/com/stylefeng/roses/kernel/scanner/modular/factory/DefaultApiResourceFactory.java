@@ -16,7 +16,7 @@
 package com.stylefeng.roses.kernel.scanner.modular.factory;
 
 import cn.hutool.core.util.StrUtil;
-import com.stylefeng.roses.kernel.model.resource.ResourceDefinition;
+import cn.stylefeng.roses.kernel.model.resource.ResourceDefinition;
 
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;

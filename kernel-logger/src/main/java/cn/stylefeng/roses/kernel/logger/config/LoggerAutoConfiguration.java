@@ -18,7 +18,7 @@ package cn.stylefeng.roses.kernel.logger.config;
 import cn.stylefeng.roses.kernel.logger.service.LogProducerService;
 import cn.stylefeng.roses.kernel.logger.service.impl.LogProducerServiceImpl;
 import cn.stylefeng.roses.kernel.logger.config.properties.LogProperties;
-import com.stylefeng.roses.kernel.model.constants.ConfigPrefixConstants;
+import cn.stylefeng.roses.kernel.model.constants.ConfigPrefixConstants;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

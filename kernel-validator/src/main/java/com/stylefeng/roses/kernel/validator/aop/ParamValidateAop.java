@@ -15,7 +15,7 @@
  */
 package com.stylefeng.roses.kernel.validator.aop;
 
-import com.stylefeng.roses.kernel.model.constants.AopSortConstants;
+import cn.stylefeng.roses.kernel.model.constants.AopSortConstants;
 import com.stylefeng.roses.kernel.validator.util.CheckUtil;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;

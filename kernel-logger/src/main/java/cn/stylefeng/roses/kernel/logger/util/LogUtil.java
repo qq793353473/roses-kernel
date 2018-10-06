@@ -23,8 +23,8 @@ import cn.stylefeng.roses.kernel.logger.chain.context.TraceIdHolder;
 import cn.stylefeng.roses.kernel.logger.config.properties.LogProperties;
 import cn.stylefeng.roses.kernel.logger.entity.SendingCommonLog;
 import cn.stylefeng.roses.kernel.logger.service.LogProducerService;
-import com.stylefeng.roses.kernel.model.auth.AbstractLoginUser;
-import com.stylefeng.roses.kernel.model.auth.context.AbstractLoginContext;
+import cn.stylefeng.roses.kernel.model.auth.AbstractLoginUser;
+import cn.stylefeng.roses.kernel.model.auth.context.AbstractLoginContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

@@ -24,7 +24,7 @@ import cn.stylefeng.roses.kernel.logger.chain.context.TraceIdHolder;
 import cn.stylefeng.roses.kernel.logger.chain.enums.RpcPhaseEnum;
 import com.baomidou.mybatisplus.toolkit.IdWorker;
 import cn.stylefeng.roses.kernel.logger.util.TraceUtil;
-import com.stylefeng.roses.kernel.model.auth.context.LoginUserHolder;
+import cn.stylefeng.roses.kernel.model.auth.context.LoginUserHolder;
 import com.stylefeng.roses.kernel.validator.util.CheckUtil;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.Signature;
@@ -36,7 +36,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.annotation.Order;
 
-import static com.stylefeng.roses.kernel.model.constants.AopSortConstants.CHAIN_ON_PROVIDER_SORT;
+import static cn.stylefeng.roses.kernel.model.constants.AopSortConstants.CHAIN_ON_PROVIDER_SORT;
 
 
 /**

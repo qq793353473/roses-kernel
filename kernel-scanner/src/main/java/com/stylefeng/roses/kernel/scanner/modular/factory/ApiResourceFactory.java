@@ -16,7 +16,7 @@
 package com.stylefeng.roses.kernel.scanner.modular.factory;
 
 
-import com.stylefeng.roses.kernel.model.resource.ResourceDefinition;
+import cn.stylefeng.roses.kernel.model.resource.ResourceDefinition;
 
 import java.util.List;
 import java.util.Map;

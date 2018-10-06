@@ -15,8 +15,8 @@
  */
 package com.stylefeng.roses.kernel.scanner.modular.listener;
 
-import com.stylefeng.roses.kernel.model.api.ResourceService;
-import com.stylefeng.roses.kernel.model.resource.ResourceDefinition;
+import cn.stylefeng.roses.kernel.model.api.ResourceService;
+import cn.stylefeng.roses.kernel.model.resource.ResourceDefinition;
 import com.stylefeng.roses.kernel.scanner.config.properties.ScannerProperties;
 import com.stylefeng.roses.kernel.scanner.modular.factory.ApiResourceFactory;
 import org.springframework.beans.BeansException;

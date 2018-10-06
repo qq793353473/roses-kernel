@@ -17,8 +17,8 @@ package cn.stylefeng.roses.core.context;
 
 import cn.stylefeng.roses.core.util.HttpContext;
 import cn.stylefeng.roses.core.util.ToolUtil;
-import com.stylefeng.roses.kernel.model.api.base.AbstractBaseRequest;
-import com.stylefeng.roses.kernel.model.constants.RosesConstants;
+import cn.stylefeng.roses.kernel.model.api.base.AbstractBaseRequest;
+import cn.stylefeng.roses.kernel.model.constants.RosesConstants;
 import lombok.extern.slf4j.Slf4j;
 
 import javax.servlet.http.HttpServletRequest;

@@ -15,9 +15,9 @@
  */
 package com.stylefeng.roses.kernel.validator.util;
 
-import com.stylefeng.roses.kernel.model.exception.RequestEmptyException;
-import com.stylefeng.roses.kernel.model.util.ValidateUtil;
-import com.stylefeng.roses.kernel.model.validator.BaseValidatingParam;
+import cn.stylefeng.roses.kernel.model.exception.RequestEmptyException;
+import cn.stylefeng.roses.kernel.model.util.ValidateUtil;
+import cn.stylefeng.roses.kernel.model.validator.BaseValidatingParam;
 
 /**
  * 校验参数中的参数是否符合规则

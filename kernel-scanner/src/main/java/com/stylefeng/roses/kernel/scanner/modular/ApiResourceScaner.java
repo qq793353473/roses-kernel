@@ -18,7 +18,7 @@ package com.stylefeng.roses.kernel.scanner.modular;
 import cn.hutool.core.exceptions.UtilException;
 import cn.hutool.core.util.NetUtil;
 import cn.hutool.core.util.StrUtil;
-import com.stylefeng.roses.kernel.model.resource.ResourceDefinition;
+import cn.stylefeng.roses.kernel.model.resource.ResourceDefinition;
 import com.stylefeng.roses.kernel.scanner.config.properties.ScannerProperties;
 import com.stylefeng.roses.kernel.scanner.modular.annotation.GetResource;
 import com.stylefeng.roses.kernel.scanner.modular.annotation.PostResource;

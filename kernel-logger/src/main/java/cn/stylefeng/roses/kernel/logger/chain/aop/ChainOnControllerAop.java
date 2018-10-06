@@ -25,7 +25,7 @@ import cn.stylefeng.roses.kernel.logger.chain.enums.RpcPhaseEnum;
 import com.baomidou.mybatisplus.toolkit.IdWorker;
 import cn.stylefeng.roses.kernel.logger.sql.log.SqlHolder;
 import cn.stylefeng.roses.kernel.logger.util.TraceUtil;
-import com.stylefeng.roses.kernel.model.auth.context.LoginUserHolder;
+import cn.stylefeng.roses.kernel.model.auth.context.LoginUserHolder;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.Signature;
 import org.aspectj.lang.annotation.Around;
@@ -36,7 +36,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.annotation.Order;
 
-import static com.stylefeng.roses.kernel.model.constants.AopSortConstants.CHAIN_ON_CONTROLLER_SORT;
+import static cn.stylefeng.roses.kernel.model.constants.AopSortConstants.CHAIN_ON_CONTROLLER_SORT;
 
 /**
  * 基于调用链的服务治理系统的设计（控制器层的aop处理）

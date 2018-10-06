@@ -17,7 +17,7 @@ package cn.stylefeng.roses.core.base.controller;
 
 import cn.stylefeng.roses.core.reqres.response.ErrorResponseData;
 import com.alibaba.fastjson.JSON;
-import com.stylefeng.roses.kernel.model.exception.enums.CoreExceptionEnum;
+import cn.stylefeng.roses.kernel.model.exception.enums.CoreExceptionEnum;
 import org.springframework.web.servlet.View;
 
 import javax.servlet.http.HttpServletRequest;

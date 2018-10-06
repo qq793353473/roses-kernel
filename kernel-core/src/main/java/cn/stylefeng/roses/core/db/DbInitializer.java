@@ -20,8 +20,8 @@ import cn.hutool.core.util.StrUtil;
 import cn.stylefeng.roses.core.util.ToolUtil;
 import com.alibaba.fastjson.JSON;
 import com.baomidou.mybatisplus.mapper.SqlRunner;
-import com.stylefeng.roses.kernel.model.exception.ServiceException;
-import com.stylefeng.roses.kernel.model.exception.enums.CoreExceptionEnum;
+import cn.stylefeng.roses.kernel.model.exception.ServiceException;
+import cn.stylefeng.roses.kernel.model.exception.enums.CoreExceptionEnum;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
@@ -31,7 +31,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import static com.stylefeng.roses.kernel.model.exception.enums.CoreExceptionEnum.INIT_TABLE_EMPTY_PARAMS;
+import static cn.stylefeng.roses.kernel.model.exception.enums.CoreExceptionEnum.INIT_TABLE_EMPTY_PARAMS;
 
 /**
  * 数据库初始化，可初始化表，校验字段，校验表名是否存在等
