@@ -13,15 +13,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.stylefeng.roses.kernel.sign.service;
+package cn.stylefeng.roses.kernel.sign.config;
+
+import org.springframework.context.annotation.Configuration;
 
 /**
- * 签名接口，指定规范
+ * 签名的自动配置
  *
  * @author fengshuonan
- * @date 2018-07-23-下午5:56
+ * @date 2018-07-23-下午5:55
  */
-public interface SignService {
+@Configuration
+public class SignConfig {
 
 
 }
