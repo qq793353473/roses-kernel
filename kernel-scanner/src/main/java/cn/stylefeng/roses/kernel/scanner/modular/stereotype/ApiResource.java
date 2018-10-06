@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.stylefeng.roses.kernel.scanner.modular.stereotype;
+package cn.stylefeng.roses.kernel.scanner.modular.stereotype;
 
 import org.springframework.core.annotation.AliasFor;
 import org.springframework.web.bind.annotation.RequestMapping;

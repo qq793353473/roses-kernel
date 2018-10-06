@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.stylefeng.roses.kernel.scanner.modular.util;
+package cn.stylefeng.roses.kernel.scanner.modular.util;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

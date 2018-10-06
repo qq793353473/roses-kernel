@@ -13,18 +13,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.stylefeng.roses.kernel.scanner.modular;
+package cn.stylefeng.roses.kernel.scanner.modular;
 
 import cn.hutool.core.exceptions.UtilException;
 import cn.hutool.core.util.NetUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.stylefeng.roses.kernel.model.resource.ResourceDefinition;
-import com.stylefeng.roses.kernel.scanner.config.properties.ScannerProperties;
-import com.stylefeng.roses.kernel.scanner.modular.annotation.GetResource;
-import com.stylefeng.roses.kernel.scanner.modular.annotation.PostResource;
-import com.stylefeng.roses.kernel.scanner.modular.factory.ApiResourceFactory;
-import com.stylefeng.roses.kernel.scanner.modular.stereotype.ApiResource;
-import com.stylefeng.roses.kernel.scanner.modular.util.AopTargetUtils;
+import cn.stylefeng.roses.kernel.scanner.config.properties.ScannerProperties;
+import cn.stylefeng.roses.kernel.scanner.modular.annotation.GetResource;
+import cn.stylefeng.roses.kernel.scanner.modular.annotation.PostResource;
+import cn.stylefeng.roses.kernel.scanner.modular.factory.ApiResourceFactory;
+import cn.stylefeng.roses.kernel.scanner.modular.stereotype.ApiResource;
+import cn.stylefeng.roses.kernel.scanner.modular.util.AopTargetUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeansException;

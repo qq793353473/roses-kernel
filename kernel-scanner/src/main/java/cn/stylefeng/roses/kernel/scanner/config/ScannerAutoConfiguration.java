@@ -13,14 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.stylefeng.roses.kernel.scanner.config;
+package cn.stylefeng.roses.kernel.scanner.config;
 
-import com.stylefeng.roses.kernel.scanner.config.properties.ScannerProperties;
-import com.stylefeng.roses.kernel.scanner.modular.ApiResourceScaner;
-import com.stylefeng.roses.kernel.scanner.modular.factory.ApiResourceFactory;
-import com.stylefeng.roses.kernel.scanner.modular.factory.DefaultApiResourceFactory;
-import com.stylefeng.roses.kernel.scanner.modular.listener.ResourceReportListener;
-import com.stylefeng.roses.kernel.scanner.modular.service.ResourceCollectService;
+import cn.stylefeng.roses.kernel.scanner.config.properties.ScannerProperties;
+import cn.stylefeng.roses.kernel.scanner.modular.ApiResourceScaner;
+import cn.stylefeng.roses.kernel.scanner.modular.factory.ApiResourceFactory;
+import cn.stylefeng.roses.kernel.scanner.modular.factory.DefaultApiResourceFactory;
+import cn.stylefeng.roses.kernel.scanner.modular.listener.ResourceReportListener;
+import cn.stylefeng.roses.kernel.scanner.modular.service.ResourceCollectService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.ConfigurationProperties;

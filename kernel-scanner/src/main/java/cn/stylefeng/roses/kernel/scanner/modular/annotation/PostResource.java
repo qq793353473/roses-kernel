@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.stylefeng.roses.kernel.scanner.modular.annotation;
+package cn.stylefeng.roses.kernel.scanner.modular.annotation;
 
 import org.springframework.core.annotation.AliasFor;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,7 +31,7 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 @RequestMapping(method = RequestMethod.POST)
-public @interface GetResource {
+public @interface PostResource {
 
     /**
      * <pre>
@@ -76,5 +76,5 @@ public @interface GetResource {
      * 请求的http方法(同RequestMapping)
      */
     @AliasFor(annotation = RequestMapping.class)
-    RequestMethod[] method() default RequestMethod.GET;
+    RequestMethod[] method() default RequestMethod.POST;
 }

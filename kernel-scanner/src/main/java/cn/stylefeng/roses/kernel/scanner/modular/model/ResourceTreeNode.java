@@ -13,37 +13,48 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.stylefeng.roses.kernel.scanner.config.properties;
+package cn.stylefeng.roses.kernel.scanner.modular.model;
 
 import lombok.Data;
 
+import java.util.List;
+
 /**
- * 扫描的常量
+ * 资源树
  *
  * @author fengshuonan
- * @date 2018-01-03 21:39
+ * @date 2018-01-11 14:56
  */
 @Data
-public class ScannerProperties {
+public class ResourceTreeNode {
 
     /**
-     * 资源扫描开关
+     * 资源中文名称
      */
-    private Boolean open;
+    private String name;
 
     /**
-     * 被扫描应用的名称
+     * 资源的编码
      */
-    private String appName;
+    private String code;
 
     /**
-     * 应用的编码
+     * 资源子节点
      */
-    private String appCode;
+    private List<ResourceTreeNode> children;
 
-    /**
-     * 链接符号
-     */
-    private String linkSymbol = "$";
+    public ResourceTreeNode() {
+    }
+
+    public ResourceTreeNode(String name, String code) {
+        this.name = name;
+        this.code = code;
+    }
+
+    public ResourceTreeNode(String name, String code, List<ResourceTreeNode> children) {
+        this.name = name;
+        this.code = code;
+        this.children = children;
+    }
 
 }

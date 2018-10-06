@@ -1,2 +1,2 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-com.stylefeng.roses.kernel.scanner.config.ScannerAutoConfiguration
+cn.stylefeng.roses.kernel.scanner.config.ScannerAutoConfiguration

@@ -13,12 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.stylefeng.roses.kernel.scanner.modular.listener;
+package cn.stylefeng.roses.kernel.scanner.modular.listener;
 
 import cn.stylefeng.roses.kernel.model.api.ResourceService;
 import cn.stylefeng.roses.kernel.model.resource.ResourceDefinition;
-import com.stylefeng.roses.kernel.scanner.config.properties.ScannerProperties;
-import com.stylefeng.roses.kernel.scanner.modular.factory.ApiResourceFactory;
+import cn.stylefeng.roses.kernel.scanner.config.properties.ScannerProperties;
+import cn.stylefeng.roses.kernel.scanner.modular.factory.ApiResourceFactory;
 import org.springframework.beans.BeansException;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.ApplicationContext;

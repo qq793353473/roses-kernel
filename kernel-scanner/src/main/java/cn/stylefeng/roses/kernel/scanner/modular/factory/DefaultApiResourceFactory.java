@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.stylefeng.roses.kernel.scanner.modular.factory;
+package cn.stylefeng.roses.kernel.scanner.modular.factory;
 
 import cn.hutool.core.util.StrUtil;
 import cn.stylefeng.roses.kernel.model.resource.ResourceDefinition;
