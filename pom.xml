@@ -11,6 +11,7 @@
 
     <name>roses-kernel</name>
     <description>roses微服务核心</description>
+    <url>https://gitee.com/stylefeng/roses</url>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -197,6 +198,35 @@
                     </execution>
                 </executions>
             </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>2.9.1</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <additionalparam>-Xdoclint:none</additionalparam>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-gpg-plugin</artifactId>
+                <version>1.5</version>
+                <executions>
+                    <execution>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>sign</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
         <resources>
             <resource>
@@ -210,5 +240,29 @@
             </resource>
         </resources>
     </build>
+
+    <developers>
+        <developer>
+            <name>stylefeng</name>
+            <email>sn93@qq.com</email>
+        </developer>
+    </developers>
+
+    <scm>
+        <connection>scm:git@gitee.com:stylefeng-Roses/roses-kernel.git</connection>
+        <developerConnection>scm:git@gitee.com:stylefeng-Roses/roses-kernel.git</developerConnection>
+        <url>https://gitee.com/stylefeng-Roses/roses-kernel</url>
+    </scm>
+
+    <distributionManagement>
+        <snapshotRepository>
+            <id>center</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+        <repository>
+            <id>center</id>
+            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
+        </repository>
+    </distributionManagement>
 
 </project>
