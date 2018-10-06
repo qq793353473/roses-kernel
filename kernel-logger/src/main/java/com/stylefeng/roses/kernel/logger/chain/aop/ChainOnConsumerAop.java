@@ -15,7 +15,7 @@
  */
 package com.stylefeng.roses.kernel.logger.chain.aop;
 
-import com.stylefeng.roses.core.util.ToolUtil;
+import cn.stylefeng.roses.core.util.ToolUtil;
 import com.stylefeng.roses.kernel.logger.chain.context.ParentSpanIdHolder;
 import com.stylefeng.roses.kernel.logger.chain.context.SpanIdHolder;
 import com.stylefeng.roses.kernel.logger.chain.context.TraceIdHolder;

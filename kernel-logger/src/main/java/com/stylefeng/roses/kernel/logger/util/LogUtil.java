@@ -15,10 +15,10 @@
  */
 package com.stylefeng.roses.kernel.logger.util;
 
-import com.stylefeng.roses.core.context.RequestDataHolder;
-import com.stylefeng.roses.core.reqres.request.RequestData;
-import com.stylefeng.roses.core.util.SpringContextHolder;
-import com.stylefeng.roses.core.util.ToolUtil;
+import cn.stylefeng.roses.core.context.RequestDataHolder;
+import cn.stylefeng.roses.core.reqres.request.RequestData;
+import cn.stylefeng.roses.core.util.SpringContextHolder;
+import cn.stylefeng.roses.core.util.ToolUtil;
 import com.stylefeng.roses.kernel.logger.chain.context.TraceIdHolder;
 import com.stylefeng.roses.kernel.logger.config.properties.LogProperties;
 import com.stylefeng.roses.kernel.logger.entity.SendingCommonLog;

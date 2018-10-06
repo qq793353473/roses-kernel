@@ -15,9 +15,9 @@
  */
 package com.stylefeng.roses.kernel.logger.chain.aop;
 
+import cn.stylefeng.roses.core.context.RequestNoContext;
+import cn.stylefeng.roses.core.util.ToolUtil;
 import com.baomidou.mybatisplus.toolkit.IdWorker;
-import com.stylefeng.roses.core.context.RequestNoContext;
-import com.stylefeng.roses.core.util.ToolUtil;
 import com.stylefeng.roses.kernel.logger.chain.context.ParentSpanIdHolder;
 import com.stylefeng.roses.kernel.logger.chain.context.SpanIdContext;
 import com.stylefeng.roses.kernel.logger.chain.context.SpanIdHolder;

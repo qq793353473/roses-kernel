@@ -1,10 +1,10 @@
 # AutoConfiguration
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-com.stylefeng.roses.core.config.AopAutoConfiguration,\
-com.stylefeng.roses.core.config.RedisAutoConfiguration,\
-com.stylefeng.roses.core.config.FastjsonAutoConfiguration,\
-com.stylefeng.roses.core.config.MybaitsPlusAutoConfiguration,\
-com.stylefeng.roses.core.config.PropertiesAutoConfiguration,\
-com.stylefeng.roses.core.config.UtilAutoConfiguration,\
-com.stylefeng.roses.core.config.WebAutoConfiguration,\
-com.stylefeng.roses.core.config.DbInitializerAutoConfiguration
+cn.stylefeng.roses.core.config.AopAutoConfiguration,\
+cn.stylefeng.roses.core.config.RedisAutoConfiguration,\
+cn.stylefeng.roses.core.config.FastjsonAutoConfiguration,\
+cn.stylefeng.roses.core.config.MybaitsPlusAutoConfiguration,\
+cn.stylefeng.roses.core.config.PropertiesAutoConfiguration,\
+cn.stylefeng.roses.core.config.UtilAutoConfiguration,\
+cn.stylefeng.roses.core.config.WebAutoConfiguration,\
+cn.stylefeng.roses.core.config.DbInitializerAutoConfiguration

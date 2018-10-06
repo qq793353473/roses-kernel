@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.stylefeng.roses.kernel.logger.chain.context;
+package cn.stylefeng.roses.core.context;
 
 import cn.stylefeng.roses.core.util.HttpContext;
 import cn.stylefeng.roses.core.util.ToolUtil;
@@ -24,27 +24,24 @@ import lombok.extern.slf4j.Slf4j;
 import javax.servlet.http.HttpServletRequest;
 
 /**
- * header中的spanId的上下文,获取上个请求的spanId，和holder的区别是，holder放的是本应用的spanId
+ * 获取当前请求的请求号，没有请求号则生成空串
  *
  * @author fengshuonan
  * @date 2018-05-09-下午6:25
  */
 @Slf4j
-public class SpanIdContext {
+public class RequestNoContext {
 
-    /**
-     * 通过http请求的header中获取spanId
-     */
-    public static String getSpanIdByHttpHeader() {
+    public static String getRequestNoByHttpHeader() {
         HttpServletRequest request = HttpContext.getRequest();
 
         if (request == null) {
             if (log.isDebugEnabled()) {
-                log.info("获取spanId失败，当前不是http请求环境！");
+                log.info("获取请求号失败，当前不是http请求环境！");
             }
             return "";
         } else {
-            String requestNo = request.getHeader(RosesConstants.SPAN_ID_HEADER_NAME);
+            String requestNo = request.getHeader(RosesConstants.REQUEST_NO_HEADER_NAME);
             if (ToolUtil.isEmpty(requestNo)) {
                 return "";
             } else {
@@ -54,9 +51,9 @@ public class SpanIdContext {
     }
 
     /**
-     * 通过请求参数获取spanId，参数必须是AbstractBaseRequest的子类
+     * 通过请求参数获取requestNo，参数必须是AbstractBaseRequest的子类
      */
-    public static String getSpanIdByRequestParam(Object[] params) {
+    public static String getRequestNoByRequestParam(Object[] params) {
 
         if (params == null || params.length <= 0) {
             return "";
@@ -64,7 +61,7 @@ public class SpanIdContext {
             for (Object paramItem : params) {
                 if (paramItem instanceof AbstractBaseRequest) {
                     AbstractBaseRequest abstractBaseRequest = (AbstractBaseRequest) paramItem;
-                    return abstractBaseRequest.getSpanId();
+                    return abstractBaseRequest.getRequestNo();
                 }
             }
             return "";
