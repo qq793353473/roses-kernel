@@ -51,7 +51,7 @@ public class GenerateParams {
     private String[] includeTables;
 
     //代码生成的类的父包名称
-    private String parentPackage = "com.stylefeng.roses.xxx.modular";
+    private String parentPackage = "cn.stylefeng.roses.xxx.modular";
 
     //service是否生成接口，这个根据自己项目情况决定
     private Boolean generatorInterface = false;
