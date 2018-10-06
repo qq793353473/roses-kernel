@@ -13,10 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.stylefeng.roses.kernel.validator.aop;
+package cn.stylefeng.roses.kernel.validator.aop;
 
 import cn.stylefeng.roses.kernel.model.constants.AopSortConstants;
-import com.stylefeng.roses.kernel.validator.util.CheckUtil;
+import cn.stylefeng.roses.kernel.validator.util.CheckUtil;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
@@ -33,7 +33,7 @@ import org.springframework.core.annotation.Order;
 @Order(AopSortConstants.PARAM_VALIDATE_AOP_SORT)
 public class ParamValidateAop {
 
-    @Pointcut(value = "@annotation(com.stylefeng.roses.kernel.validator.stereotype.ParamValidator)")
+    @Pointcut(value = "@annotation(cn.stylefeng.roses.kernel.validator.stereotype.ParamValidator)")
     private void cutService() {
 
     }

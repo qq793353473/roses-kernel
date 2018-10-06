@@ -13,9 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.stylefeng.roses.kernel.validator.config;
+package cn.stylefeng.roses.kernel.validator.config;
 
-import com.stylefeng.roses.kernel.validator.aop.ParamValidateAop;
+import cn.stylefeng.roses.kernel.validator.aop.ParamValidateAop;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 

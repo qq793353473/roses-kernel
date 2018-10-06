@@ -1,2 +1,2 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-com.stylefeng.roses.kernel.validator.config.ValidatorAutoConfiguration
+cn.stylefeng.roses.kernel.validator.config.ValidatorAutoConfiguration
