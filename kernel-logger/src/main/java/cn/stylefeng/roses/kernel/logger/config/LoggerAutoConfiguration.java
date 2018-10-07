@@ -15,13 +15,15 @@
  */
 package cn.stylefeng.roses.kernel.logger.config;
 
+import cn.stylefeng.roses.kernel.logger.config.properties.LogProperties;
 import cn.stylefeng.roses.kernel.logger.service.LogProducerService;
 import cn.stylefeng.roses.kernel.logger.service.impl.LogProducerServiceImpl;
-import cn.stylefeng.roses.kernel.logger.config.properties.LogProperties;
-import cn.stylefeng.roses.kernel.model.constants.ConfigPrefixConstants;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+
+import static cn.stylefeng.roses.kernel.model.constants.ConfigPrefixConstants.LOG_PREFIX;
 
 /**
  * 默认kafka消息队列日志
@@ -33,12 +35,13 @@ import org.springframework.context.annotation.Configuration;
 public class LoggerAutoConfiguration {
 
     @Bean
-    @ConfigurationProperties(prefix = ConfigPrefixConstants.LOG_PREFIX)
+    @ConfigurationProperties(prefix = LOG_PREFIX)
     public LogProperties logProperties() {
         return new LogProperties();
     }
 
     @Bean
+    @ConditionalOnProperty(prefix = LOG_PREFIX, value = "kafka", havingValue = "true")
     public LogProducerService logProducerService() {
         return new LogProducerServiceImpl();
     }
