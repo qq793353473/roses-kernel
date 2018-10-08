@@ -27,6 +27,11 @@ import cn.stylefeng.roses.kernel.model.exception.AbstractBaseExceptionEnum;
 public enum CoreExceptionEnum implements AbstractBaseExceptionEnum {
 
     /**
+     * 其他
+     */
+    INVLIDE_DATE_STRING(400, "输入日期格式不对"),
+
+    /**
      * 初始化数据库的异常
      */
     NO_CURRENT_USER(700, "当前没有登录的用户"),

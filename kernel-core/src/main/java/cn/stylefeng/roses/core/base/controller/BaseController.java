@@ -16,6 +16,7 @@
 package cn.stylefeng.roses.core.base.controller;
 
 import cn.stylefeng.roses.core.base.warpper.BaseControllerWrapper;
+import cn.stylefeng.roses.core.reqres.response.SuccessResponseData;
 import cn.stylefeng.roses.core.util.HttpContext;
 import cn.stylefeng.roses.kernel.model.exception.ServiceException;
 import cn.stylefeng.roses.kernel.model.exception.enums.CoreExceptionEnum;
@@ -42,6 +43,8 @@ public class BaseController {
 
     protected final String REDIRECT = "redirect:";
     protected final String FORWARD = "forward:";
+
+    protected static SuccessResponseData SUCCESS_TIP = new SuccessResponseData();
 
     protected HttpServletRequest getHttpServletRequest() {
         return HttpContext.getRequest();
@@ -85,6 +88,18 @@ public class BaseController {
                 temp.setMaxAge(0);
                 this.getHttpServletResponse().addCookie(temp);
             }
+        }
+    }
+
+    /**
+     * 删除所有cookie
+     */
+    protected void deleteAllCookie() {
+        Cookie[] cookies = this.getHttpServletRequest().getCookies();
+        for (Cookie cookie : cookies) {
+            Cookie temp = new Cookie(cookie.getName(), "");
+            temp.setMaxAge(0);
+            this.getHttpServletResponse().addCookie(temp);
         }
     }
 

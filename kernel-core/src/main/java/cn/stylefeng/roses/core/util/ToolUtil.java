@@ -28,10 +28,8 @@ import org.slf4j.LoggerFactory;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
-import java.net.InetAddress;
-import java.net.NetworkInterface;
-import java.net.SocketException;
-import java.net.UnknownHostException;
+import java.math.BigDecimal;
+import java.net.*;
 import java.security.MessageDigest;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -212,5 +210,97 @@ public class ToolUtil extends ValidateUtil {
      */
     public static void copyProperties(Object source, Object target) {
         BeanUtil.copyProperties(source, target, CopyOptions.create().setIgnoreNullValue(true));
+    }
+
+    /**
+     * 判断是否是windows操作系统
+     *
+     * @author stylefeng
+     * @Date 2017/5/24 22:34
+     */
+    public static Boolean isWinOs() {
+        String os = System.getProperty("os.name");
+        if (os.toLowerCase().startsWith("win")) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * 获取临时目录
+     *
+     * @author stylefeng
+     * @Date 2017/5/24 22:35
+     */
+    public static String getTempPath() {
+        return System.getProperty("java.io.tmpdir");
+    }
+
+    /**
+     * 把一个数转化为int
+     *
+     * @author fengshuonan
+     * @Date 2017/11/15 下午11:10
+     */
+    public static Integer toInt(Object val) {
+        if (val instanceof Double) {
+            BigDecimal bigDecimal = new BigDecimal((Double) val);
+            return bigDecimal.intValue();
+        } else {
+            return Integer.valueOf(val.toString());
+        }
+
+    }
+
+    /**
+     * 是否为数字
+     *
+     * @author fengshuonan
+     * @Date 2017/11/15 下午11:10
+     */
+    public static boolean isNum(Object obj) {
+        try {
+            Integer.parseInt(obj.toString());
+        } catch (Exception e) {
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * 获取项目路径
+     *
+     * @author fengshuonan
+     * @Date 2017/11/15 下午11:10
+     */
+    public static String getWebRootPath(String filePath) {
+        try {
+            String path = ToolUtil.class.getClassLoader().getResource("").toURI().getPath();
+            path = path.replace("/WEB-INF/classes/", "");
+            path = path.replace("/target/classes/", "");
+            path = path.replace("file:/", "");
+            if (ToolUtil.isEmpty(filePath)) {
+                return path;
+            } else {
+                return path + "/" + filePath;
+            }
+        } catch (URISyntaxException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /**
+     * 获取文件后缀名 不包含点
+     *
+     * @author fengshuonan
+     * @Date 2017/11/15 下午11:10
+     */
+    public static String getFileSuffix(String fileWholeName) {
+        if (ToolUtil.isEmpty(fileWholeName)) {
+            return "none";
+        }
+        int lastIndexOf = fileWholeName.lastIndexOf(".");
+        return fileWholeName.substring(lastIndexOf + 1);
     }
 }
