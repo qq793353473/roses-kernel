@@ -18,6 +18,7 @@ package cn.stylefeng.roses.core.util;
 
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.bean.copier.CopyOptions;
+import cn.hutool.core.date.DateUtil;
 import cn.stylefeng.roses.core.config.properties.AppNameProperties;
 import cn.stylefeng.roses.kernel.model.exception.ServiceException;
 import cn.stylefeng.roses.kernel.model.exception.enums.CoreExceptionEnum;
@@ -303,4 +304,19 @@ public class ToolUtil extends ValidateUtil {
         int lastIndexOf = fileWholeName.lastIndexOf(".");
         return fileWholeName.substring(lastIndexOf + 1);
     }
+
+    /**
+     * 判断一个对象是否是时间类型
+     *
+     * @author stylefeng
+     * @Date 2017/4/18 12:55
+     */
+    public static String dateType(Object o) {
+        if (o instanceof Date) {
+            return DateUtil.formatDate((Date) o);
+        } else {
+            return o.toString();
+        }
+    }
+
 }
