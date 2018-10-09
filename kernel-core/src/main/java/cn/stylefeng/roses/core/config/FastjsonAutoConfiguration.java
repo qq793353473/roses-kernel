@@ -104,14 +104,26 @@ public class FastjsonAutoConfiguration {
      * 默认的valueFilter是把空的字段转化为空串
      */
     protected void initOtherValueFilters(FastJsonConfig fastJsonConfig) {
-        ValueFilter valueFilter = (object, name, value) -> {
+
+        //为空的值转化为空串
+        ValueFilter nullValueFilter = (object, name, value) -> {
             if (null == value) {
                 return "";
             } else {
                 return value;
             }
         };
-        fastJsonConfig.setSerializeFilters(valueFilter);
+
+        //为long的值转化为字符串，以防js丢失精度
+        ValueFilter longValueFilter = (object, name, value) -> {
+            if (value instanceof Long) {
+                return String.valueOf(value);
+            } else {
+                return value;
+            }
+        };
+
+        fastJsonConfig.setSerializeFilters(nullValueFilter, longValueFilter);
     }
 
 }
