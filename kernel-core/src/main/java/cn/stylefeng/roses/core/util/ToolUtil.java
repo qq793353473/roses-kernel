@@ -319,4 +319,14 @@ public class ToolUtil extends ValidateUtil {
         }
     }
 
+    /**
+     * 当前时间
+     *
+     * @author stylefeng
+     * @Date 2017/5/7 21:56
+     */
+    public static String currentTime() {
+        return DateUtil.formatDateTime(new Date());
+    }
+
 }

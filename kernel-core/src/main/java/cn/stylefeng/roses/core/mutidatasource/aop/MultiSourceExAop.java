@@ -28,7 +28,7 @@ public class MultiSourceExAop implements Ordered {
     private Logger log = LoggerFactory.getLogger(this.getClass());
 
     @Autowired
-    MutiDataSourceProperties mutiDataSourceProperties;
+    private MutiDataSourceProperties mutiDataSourceProperties;
 
     @Pointcut(value = "@annotation(cn.stylefeng.roses.core.mutidatasource.annotion.DataSource)")
     private void cut() {
