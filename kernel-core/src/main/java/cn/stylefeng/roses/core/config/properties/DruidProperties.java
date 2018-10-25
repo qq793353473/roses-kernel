@@ -50,7 +50,7 @@ public class DruidProperties {
 
     private Integer minEvictableIdleTimeMillis = 300000;
 
-    private String validationQuery = "SELECT 'x'";
+    private String validationQuery =  "SELECT 'x' from dual";
 
     private Boolean testWhileIdle = true;
 
