@@ -46,7 +46,7 @@ public class DataScopeInterceptor implements Interceptor {
             return invocation.proceed();
         } else {
             String scopeName = dataScope.getScopeName();
-            List<Integer> deptIds = dataScope.getDeptIds();
+            List<Long> deptIds = dataScope.getDeptIds();
             String join = CollectionUtil.join(deptIds, ",");
             originalSql = "select * from (" + originalSql + ") temp_data_scope where temp_data_scope." + scopeName + " in (" + join + ")";
             metaStatementHandler.setValue("delegate.boundSql.sql", originalSql);

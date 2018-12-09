@@ -84,6 +84,8 @@ public class SimpleGenerator {
         ArrayList<TableFill> tableFills = new ArrayList<>();
         tableFills.add(new TableFill("CREATE_TIME", FieldFill.INSERT));
         tableFills.add(new TableFill("UPDATE_TIME", FieldFill.UPDATE));
+        tableFills.add(new TableFill("CREATE_USER", FieldFill.INSERT));
+        tableFills.add(new TableFill("UPDATE_USER", FieldFill.UPDATE));
         strategy.setTableFillList(tableFills);
 
         mpg.setStrategy(strategy);

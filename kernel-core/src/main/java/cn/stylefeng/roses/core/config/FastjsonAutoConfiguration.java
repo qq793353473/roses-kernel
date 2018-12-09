@@ -27,6 +27,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.MediaType;
 
+import java.math.BigInteger;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
@@ -117,6 +118,8 @@ public class FastjsonAutoConfiguration {
         //为long的值转化为字符串，以防js丢失精度
         ValueFilter longValueFilter = (object, name, value) -> {
             if (value instanceof Long) {
+                return String.valueOf(value);
+            } else if (value instanceof BigInteger) {
                 return String.valueOf(value);
             } else {
                 return value;
