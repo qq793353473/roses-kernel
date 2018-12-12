@@ -17,6 +17,7 @@ package cn.stylefeng.roses.core.treebuild;
 
 import cn.stylefeng.roses.core.treebuild.abst.AbstractTreeBuildFactory;
 import cn.stylefeng.roses.kernel.model.tree.Tree;
+import lombok.Data;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,12 +28,13 @@ import java.util.List;
  * @author fengshuonan
  * @Date 2018/7/25 下午5:59
  */
+@Data
 public class DefaultTreeBuildFactory<T extends Tree> extends AbstractTreeBuildFactory<T> {
 
     /**
-     * 顶级节点的父节点id
+     * 顶级节点的父节点id(默认-1)
      */
-    private static final String ROOT_PARENT_ID = "-1";
+    private String rootParentId = "-1";
 
     /**
      * 查询子节点的集合
@@ -99,7 +101,7 @@ public class DefaultTreeBuildFactory<T extends Tree> extends AbstractTreeBuildFa
         //去掉所有的二级节点
         ArrayList<T> results = new ArrayList<>();
         for (T node : nodes) {
-            if (node.getNodeParentId().equals(ROOT_PARENT_ID)) {
+            if (node.getNodeParentId().equals(rootParentId)) {
                 results.add(node);
             }
         }

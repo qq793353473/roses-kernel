@@ -5,7 +5,7 @@
 
     <groupId>cn.stylefeng.roses</groupId>
     <artifactId>roses-kernel</artifactId>
-    <version>1.1.1</version>
+    <version>1.1.2</version>
 
     <packaging>pom</packaging>
 
@@ -51,47 +51,47 @@
             <dependency>
                 <groupId>cn.stylefeng.roses</groupId>
                 <artifactId>kernel-model</artifactId>
-                <version>1.1.1</version>
+                <version>1.1.2</version>
             </dependency>
             <dependency>
                 <groupId>cn.stylefeng.roses</groupId>
                 <artifactId>kernel-core</artifactId>
-                <version>1.1.1</version>
+                <version>1.1.2</version>
             </dependency>
             <dependency>
                 <groupId>cn.stylefeng.roses</groupId>
                 <artifactId>kernel-scanner</artifactId>
-                <version>1.1.1</version>
+                <version>1.1.2</version>
             </dependency>
             <dependency>
                 <groupId>cn.stylefeng.roses</groupId>
                 <artifactId>kernel-generator</artifactId>
-                <version>1.1.1</version>
+                <version>1.1.2</version>
             </dependency>
             <dependency>
                 <groupId>cn.stylefeng.roses</groupId>
                 <artifactId>kernel-logger</artifactId>
-                <version>1.1.1</version>
+                <version>1.1.2</version>
             </dependency>
             <dependency>
                 <groupId>cn.stylefeng.roses</groupId>
                 <artifactId>kernel-sign</artifactId>
-                <version>1.1.1</version>
+                <version>1.1.2</version>
             </dependency>
             <dependency>
                 <groupId>cn.stylefeng.roses</groupId>
                 <artifactId>kernel-validator</artifactId>
-                <version>1.1.1</version>
+                <version>1.1.2</version>
             </dependency>
             <dependency>
                 <groupId>cn.stylefeng.roses</groupId>
                 <artifactId>kernel-jwt</artifactId>
-                <version>1.1.1</version>
+                <version>1.1.2</version>
             </dependency>
             <dependency>
                 <groupId>cn.stylefeng.roses</groupId>
                 <artifactId>kernel-actuator</artifactId>
-                <version>1.1.1</version>
+                <version>1.1.2</version>
             </dependency>
 
             <!--spring cloud-->
