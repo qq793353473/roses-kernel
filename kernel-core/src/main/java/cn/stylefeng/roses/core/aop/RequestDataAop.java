@@ -50,18 +50,10 @@ public class RequestDataAop {
             }
         }
 
-        //是否需要删除ThreadLocal的标识，如果proceed()过程中有异常
-        //会执行ExceptionHandler，并在ExceptionHandler中清除ThreadLocal中的内容
-        boolean needToRemove = true;
-        try {
-            return point.proceed();
-        } catch (Throwable exception) {
-            needToRemove = false;
-            throw exception;
-        } finally {
-            if (needToRemove) {
-                RequestDataHolder.remove();
-            }
-        }
+        // 如果 joint 顺利执行，则清空 RequestDataHolder
+        Object result = point.proceed();
+        RequestDataHolder.remove();
+
+        return result;
     }
 }
