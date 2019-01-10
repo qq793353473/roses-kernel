@@ -16,14 +16,11 @@
 package cn.stylefeng.roses.core.config;
 
 import cn.stylefeng.roses.core.config.properties.DruidProperties;
-import cn.stylefeng.roses.core.metadata.CustomMetaObjectHandler;
 import com.alibaba.druid.pool.DruidDataSource;
 import com.baomidou.mybatisplus.annotation.DbType;
-import com.baomidou.mybatisplus.core.handlers.MetaObjectHandler;
 import com.baomidou.mybatisplus.extension.plugins.PaginationInterceptor;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
@@ -60,16 +57,14 @@ public class MybatisDataSourceAutoConfiguration {
         PaginationInterceptor paginationInterceptor = new PaginationInterceptor();
         if (druidProperties.getUrl().contains("oracle")) {
             paginationInterceptor.setDialectType(DbType.ORACLE.getDb());
+        } else if (druidProperties.getUrl().contains("postgresql")) {
+            paginationInterceptor.setDialectType(DbType.POSTGRE_SQL.getDb());
+        } else if (druidProperties.getUrl().contains("sqlserver")) {
+            paginationInterceptor.setDialectType(DbType.SQL_SERVER.getDb());
         } else {
             paginationInterceptor.setDialectType(DbType.MYSQL.getDb());
         }
         return paginationInterceptor;
-    }
-
-    @ConditionalOnMissingBean
-    @Bean
-    public MetaObjectHandler metaObjectHandler() {
-        return new CustomMetaObjectHandler();
     }
 
     /**

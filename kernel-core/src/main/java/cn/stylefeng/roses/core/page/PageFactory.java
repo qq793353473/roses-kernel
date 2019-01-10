@@ -129,9 +129,7 @@ public class PageFactory {
         }
 
         if (pageQuery == null) {
-            Page<T> page = new Page<>(pageNo, pageSize);
-            // page.setOpenSort(false);
-            return page;
+            return new Page<>(pageNo, pageSize);
         }
 
         Page<T> page = new Page<>(pageNo, pageSize);
