@@ -25,7 +25,7 @@ import cn.stylefeng.roses.kernel.logger.chain.enums.RpcPhaseEnum;
 import cn.stylefeng.roses.kernel.logger.util.TraceUtil;
 import cn.stylefeng.roses.kernel.model.auth.context.LoginUserHolder;
 import cn.stylefeng.roses.kernel.validator.util.CheckUtil;
-import com.baomidou.mybatisplus.toolkit.IdWorker;
+import com.baomidou.mybatisplus.core.toolkit.IdWorker;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.Signature;
 import org.aspectj.lang.annotation.Around;

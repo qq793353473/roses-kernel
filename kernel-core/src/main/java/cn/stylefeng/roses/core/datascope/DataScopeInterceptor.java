@@ -2,7 +2,7 @@ package cn.stylefeng.roses.core.datascope;
 
 
 import cn.hutool.core.collection.CollectionUtil;
-import com.baomidou.mybatisplus.toolkit.PluginUtils;
+import com.baomidou.mybatisplus.core.toolkit.PluginUtils;
 import org.apache.ibatis.executor.statement.StatementHandler;
 import org.apache.ibatis.mapping.BoundSql;
 import org.apache.ibatis.mapping.MappedStatement;

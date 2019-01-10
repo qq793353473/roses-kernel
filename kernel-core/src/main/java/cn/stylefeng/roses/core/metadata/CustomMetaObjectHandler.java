@@ -15,7 +15,7 @@
  */
 package cn.stylefeng.roses.core.metadata;
 
-import com.baomidou.mybatisplus.mapper.MetaObjectHandler;
+import com.baomidou.mybatisplus.core.handlers.MetaObjectHandler;
 import org.apache.ibatis.reflection.MetaObject;
 
 import java.util.Date;
@@ -30,7 +30,7 @@ import java.util.Date;
  * @author fengshuonan
  * @Date 2018/7/4 下午12:42
  */
-public class CustomMetaObjectHandler extends MetaObjectHandler {
+public class CustomMetaObjectHandler implements MetaObjectHandler {
 
     @Override
     public void insertFill(MetaObject metaObject) {

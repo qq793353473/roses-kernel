@@ -19,9 +19,9 @@ import cn.stylefeng.roses.core.context.RequestDataHolder;
 import cn.stylefeng.roses.core.reqres.request.RequestData;
 import cn.stylefeng.roses.core.util.HttpContext;
 import cn.stylefeng.roses.core.util.ToolUtil;
-import com.baomidou.mybatisplus.plugins.Page;
 import cn.stylefeng.roses.kernel.model.page.PageQuery;
 import cn.stylefeng.roses.kernel.model.util.ValidateUtil;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -74,38 +74,39 @@ public class PageFactory {
 
         if (request == null) {
             return new Page<>(pageNo, pageSize);
-        } else {
-            //每页条数
-            String pageSizeString = getFieldValue(request, PAGE_SIZE_PARAM_NAME);
-            if (ValidateUtil.isNotEmpty(pageSizeString)) {
-                pageSize = Integer.valueOf(pageSizeString);
-            }
-
-            //第几页
-            String pageNoString = getFieldValue(request, PAGE_NO_PARAM_NAME);
-            if (ValidateUtil.isNotEmpty(pageNoString)) {
-                pageNo = Integer.valueOf(pageNoString);
-            }
-
-            //获取排序字段和排序类型(asc/desc)
-            String sort = getFieldValue(request, SORT_PARAM_NAME);
-            String orderByField = getFieldValue(request, ORDER_BY_PARAM_NAME);
-
-            if (ToolUtil.isEmpty(sort)) {
-                Page<T> page = new Page<>(pageNo, pageSize);
-                page.setOpenSort(false);
-                return page;
-            } else {
-                Page<T> page = new Page<>(pageNo, pageSize, orderByField);
-                if (ASC.equalsIgnoreCase(sort)) {
-                    page.setAsc(true);
-                } else {
-                    page.setAsc(false);
-                }
-                return page;
-            }
         }
 
+        //每页条数
+        String pageSizeString = getFieldValue(request, PAGE_SIZE_PARAM_NAME);
+        if (ValidateUtil.isNotEmpty(pageSizeString)) {
+            pageSize = Integer.valueOf(pageSizeString);
+        }
+
+        //第几页
+        String pageNoString = getFieldValue(request, PAGE_NO_PARAM_NAME);
+        if (ValidateUtil.isNotEmpty(pageNoString)) {
+            pageNo = Integer.valueOf(pageNoString);
+        }
+
+        //获取排序字段和排序类型(asc/desc)
+        String sort = getFieldValue(request, SORT_PARAM_NAME);
+        String orderByField = getFieldValue(request, ORDER_BY_PARAM_NAME);
+
+        Page<T> page = new Page<>(pageNo, pageSize);
+        if (ToolUtil.isEmpty(orderByField)) {
+            return page;
+        }
+        if (ToolUtil.isEmpty(sort)) {
+            // 默认降序
+            page.setDesc(orderByField);
+            return page;
+        }
+        if (ASC.equalsIgnoreCase(sort)) {
+            page.setAsc(orderByField);
+        } else {
+            page.setDesc(orderByField);
+        }
+        return page;
     }
 
     /**
@@ -129,23 +130,20 @@ public class PageFactory {
 
         if (pageQuery == null) {
             Page<T> page = new Page<>(pageNo, pageSize);
-            page.setOpenSort(false);
+            // page.setOpenSort(false);
             return page;
-        } else {
-            if (ToolUtil.isEmpty(pageQuery.getSort())) {
-                Page<T> page = new Page<>(pageNo, pageSize);
-                page.setOpenSort(false);
-                return page;
-            } else {
-                Page<T> page = new Page<>(pageNo, pageSize, pageQuery.getOrderByField());
-                if (ASC.equalsIgnoreCase(pageQuery.getSort())) {
-                    page.setAsc(true);
-                } else {
-                    page.setAsc(false);
-                }
-                return page;
-            }
         }
+
+        Page<T> page = new Page<>(pageNo, pageSize);
+        if (ToolUtil.isEmpty(pageQuery.getSort())) {
+            return page;
+        }
+        if (ASC.equalsIgnoreCase(pageQuery.getSort())) {
+            page.setAsc(pageQuery.getOrderByField());
+        } else {
+            page.setDesc(pageQuery.getOrderByField());
+        }
+        return page;
     }
 
     /**
