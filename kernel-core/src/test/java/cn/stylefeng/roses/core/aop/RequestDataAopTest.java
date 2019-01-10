@@ -3,17 +3,12 @@ package cn.stylefeng.roses.core.aop;
 import cn.stylefeng.roses.core.context.RequestDataHolder;
 import cn.stylefeng.roses.core.reqres.request.RequestData;
 import org.aspectj.lang.ProceedingJoinPoint;
-import org.assertj.core.api.Assertions;
-import org.junit.Assert;
 import org.junit.Test;
-import org.mockito.Mockito;
-import org.mockito.invocation.InvocationOnMock;
-import org.mockito.stubbing.Answer;
 
 import static junit.framework.TestCase.assertSame;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.ArgumentMatchers.nullable;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 public class RequestDataAopTest {
 
