@@ -96,6 +96,9 @@ public abstract class DbInitializer {
         //列出数据库中所有的表
         List<Object> tableLists = SqlRunner.db().selectObjs("SHOW TABLES");
 
+
+
+
         //判断数据库中是否有这张表，如果没有就初始化
         if (!tableLists.contains(tableName.toUpperCase()) && !tableLists.contains(tableName.toLowerCase())) {
             SqlRunner.db().update(tableInitSql);
