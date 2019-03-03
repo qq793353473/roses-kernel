@@ -63,7 +63,7 @@ public class MybatisDataSourceAutoConfiguration {
         } else if (druidProperties.getUrl().contains("postgresql")) {
             paginationInterceptor.setDialectType(DbType.POSTGRE_SQL.getDb());
         } else if (druidProperties.getUrl().contains("sqlserver")) {
-            paginationInterceptor.setDialectType(DbType.SQL_SERVER.getDb());
+            paginationInterceptor.setDialectType(DbType.SQL_SERVER2005.getDb());
         } else {
             paginationInterceptor.setDialectType(DbType.MYSQL.getDb());
         }
