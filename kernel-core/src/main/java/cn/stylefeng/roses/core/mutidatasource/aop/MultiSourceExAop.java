@@ -38,17 +38,20 @@ public class MultiSourceExAop implements Ordered {
     @Around("cut()")
     public Object around(ProceedingJoinPoint point) throws Throwable {
 
+        //获取被aop拦截的方法
         Signature signature = point.getSignature();
         MethodSignature methodSignature = null;
         if (!(signature instanceof MethodSignature)) {
             throw new IllegalArgumentException("该注解只能用于方法");
         }
         methodSignature = (MethodSignature) signature;
-
         Object target = point.getTarget();
         Method currentMethod = target.getClass().getMethod(methodSignature.getName(), methodSignature.getParameterTypes());
 
+        //获取方法上的DataSource注解
         DataSource datasource = currentMethod.getAnnotation(DataSource.class);
+
+        //如果有DataSource注解，则设置DataSourceContextHolder为注解上的名称
         if (datasource != null) {
             DataSourceContextHolder.setDataSourceType(datasource.name());
             log.debug("设置数据源为：" + datasource.name());
