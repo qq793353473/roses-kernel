@@ -104,7 +104,7 @@ public class DruidProperties {
         Properties properties = new Properties();
         properties.put("url", this.url);
         properties.put("username", this.username);
-        properties.put("password", this.url);
+        properties.put("password", this.password);
         properties.put("driverClassName", this.driverClassName);
         properties.put("initialSize", this.initialSize);
         properties.put("maxActive", this.maxActive);
