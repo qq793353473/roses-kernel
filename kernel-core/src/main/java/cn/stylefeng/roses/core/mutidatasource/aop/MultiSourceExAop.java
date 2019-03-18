@@ -1,6 +1,5 @@
 package cn.stylefeng.roses.core.mutidatasource.aop;
 
-import cn.stylefeng.roses.core.config.properties.MutiDataSourceProperties;
 import cn.stylefeng.roses.core.mutidatasource.DataSourceContextHolder;
 import cn.stylefeng.roses.core.mutidatasource.annotion.DataSource;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -11,7 +10,6 @@ import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.Ordered;
 
 import java.lang.reflect.Method;
@@ -27,8 +25,16 @@ public class MultiSourceExAop implements Ordered {
 
     private Logger log = LoggerFactory.getLogger(this.getClass());
 
-    @Autowired
-    private MutiDataSourceProperties mutiDataSourceProperties;
+    private String[] names = null;
+
+    /**
+     * 构造函数
+     *
+     * @param names 数据源的名称们，第一个为默认名称
+     */
+    public MultiSourceExAop(String... names) {
+        this.names = names;
+    }
 
     @Pointcut(value = "@annotation(cn.stylefeng.roses.core.mutidatasource.annotion.DataSource)")
     private void cut() {
@@ -56,7 +62,7 @@ public class MultiSourceExAop implements Ordered {
             DataSourceContextHolder.setDataSourceType(datasource.name());
             log.debug("设置数据源为：" + datasource.name());
         } else {
-            DataSourceContextHolder.setDataSourceType(mutiDataSourceProperties.getDataSourceNames()[0]);
+            DataSourceContextHolder.setDataSourceType(names[0]);
             log.debug("设置数据源为：dataSourceCurrent");
         }
 

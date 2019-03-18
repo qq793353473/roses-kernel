@@ -5,7 +5,7 @@
 
     <groupId>cn.stylefeng.roses</groupId>
     <artifactId>roses-kernel</artifactId>
-    <version>1.1.5</version>
+    <version>1.2.0</version>
 
     <packaging>pom</packaging>
 
@@ -56,51 +56,6 @@
 
     <dependencyManagement>
         <dependencies>
-            <dependency>
-                <groupId>cn.stylefeng.roses</groupId>
-                <artifactId>kernel-model</artifactId>
-                <version>1.1.5</version>
-            </dependency>
-            <dependency>
-                <groupId>cn.stylefeng.roses</groupId>
-                <artifactId>kernel-core</artifactId>
-                <version>1.1.5</version>
-            </dependency>
-            <dependency>
-                <groupId>cn.stylefeng.roses</groupId>
-                <artifactId>kernel-scanner</artifactId>
-                <version>1.1.5</version>
-            </dependency>
-            <dependency>
-                <groupId>cn.stylefeng.roses</groupId>
-                <artifactId>kernel-generator</artifactId>
-                <version>1.1.5</version>
-            </dependency>
-            <dependency>
-                <groupId>cn.stylefeng.roses</groupId>
-                <artifactId>kernel-logger</artifactId>
-                <version>1.1.5</version>
-            </dependency>
-            <dependency>
-                <groupId>cn.stylefeng.roses</groupId>
-                <artifactId>kernel-sign</artifactId>
-                <version>1.1.5</version>
-            </dependency>
-            <dependency>
-                <groupId>cn.stylefeng.roses</groupId>
-                <artifactId>kernel-validator</artifactId>
-                <version>1.1.5</version>
-            </dependency>
-            <dependency>
-                <groupId>cn.stylefeng.roses</groupId>
-                <artifactId>kernel-jwt</artifactId>
-                <version>1.1.5</version>
-            </dependency>
-            <dependency>
-                <groupId>cn.stylefeng.roses</groupId>
-                <artifactId>kernel-actuator</artifactId>
-                <version>1.1.5</version>
-            </dependency>
 
             <!--spring cloud-->
             <dependency>
@@ -222,19 +177,19 @@
                     <additionalparam>-Xdoclint:none</additionalparam>
                 </configuration>
             </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-gpg-plugin</artifactId>
-                <version>1.5</version>
-                <executions>
-                    <execution>
-                        <phase>verify</phase>
-                        <goals>
-                            <goal>sign</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
+            <!--<plugin>-->
+                <!--<groupId>org.apache.maven.plugins</groupId>-->
+                <!--<artifactId>maven-gpg-plugin</artifactId>-->
+                <!--<version>1.5</version>-->
+                <!--<executions>-->
+                    <!--<execution>-->
+                        <!--<phase>verify</phase>-->
+                        <!--<goals>-->
+                            <!--<goal>sign</goal>-->
+                        <!--</goals>-->
+                    <!--</execution>-->
+                <!--</executions>-->
+            <!--</plugin>-->
         </plugins>
         <resources>
             <resource>

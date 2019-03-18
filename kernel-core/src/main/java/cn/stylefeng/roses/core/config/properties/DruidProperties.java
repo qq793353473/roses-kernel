@@ -19,6 +19,7 @@ import com.alibaba.druid.pool.DruidDataSource;
 import lombok.Data;
 
 import java.sql.SQLException;
+import java.util.Properties;
 
 /**
  * <p>数据库数据源配置</p>
@@ -50,7 +51,7 @@ public class DruidProperties {
 
     private Integer minEvictableIdleTimeMillis = 300000;
 
-    private String validationQuery =  "SELECT 'x' from dual";
+    private String validationQuery = "SELECT 'x' from dual";
 
     private Boolean testWhileIdle = true;
 
@@ -63,6 +64,8 @@ public class DruidProperties {
     private Integer maxPoolPreparedStatementPerConnectionSize = 20;
 
     private String filters = "stat";
+
+    private String dataSourceName;
 
     public void config(DruidDataSource dataSource) {
 
@@ -95,6 +98,28 @@ public class DruidProperties {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    public Properties createProperties() {
+        Properties properties = new Properties();
+        properties.put("url", this.url);
+        properties.put("username", this.username);
+        properties.put("password", this.url);
+        properties.put("driverClassName", this.driverClassName);
+        properties.put("initialSize", this.initialSize);
+        properties.put("maxActive", this.maxActive);
+        properties.put("minIdle", this.minIdle);
+        properties.put("maxWait", this.maxWait);
+        properties.put("poolPreparedStatements", this.poolPreparedStatements);
+        properties.put("maxPoolPreparedStatementPerConnectionSize", this.maxPoolPreparedStatementPerConnectionSize);
+        properties.put("validationQuery", this.validationQuery);
+        properties.put("testOnBorrow", this.testOnBorrow);
+        properties.put("testOnReturn", this.testOnReturn);
+        properties.put("testWhileIdle", this.testWhileIdle);
+        properties.put("timeBetweenEvictionRunsMillis", this.timeBetweenEvictionRunsMillis);
+        properties.put("minEvictableIdleTimeMillis", this.minEvictableIdleTimeMillis);
+        properties.put("filters", this.filters);
+        return properties;
     }
 
 }
