@@ -38,7 +38,7 @@ public class SimpleSignService implements SignService {
     /**
      * 获取配置文件中的签名失效时间
      *
-     * @author yaoliguo
+     * @author fengshuonan
      * @date 2018-05-08 14:02
      */
     private static long getExpiredTime() {
@@ -58,7 +58,7 @@ public class SimpleSignService implements SignService {
     /**
      * 生成签名
      *
-     * @author yaoliguo
+     * @author fengshuonan
      * @date 2018-05-08 14:02
      */
     public static String generateSign(String appId, String secret, String timestamp, String data) {
@@ -77,7 +77,7 @@ public class SimpleSignService implements SignService {
     /**
      * 校验签名是否有效
      *
-     * @author yaoliguo
+     * @author fengshuonan
      * @date 2018-05-08 14:02
      */
     public static boolean validateSign(String appId, String secret, String timestamp, String data, String sign) {
@@ -87,7 +87,7 @@ public class SimpleSignService implements SignService {
     /**
      * 校验签名是否有效
      *
-     * @author yaoliguo
+     * @author fengshuonan
      * @date 2018-05-08 14:02
      */
     public static boolean validateSign(String appId, String secret, String timestamp, String data, String sign, long expiredSeconds) {

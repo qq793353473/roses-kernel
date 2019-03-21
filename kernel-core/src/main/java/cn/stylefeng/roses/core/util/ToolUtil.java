@@ -174,7 +174,7 @@ public class ToolUtil extends ValidateUtil {
     /**
      * 获取ip地址
      *
-     * @author yaoliguo
+     * @author fengshuonan
      * @Date 2018/5/15 下午6:36
      */
     public static String getIP() {

@@ -22,7 +22,7 @@ import cn.stylefeng.roses.kernel.logger.entity.SendingTraceLog;
 /**
  * 发送日志到消息队列的接口类
  *
- * @author yaoliguo
+ * @author fengshuonan
  * @date 2018-04-25 10:37
  */
 public interface LogProducerService {
@@ -30,7 +30,7 @@ public interface LogProducerService {
     /**
      * 发送日志
      *
-     * @author yaoliguo
+     * @author fengshuonan
      * @date 2018-04-25 10:37
      */
     void sendMsg(SendingCommonLog log);

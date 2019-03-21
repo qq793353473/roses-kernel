@@ -20,7 +20,7 @@ import lombok.Data;
 /**
  * 日志链实体类
  *
- * @author yaoliguo
+ * @author fengshuonan
  * @date 2018-05-16 09:40
  */
 @Data

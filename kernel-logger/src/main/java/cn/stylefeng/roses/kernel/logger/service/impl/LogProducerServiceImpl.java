@@ -32,7 +32,7 @@ import java.util.concurrent.Executors;
 /**
  * 发送日志到消息队列的实现类
  *
- * @author yaoliguo
+ * @author fengshuonan
  * @date 2018-04-25 10:37
  */
 public class LogProducerServiceImpl implements LogProducerService {

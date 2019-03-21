@@ -21,7 +21,7 @@ import cn.stylefeng.roses.core.reqres.request.RequestData;
 /**
  * 请求数据的临时容器
  *
- * @author yaoliguo
+ * @author fengshuonan
  * @date 2018-05-04 11:33
  */
 public class RequestDataHolder {

@@ -178,7 +178,7 @@ public class LogUtil {
     /**
      * 堆栈异常信息转化为字符串形式
      *
-     * @author yaoliguo
+     * @author fengshuonan
      * @date 2018-05-02 16:23
      */
     private static String getErrorInfoFromException(Throwable e) {
