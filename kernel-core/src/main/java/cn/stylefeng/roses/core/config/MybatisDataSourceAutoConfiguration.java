@@ -33,9 +33,6 @@ import org.springframework.context.annotation.Configuration;
 @ConditionalOnProperty(prefix = "spring.datasource", name = "url")
 public class MybatisDataSourceAutoConfiguration {
 
-    @Autowired
-    private DruidProperties druidProperties;
-
     /**
      * druid配置
      */
@@ -51,7 +48,7 @@ public class MybatisDataSourceAutoConfiguration {
     @Bean(initMethod = "init")
     public DruidDataSource dataSource() {
         DruidDataSource dataSource = new DruidDataSource();
-        druidProperties.config(dataSource);
+        druidProperties().config(dataSource);
         return dataSource;
     }
 
