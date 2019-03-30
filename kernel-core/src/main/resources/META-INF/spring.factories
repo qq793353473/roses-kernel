@@ -7,4 +7,5 @@ cn.stylefeng.roses.core.config.MybatisDataSourceAutoConfiguration,\
 cn.stylefeng.roses.core.config.PropertiesAutoConfiguration,\
 cn.stylefeng.roses.core.config.UtilAutoConfiguration,\
 cn.stylefeng.roses.core.config.WebAutoConfiguration,\
-cn.stylefeng.roses.core.config.DbInitializerAutoConfiguration
+cn.stylefeng.roses.core.config.DbInitializerAutoConfiguration,\
+cn.stylefeng.roses.core.config.MybatisPluginAutoConfiguration

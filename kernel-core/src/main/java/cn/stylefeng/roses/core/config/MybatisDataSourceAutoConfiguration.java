@@ -16,14 +16,8 @@
 package cn.stylefeng.roses.core.config;
 
 import cn.stylefeng.roses.core.config.properties.DruidProperties;
-import cn.stylefeng.roses.core.metadata.CustomMetaObjectHandler;
 import com.alibaba.druid.pool.DruidDataSource;
-import com.baomidou.mybatisplus.annotation.DbType;
-import com.baomidou.mybatisplus.core.handlers.MetaObjectHandler;
-import com.baomidou.mybatisplus.extension.plugins.PaginationInterceptor;
-import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
@@ -36,7 +30,6 @@ import org.springframework.context.annotation.Configuration;
  * @Date 2017/5/20 21:58
  */
 @Configuration
-@MapperScan(basePackages = {"**.mapper"})
 @ConditionalOnProperty(prefix = "spring.datasource", name = "url")
 public class MybatisDataSourceAutoConfiguration {
 
@@ -53,24 +46,6 @@ public class MybatisDataSourceAutoConfiguration {
     }
 
     /**
-     * mybatis-plus分页插件
-     */
-    @Bean
-    public PaginationInterceptor paginationInterceptor() {
-        PaginationInterceptor paginationInterceptor = new PaginationInterceptor();
-        if (druidProperties.getUrl().contains("oracle")) {
-            paginationInterceptor.setDialectType(DbType.ORACLE.getDb());
-        } else if (druidProperties.getUrl().contains("postgresql")) {
-            paginationInterceptor.setDialectType(DbType.POSTGRE_SQL.getDb());
-        } else if (druidProperties.getUrl().contains("sqlserver")) {
-            paginationInterceptor.setDialectType(DbType.SQL_SERVER2005.getDb());
-        } else {
-            paginationInterceptor.setDialectType(DbType.MYSQL.getDb());
-        }
-        return paginationInterceptor;
-    }
-
-    /**
      * druid数据库连接池
      */
     @Bean(initMethod = "init")
@@ -78,15 +53,6 @@ public class MybatisDataSourceAutoConfiguration {
         DruidDataSource dataSource = new DruidDataSource();
         druidProperties.config(dataSource);
         return dataSource;
-    }
-
-    /**
-     * 自定义公共字段自动注入
-     */
-    @ConditionalOnMissingBean
-    @Bean
-    public MetaObjectHandler metaObjectHandler() {
-        return new CustomMetaObjectHandler();
     }
 
 }
