@@ -51,7 +51,7 @@ public class DruidProperties {
 
     private Integer minEvictableIdleTimeMillis = 300000;
 
-    private String validationQuery = "SELECT 'x' from dual";
+    private String validationQuery;
 
     private Boolean testWhileIdle = true;
 
@@ -84,7 +84,7 @@ public class DruidProperties {
 
         // 配置一个连接在池中最小生存的时间，单位是毫秒
         dataSource.setMinEvictableIdleTimeMillis(minEvictableIdleTimeMillis);
-        dataSource.setValidationQuery(validationQuery);
+        dataSource.setValidationQuery(getValidateQueryByUrl(url));
         dataSource.setTestWhileIdle(testWhileIdle);
         dataSource.setTestOnBorrow(testOnBorrow);
         dataSource.setTestOnReturn(testOnReturn);
@@ -112,7 +112,7 @@ public class DruidProperties {
         properties.put("maxWait", this.maxWait);
         properties.put("poolPreparedStatements", this.poolPreparedStatements);
         properties.put("maxPoolPreparedStatementPerConnectionSize", this.maxPoolPreparedStatementPerConnectionSize);
-        properties.put("validationQuery", this.validationQuery);
+        properties.put("validationQuery", getValidateQueryByUrl(this.url));
         properties.put("testOnBorrow", this.testOnBorrow);
         properties.put("testOnReturn", this.testOnReturn);
         properties.put("testWhileIdle", this.testWhileIdle);
@@ -120,6 +120,18 @@ public class DruidProperties {
         properties.put("minEvictableIdleTimeMillis", this.minEvictableIdleTimeMillis);
         properties.put("filters", this.filters);
         return properties;
+    }
+
+    private String getValidateQueryByUrl(String url) {
+        if (url.contains("oracle")) {
+            return "select 1 from dual";
+        } else if (url.contains("postgresql")) {
+            return "select version()";
+        } else if (url.contains("sqlserver")) {
+            return "select 1";
+        } else {
+            return "select 1";
+        }
     }
 
 }
