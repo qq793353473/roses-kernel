@@ -24,7 +24,7 @@ package cn.stylefeng.roses.kernel.jwt.properties;
 public class JwtProperties {
 
     /**
-     * jwt的秘钥
+     * jwt的秘钥，注意修改！
      */
     private String secret = "u47REBDLrxfd79w";
 
