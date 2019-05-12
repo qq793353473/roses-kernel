@@ -16,7 +16,7 @@
 package cn.stylefeng.roses.core.context;
 
 
-import cn.stylefeng.roses.core.reqres.request.RequestData;
+import cn.stylefeng.roses.core.request.RequestData;
 
 /**
  * 请求数据的临时容器

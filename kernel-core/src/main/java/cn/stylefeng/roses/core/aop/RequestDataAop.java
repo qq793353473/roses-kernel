@@ -16,7 +16,7 @@
 package cn.stylefeng.roses.core.aop;
 
 import cn.stylefeng.roses.core.context.RequestDataHolder;
-import cn.stylefeng.roses.core.reqres.request.RequestData;
+import cn.stylefeng.roses.core.request.RequestData;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;

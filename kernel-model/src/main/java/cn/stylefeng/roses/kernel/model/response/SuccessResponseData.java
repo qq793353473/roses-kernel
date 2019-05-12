@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package cn.stylefeng.roses.core.reqres.response;
+package cn.stylefeng.roses.kernel.model.response;
 
 /**
  * 请求成功的返回

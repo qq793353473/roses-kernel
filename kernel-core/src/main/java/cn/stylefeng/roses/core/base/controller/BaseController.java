@@ -16,7 +16,7 @@
 package cn.stylefeng.roses.core.base.controller;
 
 import cn.stylefeng.roses.core.base.warpper.BaseControllerWrapper;
-import cn.stylefeng.roses.core.reqres.response.SuccessResponseData;
+import cn.stylefeng.roses.kernel.model.response.SuccessResponseData;
 import cn.stylefeng.roses.core.util.HttpContext;
 import cn.stylefeng.roses.kernel.model.exception.ServiceException;
 import cn.stylefeng.roses.kernel.model.exception.enums.CoreExceptionEnum;

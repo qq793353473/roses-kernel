@@ -16,7 +16,7 @@
 package cn.stylefeng.roses.kernel.logger.util;
 
 import cn.stylefeng.roses.core.context.RequestDataHolder;
-import cn.stylefeng.roses.core.reqres.request.RequestData;
+import cn.stylefeng.roses.core.request.RequestData;
 import cn.stylefeng.roses.core.util.SpringContextHolder;
 import cn.stylefeng.roses.core.util.ToolUtil;
 import cn.stylefeng.roses.kernel.logger.chain.context.TraceIdHolder;

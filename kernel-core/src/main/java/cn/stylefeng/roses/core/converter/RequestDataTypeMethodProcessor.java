@@ -15,7 +15,7 @@
  */
 package cn.stylefeng.roses.core.converter;
 
-import cn.stylefeng.roses.core.reqres.request.RequestData;
+import cn.stylefeng.roses.core.request.RequestData;
 import org.springframework.core.MethodParameter;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.web.servlet.mvc.method.annotation.RequestResponseBodyMethodProcessor;

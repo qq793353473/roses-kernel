@@ -15,8 +15,8 @@
  */
 package cn.stylefeng.roses.core.exception;
 
-import cn.stylefeng.roses.core.reqres.response.ErrorResponseData;
-import cn.stylefeng.roses.core.reqres.response.ResponseData;
+import cn.stylefeng.roses.kernel.model.response.ErrorResponseData;
+import cn.stylefeng.roses.kernel.model.response.ResponseData;
 import cn.stylefeng.roses.kernel.model.exception.ApiServiceException;
 import cn.stylefeng.roses.kernel.model.exception.RequestEmptyException;
 import cn.stylefeng.roses.kernel.model.exception.ServiceException;

@@ -16,7 +16,7 @@
 package cn.stylefeng.roses.core.converter;
 
 import cn.hutool.core.io.IoUtil;
-import cn.stylefeng.roses.core.reqres.request.RequestData;
+import cn.stylefeng.roses.core.request.RequestData;
 import cn.stylefeng.roses.core.util.HttpContext;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
