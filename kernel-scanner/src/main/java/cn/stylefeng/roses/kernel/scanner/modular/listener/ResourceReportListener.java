@@ -17,9 +17,11 @@ package cn.stylefeng.roses.kernel.scanner.modular.listener;
 
 import cn.stylefeng.roses.kernel.model.api.ResourceService;
 import cn.stylefeng.roses.kernel.model.api.model.ReportResourceReq;
+import cn.stylefeng.roses.kernel.model.exception.ApiServiceException;
 import cn.stylefeng.roses.kernel.model.resource.ResourceDefinition;
 import cn.stylefeng.roses.kernel.scanner.config.properties.ScannerProperties;
 import cn.stylefeng.roses.kernel.scanner.modular.factory.ApiResourceFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeansException;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.ApplicationContext;
@@ -34,6 +36,7 @@ import java.util.Map;
  * @author fengshuonan
  * @date 2018-02-06 13:05
  */
+@Slf4j
 public class ResourceReportListener implements ApplicationListener<ApplicationReadyEvent>, ApplicationContextAware {
 
     private ApplicationContext applicationContext;
@@ -50,7 +53,12 @@ public class ResourceReportListener implements ApplicationListener<ApplicationRe
         //发送资源到资源服务器
         ScannerProperties scannerProperties = applicationContext.getBean(ScannerProperties.class);
         ResourceService resourceService = applicationContext.getBean(ResourceService.class);
-        resourceService.reportResources(new ReportResourceReq(scannerProperties.getAppCode(), modularResources));
+
+        try {
+            resourceService.reportResources(new ReportResourceReq(scannerProperties.getAppCode(), modularResources));
+        } catch (ApiServiceException e) {
+            log.error("发送资源出现异常！请检查system服务是否正常运行！", e);
+        }
 
         System.out.println("发送本系统的所有资源到roses-auth服务完毕！");
     }
