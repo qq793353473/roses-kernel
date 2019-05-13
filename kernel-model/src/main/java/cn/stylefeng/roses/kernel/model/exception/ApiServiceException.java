@@ -15,7 +15,6 @@
  */
 package cn.stylefeng.roses.kernel.model.exception;
 
-import cn.stylefeng.roses.kernel.model.exception.enums.CoreExceptionEnum;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -43,9 +42,7 @@ public abstract class ApiServiceException extends Exception {
      * 默认用于dubbo反序列化
      */
     public ApiServiceException() {
-        super(CoreExceptionEnum.SERVICE_ERROR.getMessage());
-        this.code = CoreExceptionEnum.SERVICE_ERROR.getCode();
-        this.errorMessage = CoreExceptionEnum.SERVICE_ERROR.getMessage();
+
     }
 
     public ApiServiceException(AbstractBaseExceptionEnum exception) {
@@ -57,5 +54,7 @@ public abstract class ApiServiceException extends Exception {
     /**
      * 获取异常的类的具体名称
      */
-    public abstract String getExceptionClassName();
+    public String getExceptionClassName() {
+        return this.getClass().getName();
+    }
 }
