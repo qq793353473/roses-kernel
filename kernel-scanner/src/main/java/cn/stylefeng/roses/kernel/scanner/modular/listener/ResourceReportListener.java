@@ -16,6 +16,7 @@
 package cn.stylefeng.roses.kernel.scanner.modular.listener;
 
 import cn.stylefeng.roses.kernel.model.api.ResourceService;
+import cn.stylefeng.roses.kernel.model.api.model.ReportResourceReq;
 import cn.stylefeng.roses.kernel.model.resource.ResourceDefinition;
 import cn.stylefeng.roses.kernel.scanner.config.properties.ScannerProperties;
 import cn.stylefeng.roses.kernel.scanner.modular.factory.ApiResourceFactory;
@@ -49,7 +50,7 @@ public class ResourceReportListener implements ApplicationListener<ApplicationRe
         //发送资源到资源服务器
         ScannerProperties scannerProperties = applicationContext.getBean(ScannerProperties.class);
         ResourceService resourceService = applicationContext.getBean(ResourceService.class);
-        resourceService.reportResources(scannerProperties.getAppCode(), modularResources);
+        resourceService.reportResources(new ReportResourceReq(scannerProperties.getAppCode(), modularResources));
 
         System.out.println("发送本系统的所有资源到roses-auth服务完毕！");
     }

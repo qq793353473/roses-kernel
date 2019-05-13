@@ -19,6 +19,8 @@ import cn.stylefeng.roses.kernel.model.validator.BaseValidatingParam;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.io.Serializable;
+
 /**
  * 远程服务的参数的基类
  *
@@ -27,7 +29,7 @@ import lombok.Setter;
  */
 @Getter
 @Setter
-public abstract class AbstractBaseRequest implements BaseValidatingParam {
+public abstract class AbstractBaseRequest implements BaseValidatingParam, Serializable {
 
     /**
      * 唯一请求号

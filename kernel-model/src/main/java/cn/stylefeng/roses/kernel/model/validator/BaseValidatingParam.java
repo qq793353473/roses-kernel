@@ -30,5 +30,7 @@ public interface BaseValidatingParam {
      * @author fengshuonan
      * @Date 2018/8/6 下午4:28
      */
-    String checkParam();
+    default String checkParam() {
+        return null;
+    }
 }
