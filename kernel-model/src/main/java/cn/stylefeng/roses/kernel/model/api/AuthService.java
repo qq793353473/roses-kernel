@@ -19,6 +19,7 @@ package cn.stylefeng.roses.kernel.model.api;
 import cn.stylefeng.roses.kernel.model.api.model.LoginReq;
 import cn.stylefeng.roses.kernel.model.api.model.TokenReq;
 import cn.stylefeng.roses.kernel.model.auth.AbstractLoginUser;
+import cn.stylefeng.roses.kernel.model.exception.ApiServiceException;
 
 /**
  * 鉴权服务,提供颁发,校验,注销等方法
@@ -35,7 +36,7 @@ public interface AuthService {
      * @author fengshuonan
      * @Date 2018/1/12 13:56
      */
-    String login(LoginReq loginRequest);
+    String login(LoginReq loginRequest) throws ApiServiceException;
 
     /**
      * 校验token(true-校验成功,false-校验失败)
@@ -43,7 +44,7 @@ public interface AuthService {
      * @author fengshuonan
      * @Date 2018/2/7 10:02
      */
-    boolean checkToken(TokenReq tokenReq);
+    boolean checkToken(TokenReq tokenReq) throws ApiServiceException;
 
     /**
      * 注销token
@@ -51,7 +52,7 @@ public interface AuthService {
      * @author fengshuonan
      * @Date 2018/2/7 10:02
      */
-    void logout(TokenReq tokenReq);
+    void logout(TokenReq tokenReq) throws ApiServiceException;
 
     /**
      * 通过token获取用户信息
@@ -59,6 +60,6 @@ public interface AuthService {
      * @author fengshuonan
      * @Date 2018/1/12 16:32
      */
-    AbstractLoginUser getLoginUserByToken(TokenReq tokenReq);
+    AbstractLoginUser getLoginUserByToken(TokenReq tokenReq) throws ApiServiceException;
 
 }
