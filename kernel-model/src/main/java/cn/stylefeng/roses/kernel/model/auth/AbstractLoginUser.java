@@ -36,7 +36,7 @@ public interface AbstractLoginUser {
     <T> T getUserUniqueId();
 
     /**
-     * 获取用户唯一id
+     * 获取当前登录应用Id
      *
      * @author fengshuonan
      * @Date 2018/8/10 下午5:38
