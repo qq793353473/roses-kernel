@@ -41,4 +41,9 @@ public abstract class AbstractBaseRequest implements BaseValidatingParam, Serial
      */
     private String spanId;
 
+    /**
+     * 当前登录用户的token
+     */
+    private String token;
+
 }
