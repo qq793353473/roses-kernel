@@ -21,7 +21,7 @@ import cn.stylefeng.roses.kernel.logger.chain.context.SpanIdHolder;
 import cn.stylefeng.roses.kernel.logger.chain.context.TraceIdHolder;
 import cn.stylefeng.roses.kernel.logger.chain.enums.RpcPhaseEnum;
 import cn.stylefeng.roses.kernel.logger.util.TraceUtil;
-import cn.stylefeng.roses.kernel.model.api.base.AbstractBaseRequest;
+import cn.stylefeng.roses.kernel.model.request.AbstractBaseRequest;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.Signature;
 import org.aspectj.lang.annotation.Around;

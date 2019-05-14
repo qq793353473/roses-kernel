@@ -1,6 +1,6 @@
 package cn.stylefeng.roses.kernel.model.api.model;
 
-import cn.stylefeng.roses.kernel.model.api.base.AbstractBaseRequest;
+import cn.stylefeng.roses.kernel.model.request.AbstractBaseRequest;
 import cn.stylefeng.roses.kernel.model.resource.ResourceDefinition;
 import lombok.Data;
 

@@ -13,37 +13,27 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package cn.stylefeng.roses.kernel.model.api.base;
-
-import cn.stylefeng.roses.kernel.model.validator.BaseValidatingParam;
-import lombok.Getter;
-import lombok.Setter;
-
-import java.io.Serializable;
+package cn.stylefeng.roses.kernel.model.request;
 
 /**
- * 远程服务的参数的基类
+ * 远程调用请求参数的holder
  *
  * @author fengshuonan
- * @date 2018-08-06-下午4:22
+ * @Date 2019/5/14 22:59
  */
-@Getter
-@Setter
-public abstract class AbstractBaseRequest implements BaseValidatingParam, Serializable {
+public class RmiRequestHolder {
 
-    /**
-     * 唯一请求号
-     */
-    private String requestNo;
+    private static final ThreadLocal<AbstractBaseRequest> spanIdContext = new ThreadLocal<>();
 
-    /**
-     * 业务节点id
-     */
-    private String spanId;
+    public static void set(AbstractBaseRequest spanId) {
+        spanIdContext.set(spanId);
+    }
 
-    /**
-     * 当前登录用户的token
-     */
-    private String token;
+    public static AbstractBaseRequest get() {
+        return spanIdContext.get();
+    }
 
+    public static void remove() {
+        spanIdContext.remove();
+    }
 }
