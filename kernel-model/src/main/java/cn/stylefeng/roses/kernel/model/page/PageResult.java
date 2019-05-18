@@ -15,7 +15,7 @@
  */
 package cn.stylefeng.roses.kernel.model.page;
 
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -41,7 +41,7 @@ public class PageResult<T> implements Serializable {
     public PageResult() {
     }
 
-    public PageResult(Page<T> page) {
+    public PageResult(IPage<T> page) {
         this.setRows(page.getRecords());
         this.setTotalRows(page.getTotal());
         this.setPage((int) page.getCurrent());
