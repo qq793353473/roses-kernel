@@ -1,5 +1,6 @@
 package cn.stylefeng.roses.kernel.model.api.model;
 
+import cn.hutool.core.util.StrUtil;
 import cn.stylefeng.roses.kernel.model.request.AbstractBaseRequest;
 import lombok.Data;
 
@@ -16,5 +17,13 @@ public class TokenReq extends AbstractBaseRequest {
      * token
      */
     private String token;
+
+    @Override
+    public String checkParam() {
+        if (StrUtil.isEmpty(token)) {
+            return "请求token为空！";
+        }
+        return null;
+    }
 
 }

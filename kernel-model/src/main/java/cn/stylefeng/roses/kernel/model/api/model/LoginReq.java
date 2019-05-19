@@ -1,5 +1,6 @@
 package cn.stylefeng.roses.kernel.model.api.model;
 
+import cn.hutool.core.util.StrUtil;
 import cn.stylefeng.roses.kernel.model.request.AbstractBaseRequest;
 import lombok.Data;
 
@@ -22,4 +23,14 @@ public class LoginReq extends AbstractBaseRequest {
      */
     private String password;
 
+    @Override
+    public String checkParam() {
+        if (StrUtil.isEmpty(account)) {
+            return "请求账号为空！";
+        }
+        if (StrUtil.isEmpty(password)) {
+            return "请求密码为空！";
+        }
+        return null;
+    }
 }

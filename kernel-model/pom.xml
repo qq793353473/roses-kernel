@@ -25,6 +25,11 @@
             <artifactId>lombok</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-core</artifactId>
+        </dependency>
+
         <!--注意provided-->
         <dependency>
             <groupId>org.springframework</groupId>

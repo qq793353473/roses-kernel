@@ -1,5 +1,6 @@
 package cn.stylefeng.roses.kernel.model.api.model;
 
+import cn.hutool.core.util.StrUtil;
 import cn.stylefeng.roses.kernel.model.request.AbstractBaseRequest;
 import lombok.Data;
 
@@ -12,9 +13,14 @@ import lombok.Data;
 @Data
 public class ResourceUrlReq extends AbstractBaseRequest {
 
-    /**
-     * 账号id
-     */
     private String url;
+
+    @Override
+    public String checkParam() {
+        if (StrUtil.isEmpty(url)) {
+            return "请求url为空！";
+        }
+        return null;
+    }
 
 }

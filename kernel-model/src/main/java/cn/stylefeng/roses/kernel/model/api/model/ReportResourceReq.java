@@ -1,5 +1,7 @@
 package cn.stylefeng.roses.kernel.model.api.model;
 
+import cn.hutool.core.collection.CollectionUtil;
+import cn.hutool.core.util.StrUtil;
 import cn.stylefeng.roses.kernel.model.request.AbstractBaseRequest;
 import cn.stylefeng.roses.kernel.model.resource.ResourceDefinition;
 import lombok.Data;
@@ -30,4 +32,14 @@ public class ReportResourceReq extends AbstractBaseRequest {
         this.resourceDefinitions = resourceDefinitions;
     }
 
+    @Override
+    public String checkParam() {
+        if (StrUtil.isEmpty(appCode)) {
+            return "请求应用编码为空！";
+        }
+        if (CollectionUtil.isEmpty(resourceDefinitions)) {
+            return "请求资源为空！";
+        }
+        return null;
+    }
 }
