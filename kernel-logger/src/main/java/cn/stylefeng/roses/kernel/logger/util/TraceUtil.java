@@ -108,7 +108,19 @@ public class TraceUtil {
         Boolean traceFlag = null;
 
         try {
-            traceFlag = getLogProperties().getTrace();
+            LogProperties logProperties = getLogProperties();
+
+            //kafka关闭则trace关闭
+            if (!logProperties.getKafka()) {
+                return false;
+            } else {
+                if (logProperties.getTrace()) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+
         } catch (Exception e) {
             logger.error("获取trace！", e);
             traceFlag = false;
