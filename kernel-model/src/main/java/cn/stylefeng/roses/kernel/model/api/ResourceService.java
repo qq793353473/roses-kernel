@@ -19,7 +19,6 @@ package cn.stylefeng.roses.kernel.model.api;
 import cn.stylefeng.roses.kernel.model.api.model.ReportResourceReq;
 import cn.stylefeng.roses.kernel.model.api.model.ResourceUrlReq;
 import cn.stylefeng.roses.kernel.model.api.model.UserResourceReq;
-import cn.stylefeng.roses.kernel.model.exception.ApiServiceException;
 import cn.stylefeng.roses.kernel.model.resource.ResourceDefinition;
 
 import java.util.Set;
@@ -35,15 +34,15 @@ public interface ResourceService {
     /**
      * 报告业务系统的资源(Resources)到服务器,appCode若重复则会覆盖
      */
-    void reportResources(ReportResourceReq reportResourceReq) throws ApiServiceException;
+    void reportResources(ReportResourceReq reportResourceReq);
 
     /**
      * 获取用户所拥有的资源url
      */
-    Set<String> getUserResourceUrls(UserResourceReq userResourceReq) throws ApiServiceException;
+    Set<String> getUserResourceUrls(UserResourceReq userResourceReq);
 
     /**
      * 获取资源通过url
      */
-    ResourceDefinition getResourceByUrl(ResourceUrlReq resourceUrlReq) throws ApiServiceException;
+    ResourceDefinition getResourceByUrl(ResourceUrlReq resourceUrlReq);
 }
