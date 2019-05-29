@@ -17,7 +17,6 @@ package cn.stylefeng.roses.kernel.scanner.modular.listener;
 
 import cn.stylefeng.roses.kernel.model.api.ResourceService;
 import cn.stylefeng.roses.kernel.model.api.model.ReportResourceReq;
-import cn.stylefeng.roses.kernel.model.exception.ApiServiceException;
 import cn.stylefeng.roses.kernel.model.resource.ResourceDefinition;
 import cn.stylefeng.roses.kernel.scanner.config.properties.ScannerProperties;
 import cn.stylefeng.roses.kernel.scanner.modular.factory.ApiResourceFactory;
@@ -54,11 +53,7 @@ public class ResourceReportListener implements ApplicationListener<ApplicationRe
         ScannerProperties scannerProperties = applicationContext.getBean(ScannerProperties.class);
         ResourceService resourceService = applicationContext.getBean(ResourceService.class);
 
-        try {
-            resourceService.reportResources(new ReportResourceReq(scannerProperties.getAppCode(), modularResources));
-        } catch (ApiServiceException e) {
-            log.error("发送资源出现异常！请检查system服务是否正常运行！", e);
-        }
+        resourceService.reportResources(new ReportResourceReq(scannerProperties.getAppCode(), modularResources));
 
         System.out.println("发送本系统的所有资源到roses-auth服务完毕！");
     }
