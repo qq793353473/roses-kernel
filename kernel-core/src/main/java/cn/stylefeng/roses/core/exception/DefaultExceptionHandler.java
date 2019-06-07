@@ -15,12 +15,12 @@
  */
 package cn.stylefeng.roses.core.exception;
 
-import cn.stylefeng.roses.kernel.model.response.ErrorResponseData;
-import cn.stylefeng.roses.kernel.model.response.ResponseData;
 import cn.stylefeng.roses.kernel.model.exception.ApiServiceException;
 import cn.stylefeng.roses.kernel.model.exception.RequestEmptyException;
 import cn.stylefeng.roses.kernel.model.exception.ServiceException;
 import cn.stylefeng.roses.kernel.model.exception.enums.CoreExceptionEnum;
+import cn.stylefeng.roses.kernel.model.response.ErrorResponseData;
+import cn.stylefeng.roses.kernel.model.response.ResponseData;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.annotation.Order;
@@ -45,7 +45,7 @@ public class DefaultExceptionHandler {
     private Logger log = LoggerFactory.getLogger(this.getClass());
 
     /**
-     * 拦截各个服务的具体异常
+     * 拦截各个服务的具体异常，返回状态码500
      */
     @ExceptionHandler(ApiServiceException.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
@@ -58,17 +58,17 @@ public class DefaultExceptionHandler {
     }
 
     /**
-     * 拦截请求为空的异常
+     * 拦截请求为空的异常，返回状态码400
      */
     @ExceptionHandler(RequestEmptyException.class)
-    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ResponseBody
     public ResponseData emptyRequest(RequestEmptyException e) {
         return new ErrorResponseData(e.getCode(), e.getErrorMessage());
     }
 
     /**
-     * 拦截业务异常
+     * 拦截业务异常，返回状态码500
      */
     @ExceptionHandler(ServiceException.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
@@ -79,7 +79,7 @@ public class DefaultExceptionHandler {
     }
 
     /**
-     * 拦截未知的运行时异常
+     * 拦截未知的运行时异常，返回状态码500
      */
     @ExceptionHandler(Exception.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
