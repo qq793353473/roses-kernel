@@ -55,9 +55,9 @@ public class DruidProperties {
 
     private Boolean testWhileIdle = true;
 
-    private Boolean testOnBorrow = false;
+    private Boolean testOnBorrow = true;
 
-    private Boolean testOnReturn = false;
+    private Boolean testOnReturn = true;
 
     private Boolean poolPreparedStatements = true;
 

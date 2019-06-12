@@ -55,6 +55,10 @@ public class OptionalSqlSessionTemplate extends SqlSessionTemplate {
             throw new IllegalArgumentException("OptionalSqlSessionTemplate初始化时，未初始化targetSqlSessionFactorys！");
         }
 
+        if (DataSourceContextHolder.getDataSourceType() == null) {
+            return sqlSessionFactory;
+        }
+
         SqlSessionFactory targetSqlSessionFactory = this.targetSqlSessionFactorys.get(DataSourceContextHolder.getDataSourceType());
         if (targetSqlSessionFactory != null) {
             return targetSqlSessionFactory;
