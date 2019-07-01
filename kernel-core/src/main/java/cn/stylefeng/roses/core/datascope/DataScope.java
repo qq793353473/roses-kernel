@@ -13,7 +13,7 @@ public class DataScope {
     /**
      * 限制范围的字段名称
      */
-    private String scopeName = "dept_id";
+    private String scopeName = "deptId";
 
     /**
      * 具体的数据范围
