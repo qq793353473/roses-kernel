@@ -210,7 +210,7 @@ public class ToolUtil extends ValidateUtil {
      * @Date 2018/7/25 下午4:41
      */
     public static void copyProperties(Object source, Object target) {
-        BeanUtil.copyProperties(source, target, CopyOptions.create().setIgnoreNullValue(true));
+        BeanUtil.copyProperties(source, target, CopyOptions.create().setIgnoreNullValue(true).ignoreError());
     }
 
     /**
