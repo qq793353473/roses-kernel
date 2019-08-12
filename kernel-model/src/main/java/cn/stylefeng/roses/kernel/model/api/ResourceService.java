@@ -20,6 +20,9 @@ import cn.stylefeng.roses.kernel.model.api.model.ReportResourceReq;
 import cn.stylefeng.roses.kernel.model.api.model.ResourceUrlReq;
 import cn.stylefeng.roses.kernel.model.api.model.UserResourceReq;
 import cn.stylefeng.roses.kernel.model.resource.ResourceDefinition;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.Set;
 
@@ -29,20 +32,25 @@ import java.util.Set;
  * @author fengshuonan
  * @date 2018-02-06 14:30
  */
+@RequestMapping("/resourceService")
 public interface ResourceService {
 
     /**
      * 报告业务系统的资源(Resources)到服务器,appCode若重复则会覆盖
      */
-    void reportResources(ReportResourceReq reportResourceReq);
+    @RequestMapping(value = "/reportResources", method = RequestMethod.POST)
+    void reportResources(@RequestBody ReportResourceReq reportResourceReq);
 
     /**
      * 获取用户所拥有的资源url
      */
-    Set<String> getUserResourceUrls(UserResourceReq userResourceReq);
+    @RequestMapping(value = "/getUserResourceUrls", method = RequestMethod.POST)
+    Set<String> getUserResourceUrls(@RequestBody UserResourceReq userResourceReq);
 
     /**
      * 获取资源通过url
      */
-    ResourceDefinition getResourceByUrl(ResourceUrlReq resourceUrlReq);
+    @RequestMapping(value = "/getResourceByUrl", method = RequestMethod.POST)
+    ResourceDefinition getResourceByUrl(@RequestBody ResourceUrlReq resourceUrlReq);
+
 }
