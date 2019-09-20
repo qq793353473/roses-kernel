@@ -23,6 +23,7 @@ import cn.stylefeng.roses.kernel.scanner.config.properties.ScannerProperties;
 import cn.stylefeng.roses.kernel.scanner.modular.annotation.GetResource;
 import cn.stylefeng.roses.kernel.scanner.modular.annotation.PostResource;
 import cn.stylefeng.roses.kernel.scanner.modular.factory.ApiResourceFactory;
+import cn.stylefeng.roses.kernel.scanner.modular.holder.IpAddrHolder;
 import cn.stylefeng.roses.kernel.scanner.modular.stereotype.ApiResource;
 import cn.stylefeng.roses.kernel.scanner.modular.util.AopTargetUtils;
 import org.slf4j.Logger;
@@ -130,7 +131,7 @@ public class ApiResourceScaner implements BeanPostProcessor {
 
         ArrayList<ResourceDefinition> apiResources = new ArrayList<>();
         Method[] declaredMethods = clazz.getDeclaredMethods();
-        if (declaredMethods != null && declaredMethods.length > 0) {
+        if (declaredMethods.length > 0) {
             for (Method declaredMethod : declaredMethods) {
                 ApiResource apiResource = declaredMethod.getAnnotation(ApiResource.class);
                 GetResource getResource = declaredMethod.getAnnotation(GetResource.class);
@@ -211,18 +212,23 @@ public class ApiResourceScaner implements BeanPostProcessor {
         resourceDefinition.setMenuFlag(menuFlag);
         resourceDefinition.setName(name);
         resourceDefinition.setUrl(getControllerClassRequestPath(clazz) + path[0]);
-        String methodNames = "";
+        StringBuilder methodNames = new StringBuilder();
         for (RequestMethod requestMethod : requestMethods) {
-            methodNames += requestMethod.name() + ",";
+            methodNames.append(requestMethod.name()).append(",");
         }
-        resourceDefinition.setHttpMethod(StrUtil.removeSuffix(methodNames, ","));
+        resourceDefinition.setHttpMethod(StrUtil.removeSuffix(methodNames.toString(), ","));
 
-        String localMacAddress = null;
-        try {
-            localMacAddress = NetUtil.getLocalhostStr();
-        } catch (UtilException e) {
-            log.error("获取当前机器ip地址错误！");
+        //获取ip地址
+        String localMacAddress = IpAddrHolder.get();
+        if (localMacAddress == null) {
+            try {
+                localMacAddress = NetUtil.getLocalhostStr();
+                IpAddrHolder.set(localMacAddress);
+            } catch (UtilException e) {
+                log.error("获取当前机器ip地址错误！");
+            }
         }
+
         resourceDefinition.setIpAddress(localMacAddress == null ? "" : localMacAddress);
         resourceDefinition.setCreateTime(new Date());
 
