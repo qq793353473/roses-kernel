@@ -71,7 +71,7 @@ public class ScannerAutoConfiguration {
      */
     @Bean
     public ApiResourceScaner apiResourceScaner(ApiResourceFactory apiResourceFactory, ScannerProperties scannerProperties) {
-        return new ApiResourceScaner(apiResourceFactory, scannerProperties, applicationName);
+        return new ApiResourceScaner(apiResourceFactory, scannerProperties, scannerProperties.getAppCode());
     }
 
     /**
