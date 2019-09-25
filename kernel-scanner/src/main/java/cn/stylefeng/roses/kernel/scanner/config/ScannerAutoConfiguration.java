@@ -38,6 +38,7 @@ import static cn.stylefeng.roses.kernel.model.constants.ConfigPrefixConstants.SC
  * @date 2018-02-06 17:25
  */
 @Configuration
+@ConditionalOnProperty(prefix = SCANNER_PREFIX, name = "open", havingValue = "true")
 public class ScannerAutoConfiguration {
 
     @Value("${spring.application.name}")
@@ -77,7 +78,6 @@ public class ScannerAutoConfiguration {
      * 资源扫描之后的资源汇报操作（向roses-auth服务）
      */
     @Bean
-    @ConditionalOnProperty(prefix = SCANNER_PREFIX, name = "open", havingValue = "true")
     public ResourceReportListener resourceReportListener() {
         return new ResourceReportListener();
     }
