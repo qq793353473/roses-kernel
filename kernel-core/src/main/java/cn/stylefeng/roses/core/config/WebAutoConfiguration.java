@@ -22,7 +22,7 @@ import cn.stylefeng.roses.core.converter.RequestDataMessageConvert;
 import cn.stylefeng.roses.core.util.MvcAdapter;
 import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.convert.converter.Converter;
@@ -32,7 +32,6 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupp
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter;
 
 import javax.annotation.PostConstruct;
-import javax.servlet.ServletContext;
 import java.util.Date;
 
 /**
@@ -42,7 +41,7 @@ import java.util.Date;
  * @Date 2018/7/24 下午3:27
  */
 @Configuration
-@ConditionalOnBean(ServletContext.class)
+@ConditionalOnWebApplication
 public class WebAutoConfiguration extends WebMvcConfigurationSupport {
 
     @Autowired
