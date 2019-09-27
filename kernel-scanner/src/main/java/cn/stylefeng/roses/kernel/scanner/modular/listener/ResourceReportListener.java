@@ -20,6 +20,7 @@ import cn.stylefeng.roses.kernel.model.api.model.ReportResourceReq;
 import cn.stylefeng.roses.kernel.model.resource.ResourceDefinition;
 import cn.stylefeng.roses.kernel.scanner.config.properties.ScannerProperties;
 import cn.stylefeng.roses.kernel.scanner.modular.factory.ApiResourceFactory;
+import cn.stylefeng.roses.kernel.scanner.modular.flag.InitScanFlag;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeansException;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
@@ -43,19 +44,23 @@ public class ResourceReportListener implements ApplicationListener<ApplicationRe
     @Override
     public void onApplicationEvent(ApplicationReadyEvent event) {
 
-        System.out.println("发送本系统的所有资源到roses-auth服务开始！");
+        if (!InitScanFlag.getFlag()) {
+            System.out.println("发送本系统的所有资源到roses-auth服务开始！");
 
-        //获取当前系统的所有资源
-        ApiResourceFactory resourceFactory = applicationContext.getBean(ApiResourceFactory.class);
-        Map<String, Map<String, ResourceDefinition>> modularResources = resourceFactory.getModularResources();
+            //获取当前系统的所有资源
+            ApiResourceFactory resourceFactory = applicationContext.getBean(ApiResourceFactory.class);
+            Map<String, Map<String, ResourceDefinition>> modularResources = resourceFactory.getModularResources();
 
-        //发送资源到资源服务器
-        ScannerProperties scannerProperties = applicationContext.getBean(ScannerProperties.class);
-        ResourceService resourceService = applicationContext.getBean(ResourceService.class);
+            //发送资源到资源服务器
+            ScannerProperties scannerProperties = applicationContext.getBean(ScannerProperties.class);
+            ResourceService resourceService = applicationContext.getBean(ResourceService.class);
 
-        resourceService.reportResources(new ReportResourceReq(scannerProperties.getAppCode(), modularResources));
+            resourceService.reportResources(new ReportResourceReq(scannerProperties.getAppCode(), modularResources));
 
-        System.out.println("发送本系统的所有资源到roses-auth服务完毕！");
+            System.out.println("发送本系统的所有资源到roses-auth服务完毕！");
+            InitScanFlag.setFlag();
+        }
+
     }
 
     @Override
