@@ -15,6 +15,7 @@
  */
 package cn.stylefeng.roses.core.config;
 
+import cn.stylefeng.roses.core.converter.CustomFastJsonHttpMessageConverter;
 import com.alibaba.fastjson.parser.ParserConfig;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.alibaba.fastjson.serializer.ValueFilter;
@@ -44,8 +45,8 @@ import java.util.List;
 public class FastjsonAutoConfiguration {
 
     @Bean
-    public FastJsonHttpMessageConverter fastJsonHttpMessageConverter() {
-        FastJsonHttpMessageConverter converter = new FastJsonHttpMessageConverter();
+    public CustomFastJsonHttpMessageConverter customFastJsonHttpMessageConverter() {
+        CustomFastJsonHttpMessageConverter converter = new CustomFastJsonHttpMessageConverter();
         converter.setFastJsonConfig(fastjsonConfig());
         converter.setSupportedMediaTypes(getSupportedMediaType());
         ParserConfig.getGlobalInstance().setAutoTypeSupport(true);
