@@ -165,7 +165,7 @@ public class PageFactory {
                 }
             }
         } else {
-            return null;
+            return parameter;
         }
     }
 }
