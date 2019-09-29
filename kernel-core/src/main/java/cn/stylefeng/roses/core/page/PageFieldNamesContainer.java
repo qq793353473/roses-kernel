@@ -72,7 +72,7 @@ public class PageFieldNamesContainer {
      * @Date 2019-09-29 10:20
      */
     public void initPageNoFieldNames(Set<String> pageNoFieldNames) {
-        this.pageSizeFieldNames.addAll(pageNoFieldNames);
+        this.pageNoFieldNames.addAll(pageNoFieldNames);
     }
 
     /**
@@ -82,7 +82,7 @@ public class PageFieldNamesContainer {
      * @Date 2019-09-29 10:20
      */
     public void initSortFieldNames(Set<String> sortFieldNames) {
-        this.pageSizeFieldNames.addAll(sortFieldNames);
+        this.sortFieldNames.addAll(sortFieldNames);
     }
 
     /**
@@ -92,7 +92,7 @@ public class PageFieldNamesContainer {
      * @Date 2019-09-29 10:20
      */
     public void initOrderByFieldNames(Set<String> orderByFieldNames) {
-        this.pageSizeFieldNames.addAll(orderByFieldNames);
+        this.orderByFieldNames.addAll(orderByFieldNames);
     }
 
     /**
