@@ -40,9 +40,9 @@ public class PageFieldNamesContainer {
     private PageFieldNamesContainer() {
         //默认的字段名称
         pageSizeFieldNames.add(PAGE_SIZE_PARAM_NAME);
-        pageSizeFieldNames.add(PAGE_NO_PARAM_NAME);
-        pageSizeFieldNames.add(SORT_PARAM_NAME);
-        pageSizeFieldNames.add(ORDER_BY_PARAM_NAME);
+        pageNoFieldNames.add(PAGE_NO_PARAM_NAME);
+        sortFieldNames.add(SORT_PARAM_NAME);
+        orderByFieldNames.add(ORDER_BY_PARAM_NAME);
     }
 
     /**
