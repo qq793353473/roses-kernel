@@ -17,6 +17,7 @@ package cn.stylefeng.roses.core.reqres.request;
 
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.util.StrUtil;
+import cn.stylefeng.roses.kernel.model.api.base.AbstractBaseRequest;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import io.swagger.annotations.ApiModelProperty;
@@ -32,7 +33,7 @@ import java.util.*;
  * @Date 2018/2/11 23:04
  */
 @Data
-public class RequestData implements Serializable {
+public class RequestData extends AbstractBaseRequest implements Serializable {
 
     private static final long serialVersionUID = 9081406366569775542L;
 
@@ -224,4 +225,5 @@ public class RequestData implements Serializable {
     public String toString() {
         return "RequestData(data=" + this.getData() + ", ip=" + this.getIp() + ", url=" + this.getUrl() + ")";
     }
+
 }
