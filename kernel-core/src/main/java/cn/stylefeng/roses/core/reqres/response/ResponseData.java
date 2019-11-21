@@ -25,67 +25,88 @@ import lombok.Data;
  * @Date 2018/1/4 22:37
  */
 @Data
-public class ResponseData {
-
+public class ResponseData<T>  {
     public static final String DEFAULT_SUCCESS_MESSAGE = "请求成功";
-
     public static final String DEFAULT_ERROR_MESSAGE = "网络异常";
-
     public static final Integer DEFAULT_SUCCESS_CODE = 200;
-
     public static final Integer DEFAULT_ERROR_CODE = 500;
-
-    /**
-     * 请求是否成功
-     */
     private Boolean success;
-
-    /**
-     * 响应状态码
-     */
     private Integer code;
-
-    /**
-     * 响应信息
-     */
     private String message;
-
-    /**
-     * 响应对象
-     */
-    private Object data;
+    private T data;
 
     public ResponseData() {
     }
 
-    public ResponseData(Boolean success, Integer code, String message, Object data) {
+    public ResponseData(Boolean success, Integer code, String message, T data) {
         this.success = success;
         this.code = code;
         this.message = message;
         this.data = data;
     }
 
-    public static SuccessResponseData success() {
+    public static <T> ResponseData<T> success() {
         return new SuccessResponseData();
     }
 
-    public static SuccessResponseData success(Object object) {
-        return new SuccessResponseData(object);
+    public static <T> ResponseData<T> success(T t) {
+        return new SuccessResponseData(t);
     }
 
-    public static SuccessResponseData success(Integer code, String message, Object object) {
-        return new SuccessResponseData(code, message, object);
+    public static <T> ResponseData<T> success(Integer code, String message, T t) {
+        return new SuccessResponseData(code, message, t);
     }
 
-    public static ErrorResponseData error(String message) {
+    public static <T> ResponseData error(String message) {
         return new ErrorResponseData(message);
     }
 
-    public static ErrorResponseData error(Integer code, String message) {
+    public static <T> ResponseData error(Integer code, String message) {
         return new ErrorResponseData(code, message);
     }
 
-    public static ErrorResponseData error(Integer code, String message, Object object) {
-        return new ErrorResponseData(code, message, object);
+    public static <T> ResponseData error(Integer code, String message, T t) {
+        return new ErrorResponseData(code, message, t);
+    }
+
+    public Boolean getSuccess() {
+        return this.success;
+    }
+
+    public Integer getCode() {
+        return this.code;
+    }
+
+    public String getMessage() {
+        return this.message;
+    }
+
+    public T getData() {
+        return this.data;
+    }
+
+    public void setSuccess(final Boolean success) {
+        this.success = success;
+    }
+
+    public void setCode(final Integer code) {
+        this.code = code;
+    }
+
+    public void setMessage(final String message) {
+        this.message = message;
+    }
+
+    public void setData(final T data) {
+        this.data = data;
+    }
+
+    protected boolean canEqual(final Object other) {
+        return other instanceof ResponseData;
+    }
+
+
+    public String toString() {
+        return "ResponseData(success=" + this.getSuccess() + ", code=" + this.getCode() + ", message=" + this.getMessage() + ", data=" + this.getData() + ")";
     }
 }

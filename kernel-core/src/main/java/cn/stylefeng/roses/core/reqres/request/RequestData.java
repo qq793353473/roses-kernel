@@ -19,6 +19,7 @@ import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.util.StrUtil;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -35,110 +36,70 @@ public class RequestData implements Serializable {
 
     private static final long serialVersionUID = 9081406366569775542L;
 
-    /**
-     * 封装前端请求的json数据
-     */
+    @ApiModelProperty(
+            hidden = true
+    )
     private JSONObject data;
-
-    /**
-     * 客户端请求的ip
-     */
+    @ApiModelProperty(
+            hidden = true
+    )
     private String ip;
-
-    /**
-     * 客户端请求的地址
-     */
+    @ApiModelProperty(
+            hidden = true
+    )
     private String url;
 
-    /**
-     * 解析请求json为指定类
-     */
     public <T> T parse(Class<T> clazz) {
         Map<String, Object> innerMap = this.data.getInnerMap();
-        HashMap<String, Object> resultMap = new HashMap<>();
+        HashMap<String, Object> resultMap = new HashMap();
         Set<Map.Entry<String, Object>> entries = innerMap.entrySet();
-        for (Map.Entry<String, Object> entry : entries) {
-            String key = entry.getKey();
+        Iterator var5 = entries.iterator();
+
+        while(var5.hasNext()) {
+            Map.Entry<String, Object> entry = (Map.Entry)var5.next();
+            String key = (String)entry.getKey();
             String fieldName = StrUtil.toCamelCase(key);
             resultMap.put(fieldName, entry.getValue());
         }
+
         return BeanUtil.mapToBean(resultMap, clazz, true);
     }
 
-    /**
-     * 解析请求json中指定key,并转化为指定类
-     */
     public <T> T parse(String key, Class<T> clazz) {
         return this.data.getObject(key, clazz);
     }
 
-    /**
-     * 解析指定key,转化为object数组
-     */
     public Object[] getObjectArray(String key) {
         JSONArray jsonArray = this.data.getJSONArray(key);
-        if (jsonArray != null) {
-            return jsonArray.toArray();
-        } else {
-            return new Object[]{};
-        }
+        return jsonArray != null ? jsonArray.toArray() : new Object[0];
     }
 
-    /**
-     * 解析指定key,转化为带有类类型的list
-     */
     public <T> List<T> getList(String key, Class<T> clazz) {
         JSONArray jsonArray = this.data.getJSONArray(key);
-        if (jsonArray != null) {
-            return jsonArray.toJavaList(clazz);
-        } else {
-            return new ArrayList<T>();
-        }
+        return (List)(jsonArray != null ? jsonArray.toJavaList(clazz) : new ArrayList());
     }
 
-    /**
-     * 解析指定key,转化为指定数组
-     */
     public <T> T[] getArray(String key, T[] array) {
         JSONArray jsonArray = this.data.getJSONArray(key);
-        if (jsonArray != null) {
-            return jsonArray.toArray(array);
-        } else {
-            return array;
-        }
+        return jsonArray != null ? jsonArray.toArray(array) : array;
     }
 
-    /**
-     * 获取指定key对应的值
-     */
     public Object get(String key) {
         return this.data.get(key);
     }
 
-    /**
-     * 获取指定key对应的string值
-     */
     public String getString(String key) {
         return this.data.getString(key);
     }
 
-    /**
-     * 获取指定key对应的integer值
-     */
     public Integer getInteger(String key) {
         return this.data.getInteger(key);
     }
 
-    /**
-     * 获取指定key对应的long值
-     */
     public Long getLong(String key) {
         return this.data.getLong(key);
     }
 
-    /**
-     * 解析请求数据转化为map
-     */
     public Map<String, Object> parseMap() {
         return this.jsonObjet2Map(this.data);
     }
@@ -149,33 +110,118 @@ public class RequestData implements Serializable {
         Iterator<Map.Entry<String, Object>> itera = entries.iterator();
         Map.Entry<String, Object> entry = null;
         Object value = null;
-        while (itera.hasNext()) {
-            entry = itera.next();
+
+        while(itera.hasNext()) {
+            entry = (Map.Entry)itera.next();
             value = entry.getValue();
-            map.put(entry.getKey(), traversalData(value));
+            map.put(entry.getKey(), this.traversalData(value));
         }
+
         return map;
     }
 
     private Object jsonArray2List(JSONArray array) {
-        List<Object> list = new ArrayList<>();
-        Iterator<Object> itera = array.iterator();
-        Object value;
-        while (itera.hasNext()) {
-            value = itera.next();
-            list.add(traversalData(value));
+        List<Object> list = new ArrayList();
+        Iterator itera = array.iterator();
+
+        while(itera.hasNext()) {
+            Object value = itera.next();
+            list.add(this.traversalData(value));
         }
+
         return list;
     }
 
     private Object traversalData(Object value) {
         if (value instanceof JSONObject) {
-            return this.jsonObjet2Map((JSONObject) value);
-        } else if (value instanceof JSONArray) {
-            return this.jsonArray2List((JSONArray) value);
+            return this.jsonObjet2Map((JSONObject)value);
         } else {
-            return value;
+            return value instanceof JSONArray ? this.jsonArray2List((JSONArray)value) : value;
         }
     }
 
+    public RequestData() {
+    }
+
+    public JSONObject getData() {
+        return this.data;
+    }
+
+    public String getIp() {
+        return this.ip;
+    }
+
+    public String getUrl() {
+        return this.url;
+    }
+
+    public void setData(final JSONObject data) {
+        this.data = data;
+    }
+
+    public void setIp(final String ip) {
+        this.ip = ip;
+    }
+
+    public void setUrl(final String url) {
+        this.url = url;
+    }
+
+    public boolean equals(final Object o) {
+        if (o == this) {
+            return true;
+        } else if (!(o instanceof RequestData)) {
+            return false;
+        } else {
+            RequestData other = (RequestData)o;
+            if (!other.canEqual(this)) {
+                return false;
+            } else {
+                label47: {
+                    Object this$data = this.getData();
+                    Object other$data = other.getData();
+                    if (this$data == null) {
+                        if (other$data == null) {
+                            break label47;
+                        }
+                    } else if (this$data.equals(other$data)) {
+                        break label47;
+                    }
+
+                    return false;
+                }
+
+                Object this$ip = this.getIp();
+                Object other$ip = other.getIp();
+                if (this$ip == null) {
+                    if (other$ip != null) {
+                        return false;
+                    }
+                } else if (!this$ip.equals(other$ip)) {
+                    return false;
+                }
+
+                Object this$url = this.getUrl();
+                Object other$url = other.getUrl();
+                if (this$url == null) {
+                    if (other$url != null) {
+                        return false;
+                    }
+                } else if (!this$url.equals(other$url)) {
+                    return false;
+                }
+
+                return true;
+            }
+        }
+    }
+
+    protected boolean canEqual(final Object other) {
+        return other instanceof RequestData;
+    }
+
+
+    public String toString() {
+        return "RequestData(data=" + this.getData() + ", ip=" + this.getIp() + ", url=" + this.getUrl() + ")";
+    }
 }

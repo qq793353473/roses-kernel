@@ -18,20 +18,18 @@ package cn.stylefeng.roses.core.reqres.response;
 /**
  * 请求成功的返回
  *
- * @author stylefeng
- * @Date 2018/1/4 22:38
  */
-public class SuccessResponseData extends ResponseData {
-
+public class SuccessResponseData<T> extends ResponseData<T> {
     public SuccessResponseData() {
-        super(true, DEFAULT_SUCCESS_CODE, DEFAULT_SUCCESS_MESSAGE, null);
+        super(true, DEFAULT_SUCCESS_CODE, "请求成功", null);
     }
 
-    public SuccessResponseData(Object object) {
-        super(true, DEFAULT_SUCCESS_CODE, DEFAULT_SUCCESS_MESSAGE, object);
+    public SuccessResponseData(T t) {
+        super(true, DEFAULT_SUCCESS_CODE, "请求成功", t);
     }
 
-    public SuccessResponseData(Integer code, String message, Object object) {
-        super(true, code, message, object);
+    public SuccessResponseData(Integer code, String message, T t) {
+        super(true, code, message, t);
     }
 }
+

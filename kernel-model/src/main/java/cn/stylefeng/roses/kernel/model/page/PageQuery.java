@@ -15,6 +15,8 @@
  */
 package cn.stylefeng.roses.kernel.model.page;
 
+import cn.stylefeng.roses.core.reqres.request.RequestQuery;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 /**
@@ -24,26 +26,27 @@ import lombok.Data;
  * @date 2017-11-08-上午11:18
  */
 @Data
-public class PageQuery {
+public class PageQuery extends RequestQuery {
 
-    /**
-     * 每页的条数
-     */
+    @ApiModelProperty(
+            value = "每页的条数",
+            example = "10"
+    )
     private Integer pageSize;
-
-    /**
-     * 页编码(第几页)
-     */
+    @ApiModelProperty(
+            value = "页编码(第几页)",
+            example = "1"
+    )
     private Integer pageNo;
-
-    /**
-     * 排序方式(asc 或者 desc)
-     */
+    @ApiModelProperty(
+            value = "排序方式(asc 或者 desc)",
+            example = "desc"
+    )
     private String sort;
-
-    /**
-     * 排序的字段名称
-     */
+    @ApiModelProperty(
+            value = "排序的字段名称",
+            example = "id"
+    )
     private String orderByField;
 
     public PageQuery() {
@@ -54,5 +57,73 @@ public class PageQuery {
         this.pageNo = pageNo;
         this.sort = sort;
         this.orderByField = orderByField;
+    }
+
+    public boolean equals(final Object o) {
+        if (o == this) {
+            return true;
+        } else if (!(o instanceof PageQuery)) {
+            return false;
+        } else {
+            PageQuery other = (PageQuery)o;
+            if (!other.canEqual(this)) {
+                return false;
+            } else {
+                label59: {
+                    Object this$pageSize = this.getPageSize();
+                    Object other$pageSize = other.getPageSize();
+                    if (this$pageSize == null) {
+                        if (other$pageSize == null) {
+                            break label59;
+                        }
+                    } else if (this$pageSize.equals(other$pageSize)) {
+                        break label59;
+                    }
+
+                    return false;
+                }
+
+                Object this$pageNo = this.getPageNo();
+                Object other$pageNo = other.getPageNo();
+                if (this$pageNo == null) {
+                    if (other$pageNo != null) {
+                        return false;
+                    }
+                } else if (!this$pageNo.equals(other$pageNo)) {
+                    return false;
+                }
+
+                Object this$sort = this.getSort();
+                Object other$sort = other.getSort();
+                if (this$sort == null) {
+                    if (other$sort != null) {
+                        return false;
+                    }
+                } else if (!this$sort.equals(other$sort)) {
+                    return false;
+                }
+
+                Object this$orderByField = this.getOrderByField();
+                Object other$orderByField = other.getOrderByField();
+                if (this$orderByField == null) {
+                    if (other$orderByField != null) {
+                        return false;
+                    }
+                } else if (!this$orderByField.equals(other$orderByField)) {
+                    return false;
+                }
+
+                return true;
+            }
+        }
+    }
+
+    protected boolean canEqual(final Object other) {
+        return other instanceof PageQuery;
+    }
+
+
+    public String toString() {
+        return "PageQuery(pageSize=" + this.getPageSize() + ", pageNo=" + this.getPageNo() + ", sort=" + this.getSort() + ", orderByField=" + this.getOrderByField() + ")";
     }
 }

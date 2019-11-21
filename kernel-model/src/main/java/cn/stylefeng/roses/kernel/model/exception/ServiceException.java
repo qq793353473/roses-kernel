@@ -18,8 +18,6 @@ package cn.stylefeng.roses.kernel.model.exception;
 /**
  * 业务异常的封装
  *
- * @author fengshuonan
- * @date 2016年11月12日 下午5:05:10
  */
 public class ServiceException extends RuntimeException {
 

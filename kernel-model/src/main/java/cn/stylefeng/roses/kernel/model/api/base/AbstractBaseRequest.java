@@ -16,6 +16,7 @@
 package cn.stylefeng.roses.kernel.model.api.base;
 
 import cn.stylefeng.roses.kernel.model.validator.BaseValidatingParam;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -29,14 +30,76 @@ import lombok.Setter;
 @Setter
 public abstract class AbstractBaseRequest implements BaseValidatingParam {
 
-    /**
-     * 唯一请求号
-     */
+    @ApiModelProperty(
+            hidden = true
+    )
     private String requestNo;
-
-    /**
-     * 业务节点id
-     */
+    @ApiModelProperty(
+            hidden = true
+    )
     private String spanId;
+
+    public AbstractBaseRequest() {
+    }
+
+    public String getRequestNo() {
+        return this.requestNo;
+    }
+
+    public String getSpanId() {
+        return this.spanId;
+    }
+
+    public void setRequestNo(final String requestNo) {
+        this.requestNo = requestNo;
+    }
+
+    public void setSpanId(final String spanId) {
+        this.spanId = spanId;
+    }
+
+    public boolean equals(final Object o) {
+        if (o == this) {
+            return true;
+        } else if (!(o instanceof AbstractBaseRequest)) {
+            return false;
+        } else {
+            AbstractBaseRequest other = (AbstractBaseRequest)o;
+            if (!other.canEqual(this)) {
+                return false;
+            } else {
+                Object this$requestNo = this.getRequestNo();
+                Object other$requestNo = other.getRequestNo();
+                if (this$requestNo == null) {
+                    if (other$requestNo != null) {
+                        return false;
+                    }
+                } else if (!this$requestNo.equals(other$requestNo)) {
+                    return false;
+                }
+
+                Object this$spanId = this.getSpanId();
+                Object other$spanId = other.getSpanId();
+                if (this$spanId == null) {
+                    if (other$spanId != null) {
+                        return false;
+                    }
+                } else if (!this$spanId.equals(other$spanId)) {
+                    return false;
+                }
+
+                return true;
+            }
+        }
+    }
+
+    protected boolean canEqual(final Object other) {
+        return other instanceof AbstractBaseRequest;
+    }
+
+
+    public String toString() {
+        return "AbstractBaseRequest(requestNo=" + this.getRequestNo() + ", spanId=" + this.getSpanId() + ")";
+    }
 
 }

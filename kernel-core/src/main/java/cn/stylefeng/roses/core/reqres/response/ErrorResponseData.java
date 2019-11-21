@@ -21,15 +21,9 @@ import lombok.Data;
 /**
  * 请求失败的返回
  *
- * @author stylefeng
- * @Date 2018/1/4 22:39
  */
 @Data
-public class ErrorResponseData extends ResponseData {
-
-    /**
-     * 异常的具体类名称
-     */
+public class  ErrorResponseData<T> extends ResponseData<T> {
     private String exceptionClazz;
 
     public ErrorResponseData(String message) {
@@ -40,7 +34,48 @@ public class ErrorResponseData extends ResponseData {
         super(false, code, message, null);
     }
 
-    public ErrorResponseData(Integer code, String message, Object object) {
-        super(false, code, message, object);
+    public ErrorResponseData(Integer code, String message, T t) {
+        super(false, code, message, t);
+    }
+
+    public String getExceptionClazz() {
+        return this.exceptionClazz;
+    }
+
+    public void setExceptionClazz(final String exceptionClazz) {
+        this.exceptionClazz = exceptionClazz;
+    }
+
+    public boolean equals(final Object o) {
+        if (o == this) {
+            return true;
+        } else if (!(o instanceof ErrorResponseData)) {
+            return false;
+        } else {
+            ErrorResponseData<?> other = (ErrorResponseData)o;
+            if (!other.canEqual(this)) {
+                return false;
+            } else {
+                Object this$exceptionClazz = this.getExceptionClazz();
+                Object other$exceptionClazz = other.getExceptionClazz();
+                if (this$exceptionClazz == null) {
+                    if (other$exceptionClazz != null) {
+                        return false;
+                    }
+                } else if (!this$exceptionClazz.equals(other$exceptionClazz)) {
+                    return false;
+                }
+
+                return true;
+            }
+        }
+    }
+
+    protected boolean canEqual(final Object other) {
+        return other instanceof ErrorResponseData;
+    }
+
+    public String toString() {
+        return "ErrorResponseData(exceptionClazz=" + this.getExceptionClazz() + ")";
     }
 }

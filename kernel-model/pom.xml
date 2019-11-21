@@ -25,6 +25,12 @@
             <artifactId>lombok</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>cn.stylefeng.roses</groupId>
+            <artifactId>kernel-core</artifactId>
+            <version>1.2.6</version>
+        </dependency>
+
         <!--注意provided-->
         <dependency>
             <groupId>org.springframework</groupId>
