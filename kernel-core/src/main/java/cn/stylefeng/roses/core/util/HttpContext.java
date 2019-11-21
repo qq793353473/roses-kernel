@@ -18,6 +18,7 @@ package cn.stylefeng.roses.core.util;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.Enumeration;
@@ -31,71 +32,77 @@ import java.util.Map;
  * @Date 2018/1/4 21:24
  */
 public class HttpContext {
+    public HttpContext() {
+    }
 
-    /**
-     * 获取请求的ip地址
-     *
-     * @author fengshuonan
-     * @Date 2018/7/23 下午3:44
-     */
     public static String getIp() {
-        HttpServletRequest request = HttpContext.getRequest();
-        if (request == null) {
-            return "127.0.0.1";
-        } else {
-            return request.getRemoteHost();
-        }
+        HttpServletRequest request = getRequest();
+        return request == null ? "127.0.0.1" : request.getRemoteHost();
     }
 
-    /**
-     * 获取当前请求的Request对象
-     *
-     * @author fengshuonan
-     * @Date 2018/7/23 下午3:44
-     */
     public static HttpServletRequest getRequest() {
-        ServletRequestAttributes requestAttributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
-        if (requestAttributes == null) {
-            return null;
-        } else {
-            return requestAttributes.getRequest();
-        }
+        ServletRequestAttributes requestAttributes = (ServletRequestAttributes)RequestContextHolder.getRequestAttributes();
+        return requestAttributes == null ? null : requestAttributes.getRequest();
     }
 
-    /**
-     * 获取当前请求的Response对象
-     *
-     * @author fengshuonan
-     * @Date 2018/7/23 下午3:44
-     */
     public static HttpServletResponse getResponse() {
-        ServletRequestAttributes requestAttributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
-        if (requestAttributes == null) {
-            return null;
-        } else {
-            return requestAttributes.getResponse();
-        }
+        ServletRequestAttributes requestAttributes = (ServletRequestAttributes)RequestContextHolder.getRequestAttributes();
+        return requestAttributes == null ? null : requestAttributes.getResponse();
     }
 
-    /**
-     * 获取所有请求的值
-     *
-     * @author fengshuonan
-     * @Date 2018/7/23 下午3:44
-     */
     public static Map<String, String> getRequestParameters() {
-        HashMap<String, String> values = new HashMap<>();
-        HttpServletRequest request = HttpContext.getRequest();
+        HashMap<String, String> values = new HashMap();
+        HttpServletRequest request = getRequest();
         if (request == null) {
             return values;
+        } else {
+            Enumeration enums = request.getParameterNames();
+
+            while(enums.hasMoreElements()) {
+                String paramName = (String)enums.nextElement();
+                String paramValue = request.getParameter(paramName);
+                values.put(paramName, paramValue);
+            }
+
+            return values;
         }
-        Enumeration enums = request.getParameterNames();
-        while (enums.hasMoreElements()) {
-            String paramName = (String) enums.nextElement();
-            String paramValue = request.getParameter(paramName);
-            values.put(paramName, paramValue);
-        }
-        return values;
     }
 
+    public static Cookie getCookie(String name) {
+        HttpServletRequest request = getRequest();
+        Cookie[] cookies = request.getCookies();
+        if (null != cookies) {
+            Cookie[] var3 = cookies;
+            int var4 = cookies.length;
+
+            for(int var5 = 0; var5 < var4; ++var5) {
+                Cookie cookie = var3[var5];
+                if (cookie.getName().equals(name)) {
+                    return cookie;
+                }
+            }
+        }
+
+        return null;
+    }
+
+    public static String getRequestToken() {
+        HttpServletRequest request = getRequest();
+        if (request == null) {
+            return null;
+        } else {
+            String authorization = request.getHeader("Authorization");
+            if (ToolUtil.isNotEmpty(authorization)) {
+                return authorization;
+            } else {
+                String token = request.getParameter("token");
+                if (ToolUtil.isNotEmpty(token)) {
+                    return token;
+                } else {
+                    Cookie cookie = getCookie("token");
+                    return cookie != null ? cookie.getValue() : null;
+                }
+            }
+        }
+    }
 }
