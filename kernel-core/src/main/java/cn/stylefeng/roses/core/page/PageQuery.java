@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package cn.stylefeng.roses.kernel.model.page;
+package cn.stylefeng.roses.core.page;
 
 import cn.stylefeng.roses.core.reqres.request.RequestQuery;
 import io.swagger.annotations.ApiModelProperty;

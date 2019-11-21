@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package cn.stylefeng.roses.kernel.model.page;
+package cn.stylefeng.roses.core.page;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import lombok.Data;
@@ -32,9 +32,9 @@ public class PageResult<T> implements Serializable {
 
     private static final long serialVersionUID = -4071521319254024213L;
 
-    private Integer page = 1;// 要查找第几页
-    private Integer pageSize = 20;// 每页显示多少条
-    private Integer totalPage = 0;// 总页数
+    private Long page = 1L;// 要查找第几页
+    private Long pageSize = 20L;// 每页显示多少条
+    private Long totalPage = 0L;// 总页数
     private Long totalRows = 0L;// 总记录数
     private List<T> rows;// 结果集
 
@@ -44,8 +44,8 @@ public class PageResult<T> implements Serializable {
     public PageResult(Page<T> page) {
         this.setRows(page.getRecords());
         this.setTotalRows(page.getTotal());
-        this.setPage((int) page.getCurrent());
-        this.setPageSize((int) page.getSize());
+        this.setPage(page.getCurrent());
+        this.setPageSize(page.getSize());
     }
 
 }

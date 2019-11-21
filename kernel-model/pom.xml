@@ -6,6 +6,7 @@
         <groupId>cn.stylefeng.roses</groupId>
         <artifactId>roses-kernel</artifactId>
         <version>1.2.6</version>
+        <relativePath>../pom.xml</relativePath>
     </parent>
 
     <artifactId>kernel-model</artifactId>
@@ -20,15 +21,10 @@
             <artifactId>mybatis-plus</artifactId>
             <scope>provided</scope>
         </dependency>
+
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>cn.stylefeng.roses</groupId>
-            <artifactId>kernel-core</artifactId>
-            <version>1.2.6</version>
         </dependency>
 
         <!--注意provided-->
