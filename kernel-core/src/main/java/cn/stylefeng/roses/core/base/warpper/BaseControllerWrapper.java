@@ -15,7 +15,7 @@
  */
 package cn.stylefeng.roses.core.base.warpper;
 
-import cn.stylefeng.roses.kernel.model.page.PageResult;
+import cn.stylefeng.roses.core.page.PageResult;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 
 import java.util.List;
