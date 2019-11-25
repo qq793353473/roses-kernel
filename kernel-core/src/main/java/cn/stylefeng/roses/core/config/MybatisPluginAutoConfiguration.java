@@ -21,6 +21,8 @@ import cn.stylefeng.roses.core.dbid.GunsDatabaseIdProvider;
 import cn.stylefeng.roses.core.metadata.CustomMetaObjectHandler;
 import com.baomidou.mybatisplus.annotation.DbType;
 import com.baomidou.mybatisplus.core.handlers.MetaObjectHandler;
+import com.baomidou.mybatisplus.core.injector.ISqlInjector;
+import com.baomidou.mybatisplus.extension.injector.LogicSqlInjector;
 import com.baomidou.mybatisplus.extension.plugins.OptimisticLockerInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.PaginationInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -84,6 +86,16 @@ public class MybatisPluginAutoConfiguration {
     public OptimisticLockerInterceptor optimisticLockerInterceptor() {
         return new OptimisticLockerInterceptor();
     }
+
+
+    /**
+     * 逻辑删除mybatis插件
+     */
+    @Bean
+    public ISqlInjector sqlInjector() {
+        return new LogicSqlInjector();
+    }
+
 
     /**
      * 数据库id选择器

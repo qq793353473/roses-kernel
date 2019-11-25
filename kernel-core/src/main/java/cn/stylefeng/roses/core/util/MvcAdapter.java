@@ -17,12 +17,15 @@ package cn.stylefeng.roses.core.util;
 
 import cn.stylefeng.roses.core.converter.RequestDataMessageConvert;
 import cn.stylefeng.roses.core.converter.RequestDataTypeMethodProcessor;
+import com.alibaba.fastjson.support.config.FastJsonConfig;
 import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
+import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter;
 
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -37,7 +40,7 @@ public class MvcAdapter {
 
     public static RequestMappingHandlerAdapter requestMappingHandlerAdapter(
             RequestMappingHandlerAdapter original,
-            FastJsonHttpMessageConverter fastJsonHttpMessageConverter,
+            FastJsonHttpMessageConverter fastConverter,
             RequestDataMessageConvert requestDataMessageConvert) {
 
         List<HttpMessageConverter<?>> converters = new ArrayList<>();
@@ -53,7 +56,25 @@ public class MvcAdapter {
         stringHttpMessageConverter.setWriteAcceptCharset(false);  // see SPR-7316
         list.add(stringHttpMessageConverter);
 
-        list.add(fastJsonHttpMessageConverter);
+        FastJsonConfig fastJsonConfig = new FastJsonConfig();
+//        fastJsonConfig.setSerializeFilters((ValueFilter) (o, s, source) -> {
+//            if (source == null) {
+//                return "";
+//            }
+//            if (source instanceof Date) {
+//                return DateUtil.formtString((Date) source, "yyyy-MM-dd HH:mm:ss");
+//            }
+//            return source;
+//        });
+        fastJsonConfig.setCharset(Charset.forName("UTF-8"));
+        // 处理中文乱码问题
+        List<MediaType> fastMediaTypes = new ArrayList<>();
+        fastMediaTypes.add(MediaType.APPLICATION_JSON_UTF8);
+        fastConverter.setSupportedMediaTypes(fastMediaTypes);
+        //在convert中添加配置信息
+        fastConverter.setFastJsonConfig(fastJsonConfig);
+
+        list.add(fastConverter);
         original.setMessageConverters(list);
         return original;
     }
