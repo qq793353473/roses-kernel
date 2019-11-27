@@ -38,6 +38,10 @@ import java.util.List;
  */
 public class MvcAdapter {
 
+    public MvcAdapter(){
+
+    }
+
     public static RequestMappingHandlerAdapter requestMappingHandlerAdapter(
             RequestMappingHandlerAdapter original,
             FastJsonHttpMessageConverter fastConverter,

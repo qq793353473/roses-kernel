@@ -33,6 +33,8 @@ import org.springframework.context.annotation.Configuration;
 @MapperScan(basePackages = {"**.mapper"})
 @ConditionalOnProperty(prefix = "spring.datasource", name = "url")
 public class MybatisDataSourceAutoConfiguration {
+    public MybatisDataSourceAutoConfiguration() {
+    }
 
     /**
      * druid配置

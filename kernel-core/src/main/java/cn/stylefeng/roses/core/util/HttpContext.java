@@ -15,6 +15,7 @@
  */
 package cn.stylefeng.roses.core.util;
 
+import com.baomidou.mybatisplus.core.toolkit.IdWorker;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
@@ -104,5 +105,19 @@ public class HttpContext {
                 }
             }
         }
+    }
+
+    public static String getRequestNo() {
+        HttpServletRequest request = getRequest();
+        String requestNo = request.getHeader("Request-No");
+        if (ToolUtil.isEmpty(requestNo)) {
+            HttpServletResponse response = getResponse();
+            requestNo = response.getHeader("Request-No");
+            if (ToolUtil.isEmpty(requestNo)) {
+                requestNo = IdWorker.getIdStr();
+            }
+        }
+
+        return requestNo;
     }
 }
