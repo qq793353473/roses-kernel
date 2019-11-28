@@ -60,8 +60,7 @@ public class FastjsonAutoConfiguration {
         fastJsonConfig.setSerializerFeatures(
                 SerializerFeature.PrettyFormat,
                 SerializerFeature.WriteMapNullValue,
-                SerializerFeature.DisableCircularReferenceDetect,
-                SerializerFeature.BrowserCompatible
+                SerializerFeature.DisableCircularReferenceDetect
         );
         fastJsonConfig.setDateFormat("yyyy-MM-dd HH:mm:ss");
         fastJsonConfig.setCharset(Charset.forName("utf-8"));
