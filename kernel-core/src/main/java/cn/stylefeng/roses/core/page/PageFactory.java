@@ -58,6 +58,10 @@ public class PageFactory {
      */
     private static final String ORDER_BY_PARAM_NAME = "orderBy";
 
+    public PageFactory() {
+    }
+
+
     /**
      * 默认规则的分页
      *
@@ -72,7 +76,7 @@ public class PageFactory {
         HttpServletRequest request = HttpContext.getRequest();
 
         if (request == null) {
-            return new Page<>(pageNo, pageSize);
+            return new Page(pageNo, pageSize);
         }
 
         //每页条数
