@@ -45,6 +45,7 @@
         <spring.boot.admin>2.1.6</spring.boot.admin>
         <lombok.versin>1.18.6</lombok.versin>
         <swagger.version>2.9.2</swagger.version>
+        <swagger-ui.version>1.9.4</swagger-ui.version>
         <redisson.version>3.11.0</redisson.version>
     </properties>
 
@@ -148,6 +149,13 @@
                 <artifactId>springfox-swagger-ui</artifactId>
                 <version>${swagger.version}</version>
             </dependency>
+
+            <dependency>
+                <groupId>com.github.xiaoymin</groupId>
+                <artifactId>swagger-bootstrap-ui</artifactId>
+                <version>${swagger-ui.version}</version>
+            </dependency>
+
             <!--redisson-->
             <dependency>
                 <groupId>org.redisson</groupId>
