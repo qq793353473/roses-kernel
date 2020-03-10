@@ -34,6 +34,7 @@ import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.web.bind.support.ConfigurableWebBindingInitializer;
 import org.springframework.web.servlet.config.annotation.ContentNegotiationConfigurer;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter;
 
@@ -56,6 +57,12 @@ public class WebAutoConfiguration extends WebMvcConfigurationSupport {
 
     @Autowired
     private RequestMappingHandlerAdapter handlerAdapter;
+
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry.addResourceHandler("/" + MultipartPathConfig.BUCKET_NAME + "/**").addResourceLocations("file:" + MultipartPathConfig.getUploadPath());
+        super.addResourceHandlers(registry);
+    }
 
     /**
      * 默认错误页面，返回json
