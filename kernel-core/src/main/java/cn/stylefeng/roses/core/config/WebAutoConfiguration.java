@@ -58,12 +58,6 @@ public class WebAutoConfiguration extends WebMvcConfigurationSupport {
     @Autowired
     private RequestMappingHandlerAdapter handlerAdapter;
 
-    @Override
-    public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/" + MultipartPathConfig.BUCKET_NAME + "/**").addResourceLocations("file:" + MultipartPathConfig.getUploadPath());
-        super.addResourceHandlers(registry);
-    }
-
     /**
      * 默认错误页面，返回json
      */
