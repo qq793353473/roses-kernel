@@ -61,11 +61,15 @@ public class FastjsonAutoConfiguration {
                 SerializerFeature.PrettyFormat,
                 SerializerFeature.WriteMapNullValue,
                 SerializerFeature.DisableCircularReferenceDetect,
-                SerializerFeature.WriteNullListAsEmpty
+                SerializerFeature.WriteNullListAsEmpty,
+                SerializerFeature.WriteNullNumberAsZero,
+                SerializerFeature.WriteNullBooleanAsFalse,
+                SerializerFeature.WriteNullStringAsEmpty
+
         );
         fastJsonConfig.setDateFormat("yyyy-MM-dd HH:mm:ss");
         fastJsonConfig.setCharset(Charset.forName("utf-8"));
-        initOtherValueFilters(fastJsonConfig);
+//        initOtherValueFilters(fastJsonConfig);
         return fastJsonConfig;
     }
 
@@ -108,8 +112,11 @@ public class FastjsonAutoConfiguration {
 
         //为空的值转化为空串
         ValueFilter nullValueFilter = (object, name, value) -> {
-            if (null == value) {
-                return "";
+            if (value instanceof ArrayList) {
+                if (value == null) {
+                    value = new ArrayList<>();
+                }
+                return value;
             } else {
                 return value;
             }
