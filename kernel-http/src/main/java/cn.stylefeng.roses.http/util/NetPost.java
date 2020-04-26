@@ -5,15 +5,17 @@ import cn.stylefeng.roses.kernel.logger.util.LogUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
 import org.springframework.http.converter.StringHttpMessageConverter;
-import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import java.nio.charset.StandardCharsets;
 import java.util.Map;
 
 
-@Service
 public class NetPost {
+
+    public NetPost(){
+
+    }
 
     @Autowired
     private RestTemplate restTemplate;

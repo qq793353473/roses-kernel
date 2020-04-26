@@ -3,10 +3,13 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>roses-kernel</artifactId>
         <groupId>cn.stylefeng.roses</groupId>
+        <artifactId>roses-kernel</artifactId>
         <version>1.2.6</version>
+        <relativePath>../pom.xml</relativePath>
     </parent>
+
+
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>kernel-http</artifactId>
@@ -15,17 +18,16 @@
     <name>kernel-http</name>
     <description>网络请求</description>
 
+
+    <properties>
+        <maven.test.skip>true</maven.test.skip>
+        <maven.javadoc.skip>true</maven.javadoc.skip>
+    </properties>
+
     <dependencies>
-        <!--web ，**注意可选**-->
-        <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>javax.servlet-api</artifactId>
-            <scope>provided</scope>
-        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
-            <scope>provided</scope>
         </dependency>
 
         <dependency>
@@ -33,5 +35,6 @@
             <artifactId>kernel-logger</artifactId>
             <version>1.2.6</version>
         </dependency>
+
     </dependencies>
 </project>
