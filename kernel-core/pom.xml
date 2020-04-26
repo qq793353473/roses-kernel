@@ -26,13 +26,6 @@
             <version>1.2.6</version>
         </dependency>
 
-        <dependency>
-            <groupId>cn.stylefeng.roses</groupId>
-            <artifactId>kernel-logger</artifactId>
-            <version>1.2.6</version>
-        </dependency>
-
-
         <!--工具类-->
         <dependency>
             <groupId>cn.hutool</groupId>
@@ -142,4 +135,6 @@
             <artifactId>redisson</artifactId>
         </dependency>
     </dependencies>
+
+
 </project>
