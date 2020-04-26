@@ -1,6 +1,7 @@
-package cn.stylefeng.roses.core.util;
+package cn.stylefeng.roses.http.util;
 
 
+import cn.stylefeng.roses.kernel.logger.util.LogUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
 import org.springframework.http.converter.StringHttpMessageConverter;
@@ -55,7 +56,7 @@ public class NetPost {
      * @return
      */
     public <T> T postForm(String url, String formData, Map<String, String> httpHeaders, Class<T> responseType) {
-        Log.info(url + "->入参数->：" + formData);
+        LogUtil.info(url + "->入参数->：" + formData);
         restTemplate.getMessageConverters().set(0, new StringHttpMessageConverter(StandardCharsets.UTF_8));
         HttpHeaders headers = new HttpHeaders();
         MediaType type = MediaType.parseMediaType("application/x-www-form-urlencoded");
@@ -67,7 +68,7 @@ public class NetPost {
         }
         HttpEntity<String> entity = new HttpEntity<String>(formData, headers);
         T tokenStr = restTemplate.postForObject(url, entity, responseType);
-        Log.info(url + "->返回参数->：" + tokenStr);
+        LogUtil.info(url + "->返回参数->：" + tokenStr);
         return tokenStr;
     }
 
@@ -95,7 +96,7 @@ public class NetPost {
      * @return
      */
     public <T> T get(String url, Map<String, ?> parmars, Map<String, String> httpHeaders, Class<T> responseType) {
-        Log.info(url + "->入参数->：" + parmars);
+        LogUtil.info(url + "->入参数->：" + parmars);
         restTemplate.getMessageConverters().set(0, new StringHttpMessageConverter(StandardCharsets.UTF_8));
         HttpHeaders headers = new HttpHeaders();
         if (httpHeaders != null) {
@@ -105,13 +106,13 @@ public class NetPost {
         }
         HttpEntity<String> entity = new HttpEntity<String>(null, headers);
         ResponseEntity<T> tokenStr = restTemplate.exchange(url, HttpMethod.GET, entity, responseType, parmars);
-        Log.info(url + "->返回参数->：" + tokenStr);
+        LogUtil.info(url + "->返回参数->：" + tokenStr);
         return tokenStr.getBody();
     }
 
 
     private <T> T post(String url, String json, Map<String, String> httpHeaders, Class<T> responseType) {
-        Log.info(url + "->入参数->：" + json);
+        LogUtil.info(url + "->入参数->：" + json);
         restTemplate.getMessageConverters().set(0, new StringHttpMessageConverter(StandardCharsets.UTF_8));
         HttpHeaders headers = new HttpHeaders();
         MediaType type = MediaType.parseMediaType("application/json;charset=UTF-8");
@@ -123,7 +124,7 @@ public class NetPost {
         }
         HttpEntity<String> entity = new HttpEntity<String>(json, headers);
         T tokenStr = restTemplate.postForObject(url, entity, responseType);
-        Log.info(url + "->返回参数->：" + tokenStr);
+        LogUtil.info(url + "->返回参数->：" + tokenStr);
         return tokenStr;
     }
 }
