@@ -69,7 +69,7 @@ public class FastjsonAutoConfiguration {
         );
         fastJsonConfig.setDateFormat("yyyy-MM-dd HH:mm:ss");
         fastJsonConfig.setCharset(Charset.forName("utf-8"));
-//        initOtherValueFilters(fastJsonConfig);
+        initOtherValueFilters(fastJsonConfig);
         return fastJsonConfig;
     }
 
@@ -112,11 +112,9 @@ public class FastjsonAutoConfiguration {
 
         //为空的值转化为空串
         ValueFilter nullValueFilter = (object, name, value) -> {
-            if (value instanceof ArrayList) {
-                if (value == null) {
-                    value = new ArrayList<>();
-                }
-                return value;
+            if (object == null) {
+
+                return "";
             } else {
                 return value;
             }
