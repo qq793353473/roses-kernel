@@ -52,11 +52,19 @@ public class LogUtil {
         doLog(LogLevel.INFO, RequestDataHolder.get(), message, null);
     }
 
+    public static void info(String message,RequestData requestData) {
+        doLog(LogLevel.INFO, RequestDataHolder.get(), message, null);
+    }
+
     public static void error(String message, Throwable exception) {
         doLog(LogLevel.ERROR, RequestDataHolder.get(), message, exception);
     }
 
     public static void debug(String message) {
+        doLog(LogLevel.DEBUG, RequestDataHolder.get(), message, null);
+    }
+
+    public static void debug(String message,RequestData requestData) {
         doLog(LogLevel.DEBUG, RequestDataHolder.get(), message, null);
     }
 
